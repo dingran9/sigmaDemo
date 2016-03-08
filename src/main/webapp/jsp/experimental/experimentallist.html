@@ -97,10 +97,9 @@
                     		<option value="1">干预物通过对微生物的影响对疾病产生影响 </option>
                     		<option value="2">干预物通过对生理过程的影响对疾病产生影响 </option>
                     		<option value="3">疾病和微生物的关系 </option>
-                    		<option value="4">疾病生理过程微生物的关系 </option>
-                    		<option value="5">疾病生理过程关系 </option>
-	                        <option value="6">疾病和生理过程、微生物的关系 </option>
-	                        <option value="7">干预物对微生物对生理过程最终对疾病产生关系 </option>
+                    		<option value="4">疾病生理过程关系 </option>
+	                        <option value="5">疾病和生理过程、微生物的关系 </option>
+	                        <option value="6">干预物对微生物对生理过程最终对疾病产生关系 </option>
                         </select>
                             </div>
                       </td>
@@ -115,7 +114,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b ex_type_c ex_type_d" id="exp_diseaseId_tr">
+                <tr id="exp_diseaseId_tr">
                     <td style="text-align:right;">疾病类型<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_diseaseId" name="exp_diseaseId" maxlength="30"
                                class="form-control" placeholder="疾病类型">-->
@@ -124,7 +123,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b ex_type_c ex_type_e ex_type_g" id="exp_intervention_tr">
+                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g" id="exp_intervention_tr">
                     <td style="text-align:right;">干预物<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_intervention" name="exp_intervention" maxlength="30"
                                class="form-control" placeholder="干预">-->
@@ -133,7 +132,7 @@
                             </div>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b" id="exp_intervention_effect_tr">
+                <tr class="ex_type_a ex_type_b ex_type_c" id="exp_intervention_effect_tr">
                     <td style="text-align:right;">干预对疾病作用<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_intervention_effect" name="exp_intervention_effect" maxlength="5"
                                class="form-control" placeholder="干预对疾病作用">-->
@@ -178,7 +177,7 @@
                             </div>
                     </td>
                 </tr>
-                <tr class="ex_type_c ex_type_f" id="exp_physiological_process_change_tr" style="display:none">
+                <tr class="ex_type_c ex_type_f ex_type_e" id="exp_physiological_process_change_tr" style="display:none">
                     <td style="text-align:right;">生理过程的变化<span class="ezcloud-red">*</span>：</td>
                     <td><!--input type="text" id="exp_physiological_process_change" name="exp_physiological_process_change" maxlength="5"
                                class="form-control" placeholder="生理过程的变化">-->
@@ -187,7 +186,7 @@
                    </div>
                     </td>
                 </tr>
-                <tr class="ex_type_c ex_type_e"  style="display:none">
+                <tr class="ex_type_d ex_type_e ex_type_f"  style="display:none">
                     <td style="text-align:right;">引发源<span class="ezcloud-red">*</span>：</td>
                     <td>
                         <div  class="">
@@ -195,7 +194,7 @@
                             </div>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b ex_type_c ex_type_e  ex_type_g">
+                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g">
                     <td style="text-align:right;">干预物的注释<span class="ezcloud-red">*</span>：</td>
                      <td><input type="text" id="exp_intervention_note" name="exp_edit_namet" maxlength="50"
                               class="form-control" placeholder="干预物的注释"/>
@@ -256,10 +255,9 @@
                         <option value="1">干预物通过对微生物的影响对疾病产生影响 </option>
                         <option value="2">干预物通过对生理过程的影响对疾病产生影响 </option>
                         <option value="3">疾病和微生物的关系 </option>
-                        <option value="4">疾病生理过程微生物的关系 </option>
-                        <option value="5">疾病生理过程关系 </option>
-                        <option value="6">疾病和生理过程、微生物的关系 </option>
-                        <option value="7">干预物对微生物对生理过程最终对疾病产生关系 </option>
+                        <option value="4">疾病生理过程关系 </option>
+                        <option value="5">疾病和生理过程、微生物的关系 </option>
+                        <option value="6">干预物对微生物对生理过程最终对疾病产生关系 </option>
                         </select></div>
                       </td>
                 </tr>
@@ -273,21 +271,21 @@
                         </div>
                     </td>
                 </tr>
-                <tr class=" ex_type_a ex_type_b ex_type_c ex_type_d">
+                <tr>
                     <td style="text-align:right;">疾病类型<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_edit_diseaseId" name="exp_edit_diseaseId" maxlength="5"
                                class="form-control" placeholder="疾病类型">-->
                         <div  class=""><select class="form-control" id="exp_edit_diseaseId" name="exp_animal_model" ></select>
                     </div></td>
                 </tr>
-                <tr class=" ex_type_a ex_type_b ex_type_c ex_type_e  ex_type_g">
+                <tr class=" ex_type_a ex_type_b ex_type_c  ex_type_g">
                     <td style="text-align:right;">干预物<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_edit_intervention" name="exp_edit_intervention" maxlength="5"
                                class="form-control" placeholder="干预">-->
                         <div  class=""><select class="form-control" id="exp_edit_intervention" name="exp_animal_model" ></select>
                     </div></td>
                 </tr>
-                <tr class=" ex_type_a ex_type_b">
+                <tr class=" ex_type_a ex_type_b ex_type_c">
                     <td style="text-align:right;">干预对疾病作用<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_edit_intervention_effect " name="exp_edit_intervention_effect" maxlength="5"
                                class="form-control" placeholder="干预对疾病作用">-->
@@ -329,13 +327,13 @@
                         <div  class="">  <select class="form-control" id="exp_edit_physiological_process_change" name="exp_animal_model" ></select>
                    </div> </td>
                 </tr>
-                <tr class=" ex_type_c ex_type_e"  style="display:none">
+                <tr class=" ex_type_d ex_type_e ex_type_f"  style="display:none">
                     <td style="text-align:right;">引发源<span class="ezcloud-red">*</span>：</td>
                     <td>
                        <select class="form-control" id="exp_edit_source_element" name="exp_animal_model" ></select>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b ex_type_c ex_type_e  ex_type_g">
+                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g">
                     <td style="text-align:right;">干预物的注释<span class="ezcloud-red">*</span>：</td>
                      <td><input type="text" id="exp_edit_intervention_note" name="exp_edit_namet" maxlength="50"
                               class="form-control" placeholder="干预物的注释"/>
@@ -752,36 +750,36 @@ function changeExperimentalType(){
  */
 function changeResultType(modal,id){
 	var resultType=$("#"+id).val();
-	switch (resultType){
-	case "0":
+    console.log(resultType);
+	switch (Number(resultType)){
+	case 0:
         $("#"+modal+" .ex_type_b,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_e,#"+modal+" .ex_type_f,#"+modal+" .ex_type_g").hide();
         $("#"+modal+" .ex_type_a").show();
-
 		break;
-	case "1"://疾病
+	case 1://疾病
         $("#"+modal+" .ex_type_a,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_e,#"+modal+" .ex_type_f,#"+modal+" .ex_type_g").hide();
         $("#"+modal+" .ex_type_b").show();
 		break;
-	case "2":
+	case 2:
         $("#"+modal+" .ex_type_a,#"+modal+" .ex_type_b,#"+modal+" .ex_type_d,#"+modal+" .ex_type_e,#"+modal+" .ex_type_f,#"+modal+" .ex_type_g").hide();
         $("#"+modal+" .ex_type_c").show();
 		break;
-	case "3":
+	case 3:
         $("#"+modal+" .ex_type_a,#"+modal+" .ex_type_b,#"+modal+" .ex_type_c,#"+modal+" .ex_type_e,#"+modal+" .ex_type_f,#"+modal+" .ex_type_g").hide();
         $("#"+modal+" .ex_type_d").show();
 		break;
-	case "4":
+	case 4:
         $("#"+modal+" .ex_type_a,#"+modal+" .ex_type_c,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_f,#"+modal+" .ex_type_g").hide();
         $("#"+modal+" .ex_type_e").show();
 		break;
-        case "5":
-            $("#"+modal+" .ex_type_b,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_a,#"+modal+" .ex_type_e,#"+modal+" .ex_type_g").hide();
-            $("#"+modal+" .ex_type_f").show();
-            break;
-        case "6":
-            $("#"+modal+" .ex_type_b,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_a,#"+modal+" .ex_type_e,#"+modal+" .ex_type_f").hide();
-            $("#"+modal+" .ex_type_g").show();
-            break;
+    case 5:
+        $("#"+modal+" .ex_type_b,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_a,#"+modal+" .ex_type_e,#"+modal+" .ex_type_g").hide();
+        $("#"+modal+" .ex_type_f").show();
+        break;
+    case 6:
+        $("#"+modal+" .ex_type_b,#"+modal+" .ex_type_c,#"+modal+" .ex_type_d,#"+modal+" .ex_type_a,#"+modal+" .ex_type_e,#"+modal+" .ex_type_f").hide();
+        $("#"+modal+" .ex_type_g").show();
+        break;
 	}
 }
     function getDocumentList(){

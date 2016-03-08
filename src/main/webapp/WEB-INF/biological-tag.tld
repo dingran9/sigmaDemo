@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>Css Tag Libraries</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>Css Page Tags</short-name>
+	<uri>http://www.biological.com.cn/tags</uri> 
+<!--     <tag> -->
+<!-- 		<name>Sub</name> -->
+<!-- 		<tag-class>com.css.jsp.tags.SubTag</tag-class> -->
+<!-- 		<body-content>empty</body-content> -->
+<!-- 		<attribute> -->
+<!-- 			<name>value</name> -->
+<!-- 			<required>true</required> -->
+<!-- 			<rtexprvalue>true</rtexprvalue> -->
+<!-- 		</attribute> -->
+<!-- 		<attribute> -->
+<!-- 			<name>default</name> -->
+<!-- 			<required>false</required> -->
+<!-- 			<rtexprvalue>true</rtexprvalue> -->
+<!-- 		</attribute> -->
+<!-- 		<attribute> -->
+<!-- 			<name>escape</name> -->
+<!-- 			<required>false</required> -->
+<!-- 			<rtexprvalue>true</rtexprvalue> -->
+<!-- 		</attribute> -->
+<!-- 		<attribute> -->
+<!-- 			<name>length</name> -->
+<!-- 			<rtexprvalue>true</rtexprvalue> -->
+<!-- 		</attribute> -->
+<!-- 		<attribute> -->
+<!-- 			<name>endStr</name> -->
+<!-- 			<rtexprvalue>true</rtexprvalue> -->
+<!-- 		</attribute> -->
+<!-- 	</tag> -->
+    <tag>
+	    <name>dictComboBox</name>
+	    <tagclass>com.biological.jsp.tags.DictItemComboxTag</tagclass>
+	    <bodycontent>JSP</bodycontent>
+	    <attribute>
+		    <name>type</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+		    <name>id</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+		    <name>name</name>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+			<name>reminderStr</name>
+			<rtexprvalue>true</rtexprvalue>	    	
+	    </attribute>
+	    <attribute>
+		    <name>defaultValue</name>
+		    <required>false</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+		    <name>disabled</name>
+		    <required>false</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+		    <name>reminder</name>
+		    <required>false</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+		    <name>group</name>
+		    <required>false</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	     <attribute>
+		    <name>attributes</name>
+		    <required>false</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+		    <name>exclude</name>
+		    <required>false</required>
+		    <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+   </tag>  
+<!--    <tag> -->
+<!-- 	    <name>dictCheckBox</name> -->
+<!-- 	    <tagclass>com.css.jsp.tags.DictItemCheckBoxTag</tagclass> -->
+<!-- 	    <bodycontent>JSP</bodycontent> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>type</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>id</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>cols</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>defaultValue</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>group</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	     <attribute> -->
+<!-- 		    <name>attributes</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>exclude</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!--    </tag>     -->
+<!--    <tag> -->
+<!-- 	    <name>dictDowListCheckBox</name> -->
+<!-- 	    <tagclass>com.css.jsp.tags.DictItemDownListCheckBoxTag</tagclass> -->
+<!-- 	    <bodycontent>JSP</bodycontent> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>type</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>id</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>cols</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>defaultValue</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>group</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	     <attribute> -->
+<!-- 		    <name>attributes</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>exclude</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!--    </tag> -->
+<!--    <tag> -->
+<!-- 	    <name>dictRadioBox</name> -->
+<!-- 	    <tagclass>com.css.jsp.tags.DictItemRadioBoxTag</tagclass> -->
+<!-- 	    <bodycontent>JSP</bodycontent> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>type</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>id</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>cols</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>defaultValue</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>group</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>attributes</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>exclude</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>reminder</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!--    </tag>  -->
+<!--    <tag> -->
+<!-- 	    <name>button</name> -->
+<!-- 	    <tagclass>com.css.jsp.tags.CssButton</tagclass> -->
+<!-- 	    <bodycontent>JSP</bodycontent> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>id</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>value</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	     <attribute> -->
+<!-- 		    <name>styleName</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>defaultValue</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	     <attribute> -->
+<!-- 		    <name>func</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute><attribute> -->
+<!-- 		    <name>type</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!--    </tag> -->
+<!-- 	<tag> -->
+<!-- 	    <name>a</name> -->
+<!-- 	    <tagclass>com.css.jsp.tags.CssA</tagclass> -->
+<!-- 	    <bodycontent>JSP</bodycontent> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>url</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>id</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>value</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	     <attribute> -->
+<!-- 		    <name>styleName</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>defaultValue</name> -->
+<!-- 		    <required>true</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!-- 	    <attribute> -->
+<!-- 		    <name>func</name> -->
+<!-- 		    <required>false</required> -->
+<!-- 		    <rtexprvalue>true</rtexprvalue> -->
+<!-- 	    </attribute> -->
+<!--    </tag>          -->
+</taglib>

@@ -1,0 +1,329 @@
+<div class="row" id="regionList_document_div">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-12">
+        <div id='regionList_document'  class="row bs-callout bs-callout-info">
+        </div>
+        <input id = userType_document type="hidden">
+    </div>
+</div>
+
+<ul class="nav nav-tabs bordered" id="document_tab_ul"></ul>
+
+<div class="tab-content"  id="document_widget-grid">
+    <div class="tab-pane fade active in" id="pro_document_href" style="padding: 5px;">
+        <!-- 按钮 -->
+        <div id='document_btns' class="row margin-bottom-5 col-sm-12 col-xs-12 col-md-12 col-lg-12"
+             xmlns="http://www.w3.org/1999/html">
+            <a id="btn_entry_refresh" class="btn btn-default" href="javascript:void(0);" onclick="loaddocumentTable()"><i class="fa fa-refresh"></i> 刷新</a>
+            <a id="btn_entry_create"  class="btn btn-success"  pname="document_add" data-toggle="modal" data-target="#document_oper_modal" href="#" ><i class="fa fa-plus"></i> 新增</a>
+            <a id="btn_document_edit"  class="btn btn-default disabled"  pname="document_update"><i class="fa fa-pencil"></i> 编辑</a>
+            <a id="btn_document_delete"  class="btn btn-default disabled"  pname="document_update"><i class="fa fa-trash-o"></i> 删除</a>
+        </div>
+        <!-- 按钮 -->
+        <!-- widget grid -->
+        <section id="document_widget-grid1" style="margin-bottom:-30px;">
+
+            <!-- row -->
+            <div class="row">
+
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2-document" data-widget-editbutton="false">
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <div class="widget-body no-padding">
+                                <div class="widget-body-toolbar"></div>
+                                <div id="document_list_table">
+                                    <table id='document-table' class='table table-responsive talign_c table-striped table-bordered table-hover smart-form has-tickbox'>
+                                        <thead id='document_thead' style="display: none;"></thead>
+                                        <tbody id='document_tbody'>
+                                        <tr class='odd'><td class='dataTables_empty' valign='top' colspan='9' style='border-width:0px;'><span><h3><i class='fa fa-cog fa-spin'></i>正在努力加载...</h3></span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- WIDGET END -->
+
+            </div>
+
+            <!-- end row -->
+
+            <!-- end row -->
+
+        </section>
+    </div>
+</div>
+<!-- end widget grid -->
+<!--新增词条-->
+<div id="document_add_modal" class="text-center" style="display:none;">
+    <form id="document-form">
+        <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
+            <div class="tab-pane active" id="role_create">
+                <div class="order-title">
+                    <h1>新增词条</h1>
+                    <div class="order-line"></div>
+                    <span><a id="document_add_cancelB" class="pull-right cancelBtn" href="#jsp/entry/documentlist.html" style="float: right;">返回词条列表</a></span>
+                </div>
+            </div>
+            <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+
+                <tr>
+                    <td style="text-align:right;">词条类型<span class="biology-red" >*</span></td>
+                    <td>
+                        <select class="form-control" id="document_type" name="document_type">
+                            <option value="a">A</option>
+                            <option value="b">B</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">名称<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="document_name" name="document_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">第一作者：</td>
+                    <td><input type="text" id="document_first_author" maxlength="255" name="document_first_author" class="form-control" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">通讯作者：</td>
+                    <td><input type="text" id="document_correspondent_author" maxlength="255" name="document_correspondent_author" class="form-control" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">文档影响因子：</td>
+                    <td><input type="text" id="document_impact_factors" maxlength="255" name="document_impact_factors " class="form-control" placeholder=""></td>
+                </tr>
+                <tr class="basic">
+                    <td style="text-align:right;">发布时间</td>
+                    <td style="text-align: left;">
+                        <section class="col time-section smart-form" style="width:200px;">
+                            <label> <i class="icon-append fa fa-calendar"></i>
+                                <input type="text" name="enddate" id="package_offline_date"  class="form-control" placeholder="" style="height: 30px;width: 200px;">
+                            </label>
+                        </section>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="" style="padding-top: 20px;">
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="document_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="documentBtn" onclick="addDocument();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
+        </div>
+    </form>
+
+</div>
+<!--编辑词条-->
+<div id="document_edit_modal" class="text-center" style="display:none;">
+    <form id="document_edit-form">
+        <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
+            <div class="tab-pane active" id="document_edit_m_create">
+                <div class="order-title">
+                    <h1>编辑词条</h1>
+                    <div class="order-line"></div>
+                    <span><a id="document_edit_cancelB" class="pull-right cancelBtn" href="#../../action/biology/documents/document.html" style="float: right;">返回词条列表</a></span>
+                </div>
+            </div>
+            <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+                <tr>
+                    <td style="text-align:right;">词条类型<span class="biology-red" >*</span></td>
+                    <td>
+                        <select class="form-control" id="document_edit_type" name="document_edit_type">
+                            <option value="a">A</option>
+                            <option value="b">B</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">名称<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="document_edit_name" name="document_edit_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">第一作者：</td>
+                    <td><input type="text" id="document_edit_first_author" maxlength="255" name="document_edit_first_author" class="form-control" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">通讯作者：</td>
+                    <td><input type="text" id="document_edit_correspondent_author" maxlength="255" name="document_edit_correspondent_author" class="form-control" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">文档影响因子：</td>
+                    <td><input type="text" id="document_edit_impact_factors" maxlength="255" name="document_edit_impact_factors " class="form-control" placeholder=""></td>
+                </tr>
+                <tr class="basic">
+                    <td style="text-align:right;">发布时间</td>
+                    <td style="text-align: left;">
+                        <section class="col time-section smart-form" style="width:200px;">
+                            <label> <i class="icon-append fa fa-calendar"></i>
+                                <input type="text" name="enddate" id="package_edit_offline_date"  class="form-control" placeholder="" style="height: 30px;width: 200px;">
+                            </label>
+                        </section>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <div class="" style="padding-top: 20px;">
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="document_edit_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="document_editBtn" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">保存</a></span>
+    </div>
+    <div class="" style="padding-top: 0;"></div>
+</div>
+<script type="text/javascript">
+
+// DO NOT REMOVE : GLOBAL FUNCTIONS!
+pageSetUp();
+// PAGE RELATED SCRIPTS
+
+documentloadDataTableScripts();
+
+function documentloadDataTableScripts() {
+    loadScript("static/smartadmin/js/plugin/datatables/jquery.dataTables-cust.js?version=4.2.6.2", dt_2);
+
+    function dt_2() {
+        loadScript("static/smartadmin/js/plugin/datatables/ColReorder.min.js?version=4.2.6.2", dt_3);
+    }
+
+    function dt_3() {
+        loadScript("static/smartadmin/js/plugin/datatables/FixedColumns.min.js?version=4.2.6.2", dt_4);
+    }
+
+    function dt_4() {
+        loadScript("static/smartadmin/js/plugin/datatables/ColVis.min.js?version=4.2.6.2", dt_5);
+    }
+
+    function dt_5() {
+        loadScript("static/smartadmin/js/plugin/datatables/ZeroClipboard.js?version=4.2.6.2", dt_6);
+    }
+
+    function dt_6() {
+        loadScript("static/smartadmin/js/plugin/datatables/media/js/TableTools.min.js?version=4.2.6.2", dt_7);
+    }
+
+    function dt_7() {
+        loadScript("static/smartadmin/js/plugin/datatables/DT_bootstrap.js?version=4.2.6.2", dt_8);
+    }
+    function dt_8() {
+        loadScript("static/smartadmin/js/libs/underscore-min.js?version=4.2.6.2", dt_9);
+    }
+    function dt_9() {
+        loadScript("static/smartadmin/js/libs/jquery.event.drag-2.2.js?version=4.2.6.2", dt_10);
+    }
+    function dt_10() {
+        loadScript("biology/document.js?version=4.2.6.2", documentInit);
+    }
+
+}
+
+function documentInit(){
+    //初始化表格
+/*    listRegionsBtns("regionList_document","loaddocumentTableRegion",function(){
+        listProductCatsBtns("document_tab_ul",function(){
+            loaddocumentTable();
+        });
+    });*/
+    loaddocumentTable();
+    addProductCatValidate();
+    initDatePlugin("#package_offline_date");
+    initDatePlugin("#package_edit_offline_date");
+    //删除
+
+    $('#btn_document_delete').unbind("click");
+    $('#btn_document_delete').on("click",function(){
+        showConfirm("fa-trash-o", "删除词条", "删除该词条前,请确保该词条未被使用。是否要删除该词条?删除后，不可恢复。", function () {
+            doPost("/action/document/delete", {documentId: sel_document_id}, function (objs) {
+                if (objs.httpCode == "200") {
+                    showMsg("温馨提示", "删除成功。");
+                    loaddocumentTable();
+                    $("#document_widget-grid").show().siblings().hide();
+                    $("#document_btns,#regionList_document_div,#document_tab_ul").show();
+                } else {
+                    console.log("code :" + objs.code + "  msg:" + objs.message);
+                    showErrorMsg("", "code :" + objs.code + "  msg:" + objs.message);
+                }
+            });
+        });
+    });
+    //新增
+    $('#btn_entry_create').unbind("click");
+    $("#btn_entry_create").on("click",function(){
+        clearForm("document_add");
+        $("#document_type").val("a");
+        $("#document_add_modal").show().siblings().hide();
+
+    });
+    //新增取消
+    $('#document_add_cancelBtn').unbind("click");
+    $("#document_add_cancelBtn").on("click",function(){
+        clearForm("document_add");
+        $("#document_widget-grid").show().siblings().hide();
+        $("#document_btns,#regionList_document_div,#document_tab_ul").show();
+
+    });
+
+    $("#btn_document_edit").unbind("click");
+    $("#btn_document_edit").on("click",function(){
+        //获取详情
+        doPost("/action/document/detail",{documentId:sel_document_id},function(objs){
+            if(objs.httpCode=="200"){
+                $("#document_edit_type").val(objs.data.entryType);
+                $("#document_edit_name").val(objs.data.name);
+                $("#document_edit_first_author").val(objs.data.firstAuthor);
+                $("#document_edit_correspondent_author").val(objs.data.correspondentAuthor);
+                $("#document_edit_impact_factors").val(objs.data.impactFactors);
+                $("#package_edit_offline_date").val(new Date(objs.data.publishDate).Format("yyyy-MM-dd"));
+                $("#document_edit_modal").show().siblings().hide();
+            }else{
+                console.log("code :" + objs.code + "  msg:" + objs.message);
+                showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+            }
+        });
+    });
+    //编辑取消
+    $('#document_edit_cancelBtn,#document_add_cancelB,#document_edit_cancelB').unbind("click");
+    $("#document_edit_cancelBtn,#document_add_cancelB,#document_edit_cancelB").on("click",function(){
+        $("#document_widget-grid").show().siblings().hide();
+        $("#document_btns,#regionList_document_div,#document_tab_ul").show();
+        $("#btn_document_edit,#btn_document_delete").addClass("disabled");
+        $('input[name="cbx_document_list"]').attr("checked",false);
+    });
+    //编辑
+    $('#document_editBtn').unbind("click");
+    $("#document_editBtn").on("click",function(){
+        var name = $.trim($("#document_edit_name").val()),
+            type = $("#document_edit_type option:selected").val(),
+                first_author = $.trim($("#document_edit_first_author").val()),
+                correspondent_author = $.trim($("#document_edit_correspondent_author").val()),
+                impact_factors = $.trim($("#document_edit_impact_factors").val()),
+                offline_date = $.trim($("#package_edit_offline_date").val());
+
+        var data = {documentId: sel_document_id,name:name,
+            firstAuthor: first_author,correspondentAuthor:correspondent_author,
+            publishDate:offline_date ,entryType: type,impactFactors: impact_factors};
+        doPost("/action/document/update",data,function(objs){
+            if(objs.httpCode=="200"){
+                showMsg("温馨提示","编辑成功。");
+                loaddocumentTable();
+                $("#document_widget-grid").show().siblings().hide();
+                $("#document_btns,#regionList_document_div,#document_tab_ul").show();
+            }else{
+                console.log("code :" + objs.code + "  msg:" + objs.message);
+                showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+            }
+        });
+
+    });
+
+    //点击tr赋值
+}
+
+
+</script>

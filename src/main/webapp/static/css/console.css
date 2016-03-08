@@ -1,0 +1,212 @@
+@charset "UTF-8";
+#main{
+    font-family:"微软雅黑","Open Sans",Arial,Helvetica,Sans-Serif;
+}
+#main .quick-oper{
+    position: absolute;
+    left: 190px;
+    height: 33px;
+    line-height: 33px;
+}
+#main .quick-oper a{
+    width: 60px;
+    height: 25px;
+    line-height: 20px;
+    margin-left: 5px;
+    color: #333;
+    text-decoration: none;
+    padding: 2px 5px;
+    border: 1px solid #CCC;
+    background: white;
+    border-radius: 2px;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .05);
+    -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .05);
+    display: inline-block;
+    zoom: 1;
+}
+#main .quick-oper a:hover{
+    background: #EBEBEB;
+    border-color: #ADADAD;
+}
+#main .bs-infos{
+    margin: 10px 0;
+    background:#F8F8F8;
+    border:1px solid #DDD;
+}
+#main .row{
+    border-width: 1px;
+}
+#main .row .bs-infos td{
+    font-size:13px;
+}
+#main .row .bs-btn-con{
+    position:absolute;
+    right:40px;
+    top:14px;
+}
+#main .row .bs-btn{
+    display:inline-block;
+    width:60px;
+    height:28px;
+    line-height:28px;
+    border:1px solid #ccc;
+    border-radius:2px;
+   /* background:#f4f4f4;*/
+    text-align:center;
+    text-decoration:none;
+    zoom:1;
+}
+/*#main .row .active{
+    color:#fff;
+    background:#525D69;
+    border: 1px solid #777;
+}*/
+#main .row .chart-con{
+    min-width: 400px; 
+    height: 300px; 
+    margin: 5px auto;
+    text-align:center;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    min-height: 16.428571429px;
+    background-color: #404040;
+}
+
+.modal-header .close {
+    margin-top: -2px;
+    color: #fff
+}
+.modal-title {
+    margin: 0;
+    line-height: 1.428571429;
+    color: #fff
+}
+
+.modal-body {
+    position: relative;
+    padding: 20px
+}
+
+.modal-footer {
+    background: none repeat scroll 0 0 #F2F2F2;
+    margin-top: 15px;
+    padding: 19px 20px 20px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5
+}
+
+.modal-footer:before,.modal-footer:after {
+    content: " ";
+    display: table
+}
+
+.modal-footer:after {
+    clear: both
+}
+
+.modal-footer:before,.modal-footer:after {
+    content: " ";
+    display: table
+}
+
+.modal-footer:after {
+    clear: both
+}
+
+.modal-footer .btn+.btn {
+    margin-left: 5px;
+    margin-bottom: 0
+}
+
+.modal-footer .btn-group .btn+.btn {
+    margin-left: -1px
+}
+
+.modal-footer .btn-block+.btn-block {
+    margin-left: 0
+}
+
+.smart-style-3 .dropdown-menu {
+    background: none repeat scroll 0 0 #ffffff;
+    border-bottom: 2px solid #adadad;
+    border-radius: 0;
+}
+
+.smart-style-3.dropdown-menu > li > a {
+    color: #000000;
+}
+
+.dropdown-menu > li > a {
+    color: #000000 !important;
+    font:normal 1em "宋体",Arial,Times;
+}
+
+.console-orange{
+    color: orange;
+}
+.console-black{
+    color: #000000;
+}
+.console-red{
+    color: red;
+}
+.console-green{
+    color: green;
+}
+
+.nav > li > a {
+    color: #fff;
+    font-size: 1.1em;
+    font-family: '微软雅黑';
+    position: relative;
+    display: block;
+}
+
+div.dataTables_filter {
+    position: absolute;
+    left: 10px;
+    top: -48px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+    padding:4px;
+}
+#config_firewall_modal .table.has-tickbox thead tr th:first-child{
+    width:190px;
+}
+
+
+#config_firewall_modal #firewall_rule_list_table .btn-default.disabled{
+    color: #333 !important;
+}
+
+#content .nav-tabs > li > a {
+    border-radius: 0 !important;
+    color: #333 !important;
+}
+#content .nav-tabs > li.active > a {
+    border-top-width: 0 !important;
+    box-shadow: 0 -2px 0 #57889c !important;
+    font-weight: 700 !important;
+    margin-top: 1px !important;
+}
+
+#content .nav-tabs > li.active > a,
+#content .nav-tabs > li.active > a:hover,
+#content .nav-tabs > li.active > a:focus {
+    color: #555555 !important;
+    background-color: #ffffff !important;
+    /*border: 1px solid #dddddd !important;*/
+    border-bottom-color: transparent !important;
+    cursor: default !important;
+}
+
+#content .nav > li > a:hover,
+#content .nav > li > a:focus {
+    color: #999999 !important;
+    text-decoration: none !important;
+    background-color: transparent !important ;
+}

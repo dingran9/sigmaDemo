@@ -1,0 +1,545 @@
+<div class="row" id="regionList_dictmanager_div">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-12">
+        <div id='regionList_dictmanager'  class="row bs-callout bs-callout-info">
+        </div>
+        <input id = userType_dictmanager type="hidden">
+    </div>
+</div>
+
+<ul class="nav nav-tabs bordered" id="dictmanager_tab_ul"></ul>
+
+<div class="tab-content"  id="dictmanager_widget-grid">
+    <div class="tab-pane fade active in" id="pro_dictmanager_href" style="padding: 5px;">
+        <!-- 按钮 -->
+        <div id='dictmanager_btns' class="row margin-bottom-5 col-sm-12 col-xs-12 col-md-12 col-lg-12"
+             xmlns="http://www.w3.org/1999/html">
+            <a id="btn_entry_refresh" class="btn btn-default" href="javascript:void(0);" onclick="loaddictmanagerTable()"><i class="fa fa-refresh"></i> 刷新</a>
+            <a id="btn_entry_create"  class="btn btn-success"  pname="dictmanager_add" data-toggle="modal" data-target="#dictmanager_oper_modal" href="#" ><i class="fa fa-plus"></i> 新增</a>
+            <a id="btn_dictmanager_edit"  class="btn btn-default disabled"  pname="dictmanager_update"><i class="fa fa-pencil"></i> 编辑</a>
+            <a id="btn_dictmanager_delete"  class="btn btn-default disabled"  pname="dictmanager_update"><i class="fa fa-trash-o"></i> 删除</a>
+        </div>
+        <!-- 按钮 -->
+        <!-- widget grid -->
+        <section id="dictmanager_widget-grid1" style="margin-bottom:-30px;">
+
+            <!-- row -->
+            <div class="row">
+
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2-dictmanager" data-widget-editbutton="false">
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <div class="widget-body no-padding">
+                                <div class="widget-body-toolbar"></div>
+                                <div id="dictmanager_list_table">
+                                    <table id='dictmanager-table' class='table table-responsive talign_c table-striped table-bordered table-hover smart-form has-tickbox'>
+                                        <thead id='dictmanager_thead' style="display: none;"></thead>
+                                        <tbody id='dictmanager_tbody'>
+                                        <tr class='odd'><td class='dataTables_empty' valign='top' colspan='9' style='border-width:0px;'><span><h3><i class='fa fa-cog fa-spin'></i>正在努力加载...</h3></span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- WIDGET END -->
+
+            </div>
+
+            <!-- end row -->
+
+            <!-- end row -->
+
+        </section>
+    </div>
+</div>
+<!-- end widget grid -->
+<!--新增字典-->
+<div id="dictmanager_add_modal" class="text-center" style="display:none;">
+    <form id="dictmanager-form">
+        <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
+            <div class="tab-pane active" id="role_create">
+                <div class="order-title">
+                    <h1>新增字典</h1>
+                    <div class="order-line"></div>
+                    <span><a id="dictmanager_add_cancelB" class="pull-right cancelBtn" href="#jsp/dict/dictmanager.html" style="float: right;">返回字典列表</a></span>
+                </div>
+            </div>
+            <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+                <tr>
+                    <td style="text-align:right;">是否可用<span class="biology-red" >*</span></td>
+                    <td>
+                        <select class="form-control" id="dictmanager_validMark" name="dictmanager_validMark">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">CODE<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictmanager_code" name="dictmanager_code" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">名称<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictmanager_name" name="dictmanager_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">描述：</td>
+                    <td><input type="text" id="dictmanager_describe" maxlength="255" name="dictmanager_describe" class="form-control" placeholder=""></td>
+                </tr>
+            </table>
+        </div>
+        <div class="" style="padding-top: 20px;">
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="dictmanager_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictmanagerBtn" onclick="addDocument();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
+        </div>
+    </form>
+
+</div>
+<!--编辑字典-->
+<div id="dictmanager_edit_modal" class="text-center" style="display:none;">
+    <form id="dictmanager_edit-form">
+        <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
+            <div class="tab-pane active" id="dictmanager_edit_m_create">
+                <div class="order-title">
+                    <h1>编辑字典</h1>
+                    <div class="order-line"></div>
+                    <span><a id="dictmanager_edit_cancelB" class="pull-right cancelBtn" href="#jsp/dict/dictmanager.html" style="float: right;">返回字典列表</a></span>
+                </div>
+            </div>
+            <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+                <tr>
+                    <td style="text-align:right;">是否可用<span class="biology-red" >*</span></td>
+                    <td>
+                        <select class="form-control" id="dictmanager_edit_validMark" name="dictmanager_edit_validMark">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">CODE<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictmanager_edit_code" name="dictmanager_edit_code" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">名称<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictmanager_edit_name" name="dictmanager_edit_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">描述：</td>
+                    <td><input type="text" id="dictmanager_edit_describe" maxlength="255" name="dictmanager_edit_describe" class="form-control" placeholder=""></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <div class="" style="padding-top: 20px;">
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="dictmanager_edit_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictmanager_editBtn" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">保存</a></span>
+    </div>
+    <div class="" style="padding-top: 0;"></div>
+</div>
+
+
+
+        <!--字典项-->
+
+
+<div class="tab-content"  id="dictitemmanager_widget-grid" style="display: none;">
+    <div class="tab-pane fade active in" id="pro_dictitemmanager_href" style="padding: 5px;">
+        <!-- 按钮 -->
+        <div id='dictitemmanager_btns' class="row margin-bottom-5 col-sm-12 col-xs-12 col-md-12 col-lg-12"
+             xmlns="http://www.w3.org/1999/html">
+            <a id="btn_dictitemmanager_refresh" class="btn btn-default" href="javascript:void(0);" onclick="loaddictitemmanagerTable()"><i class="fa fa-refresh"></i> 刷新</a>
+            <a id="btn_dictitemmanager_create"  class="btn btn-success"  pname="dictitemmanager_add" data-toggle="modal" data-target="#dictitemmanager_oper_modal" href="#" ><i class="fa fa-plus"></i> 新增</a>
+            <a id="btn_dictitemmanager_edit"  class="btn btn-default disabled"  pname="dictitemmanager_update"><i class="fa fa-pencil"></i> 编辑</a>
+            <a id="btn_dictitemmanager_delete"  class="btn btn-default disabled"  pname="dictitemmanager_update"><i class="fa fa-trash-o"></i> 删除</a>
+            <a id="btn_dictitemmanager_back" class="btn btn-default"><i class="fa fa-trash-o"></i> 返回</a>
+        </div>
+
+        <!-- 按钮 -->
+        <!-- widget grid -->
+        <section id="dictitemmanager_widget-grid1" style="margin-bottom:-30px;">
+
+            <!-- row -->
+            <div class="row">
+
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2-dictitemmanager" data-widget-editbutton="false">
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <div class="widget-body no-padding">
+                                <div class="widget-body-toolbar"></div>
+                                <div id="dictitemmanager_list_table">
+                                    <table id='dictitemmanager-table' class='table table-responsive talign_c table-striped table-bordered table-hover smart-form has-tickbox'>
+                                        <thead id='dictitemmanager_thead'></thead>
+                                        <tbody id='dictitemmanager_tbody'>
+                                        <tr class='odd'><td class='dataTables_empty' valign='top' colspan='9' style='border-width:0px;'><span><h3><i class='fa fa-cog fa-spin'></i>正在努力加载...</h3></span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- WIDGET END -->
+
+            </div>
+
+            <!-- end row -->
+
+            <!-- end row -->
+
+        </section>
+    </div>
+</div>
+<!-- end widget grid -->
+<!--新增字典项-->
+<div id="dictitemmanager_add_modal" class="text-center" style="display:none;">
+    <form id="dictitemmanager-form">
+        <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
+            <div class="tab-pane active">
+                <div class="order-title">
+                    <h1>新增字典项</h1>
+                    <div class="order-line"></div>
+                    <span><a id="dictitemmanager_add_cancelB" class="pull-right cancelBtn" href="javascript:void(0);" style="float: right;">返回字典项列表</a></span>
+                </div>
+            </div>
+            <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+                <tr style="display: none;">
+                    <td style="text-align:right;">字典<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictmanager_uuid" name="dictmanager_uuid" class="form-control" ></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">字典CODE<span class="biology-red">*</span>：</td>
+                    <td><span  id="d_dictmanager_name" style="float: left;"></span></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">是否可用<span class="biology-red" >*</span>：</td>
+                    <td>
+                        <select class="form-control" id="dictitemmanager_validMark" name="dictitemmanager_validMark">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">名称<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictitemmanager_name" name="dictitemmanager_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">字典项值<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictitemmanager_value" name="dictitemmanager_value" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">描述：</td>
+                    <td><input type="text" id="dictitemmanager_describe" maxlength="255" name="dictitemmanager_describe" class="form-control" placeholder=""></td>
+                </tr>
+            </table>
+        </div>
+        <div class="" style="padding-top: 20px;">
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="dictitemmanager_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictitemmanagerBtn" onclick="addDocument();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
+        </div>
+    </form>
+
+</div>
+<!--编辑字典项-->
+<div id="dictitemmanager_edit_modal" class="text-center" style="display:none;">
+    <form id="dictitemmanager_edit-form">
+        <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
+            <div class="tab-pane active" id="dictitemmanager_edit_m_create">
+                <div class="order-title">
+                    <h1>编辑字典项</h1>
+                    <div class="order-line"></div>
+                    <span><a id="dictitemmanager_edit_cancelB" class="pull-right cancelBtn" href="javascript:void(0);" style="float: right;">返回字典项列表</a></span>
+                </div>
+            </div>
+            <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+                <tr>
+                    <td style="text-align:right;">字典<span class="biology-red">*</span>：</td>
+                    <td aria-disabled="false"><input type="text" id="dictmanager_d_edit_name" name="dictmanager_edit_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">是否可用<span class="biology-red" >*</span></td>
+                    <td>
+                        <select class="form-control" id="dictitemmanager_edit_validMark" name="dictitemmanager_edit_validMark">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">名称<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictitemmanager_edit_name" name="dictitemmanager_edit_name" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">字典项值<span class="biology-red">*</span>：</td>
+                    <td><input type="text" id="dictitemmanager_edit_value" name="dictitemmanager_edit_value" class="form-control" >
+                </tr>
+                <tr>
+                    <td style="text-align:right;">描述：</td>
+                    <td><input type="text" id="dictitemmanager_edit_describe" maxlength="255" name="dictitemmanager_edit_describe" class="form-control" placeholder=""></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <div class="" style="padding-top: 20px;">
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="dictitemmanager_edit_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictitemmanager_editBtn" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">保存</a></span>
+    </div>
+    <div class="" style="padding-top: 0;"></div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+    // PAGE RELATED SCRIPTS
+
+    dictmanagerloadDataTableScripts();
+
+    function dictmanagerloadDataTableScripts() {
+        loadScript("static/smartadmin/js/plugin/datatables/jquery.dataTables-cust.js?version=4.2.6.2", dt_2);
+
+        function dt_2() {
+            loadScript("static/smartadmin/js/plugin/datatables/ColReorder.min.js?version=4.2.6.2", dt_3);
+        }
+
+        function dt_3() {
+            loadScript("static/smartadmin/js/plugin/datatables/FixedColumns.min.js?version=4.2.6.2", dt_4);
+        }
+
+        function dt_4() {
+            loadScript("static/smartadmin/js/plugin/datatables/ColVis.min.js?version=4.2.6.2", dt_5);
+        }
+
+        function dt_5() {
+            loadScript("static/smartadmin/js/plugin/datatables/ZeroClipboard.js?version=4.2.6.2", dt_6);
+        }
+
+        function dt_6() {
+            loadScript("static/smartadmin/js/plugin/datatables/media/js/TableTools.min.js?version=4.2.6.2", dt_7);
+        }
+
+        function dt_7() {
+            loadScript("static/smartadmin/js/plugin/datatables/DT_bootstrap.js?version=4.2.6.2", dt_8);
+        }
+        function dt_8() {
+            loadScript("biology/dictmanager.js?version=4.2.6.2", dt_9);
+        }
+        function dt_9() {
+            loadScript("biology/dictitemmanager.js?version=4.2.6.2", dictmanagerInit);
+        }
+    }
+
+    function dictmanagerInit(){
+        //初始化表格
+        /*    listRegionsBtns("regionList_dictmanager","loaddictmanagerTableRegion",function(){
+         listProductCatsBtns("dictmanager_tab_ul",function(){
+         loaddictmanagerTable();
+         });
+         });*/
+        loaddictmanagerTable();
+        addProductCatValidate();
+        //删除
+
+        $("#btn_dictitemmanager_back").on("click",function(){
+            $("#dictmanager_widget-grid").show().siblings().hide();
+            $("#dictmanager_btns,#regionList_dictmanager_div,#dictmanager_tab_ul").show();
+        });
+        $('#btn_dictmanager_delete').unbind("click");
+        $('#btn_dictmanager_delete').on("click",function(){
+            showConfirm("fa-trash-o", "删除字典", "删除该字典前,请确保该字典未被使用。是否要删除该字典?删除后，不可恢复。", function () {
+                doPost("/action/dictmanager/delete", {dictmanagerId: sel_dictmanager_id}, function (objs) {
+                    if (objs.httpCode == "200") {
+                        showMsg("温馨提示", "删除成功。");
+                        loaddictmanagerTable();
+                        $("#dictmanager_widget-grid").show().siblings().hide();
+                        $("#dictmanager_btns,#regionList_dictmanager_div,#dictmanager_tab_ul").show();
+                    } else {
+                        console.log("code :" + objs.code + "  msg:" + objs.message);
+                        showErrorMsg("", "code :" + objs.code + "  msg:" + objs.message);
+                    }
+                });
+            });
+        });
+        //新增
+        $('#btn_entry_create').unbind("click");
+        $("#btn_entry_create").on("click",function(){
+            clearForm("dictmanager_add");
+            $("#dictmanager_validMark").val("1");
+            $("#dictmanager_add_modal").show().siblings().hide();
+
+        });
+        //新增取消
+        $('#dictmanager_add_cancelBtn').unbind("click");
+        $("#dictmanager_add_cancelBtn").on("click",function(){
+            clearForm("dictmanager_add");
+            $("#dictmanager_widget-grid").show().siblings().hide();
+            $("#dictmanager_btns,#regionList_dictmanager_div,#dictmanager_tab_ul").show();
+
+        });
+
+        $("#btn_dictmanager_edit").unbind("click");
+        $("#btn_dictmanager_edit").on("click",function(){
+            //获取详情
+            doPost("/action/dictmanager/detail",{dictmanagerId:sel_dictmanager_id},function(objs){
+                if(objs.httpCode=="200"){
+                    $("#dictmanager_edit_validMark").val(objs.data.validMark);
+                    $("#dictmanager_edit_code").val(objs.data.code);
+                    $("#dictmanager_edit_name").val(objs.data.name);
+                    $("#dictmanager_edit_describe").val(objs.data.remark);
+                    $("#dictmanager_edit_modal").show().siblings().hide();
+                }else{
+                    console.log("code :" + objs.code + "  msg:" + objs.message);
+                    showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+                }
+            });
+        });
+        //编辑取消
+        $('#dictmanager_edit_cancelBtn,#dictmanager_add_cancelB,#dictmanager_edit_cancelB').unbind("click");
+        $("#dictmanager_edit_cancelBtn,#dictmanager_add_cancelB,#dictmanager_edit_cancelB").on("click",function(){
+            $("#dictmanager_widget-grid").show().siblings().hide();
+            $("#dictmanager_btns,#regionList_dictmanager_div,#dictmanager_tab_ul").show();
+            $("#btn_dictmanager_edit,#btn_dictmanager_delete").addClass("disabled");
+            $('input[name="cbx_dictmanager_list"]').attr("checked",false);
+        });
+        //编辑
+        $('#dictmanager_editBtn').unbind("click");
+        $("#dictmanager_editBtn").on("click",function(){
+            var name = $.trim($("#dictmanager_edit_name").val()),
+                    validMark = $("#dictmanager_edit_validMark option:selected").val(),
+                    code = $.trim($("#dictmanager_edit_code").val()),
+                    remark = $.trim($("#dictmanager_edit_describe").val());
+
+            var data = {dictmanagerId: sel_dictmanager_id,name:name,
+                code: code,validMark:validMark,
+                remark:remark};
+            doPost("/action/dictmanager/update",data,function(objs){
+                if(objs.httpCode=="200"){
+                    showMsg("温馨提示","编辑成功。");
+                    loaddictmanagerTable();
+                    $("#dictmanager_widget-grid").show().siblings().hide();
+                    $("#dictmanager_btns,#regionList_dictmanager_div,#dictmanager_tab_ul").show();
+                }else{
+                    console.log("code :" + objs.code + "  msg:" + objs.message);
+                    showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+                }
+            });
+
+        });
+
+        //点击tr赋值
+    }
+
+
+    /*字典项*/
+    //删除
+
+    $('#btn_dictitemmanager_delete').unbind("click");
+    $('#btn_dictitemmanager_delete').on("click",function(){
+        showConfirm("fa-trash-o", "删除字典项", "删除该字典项前,请确保该字典项未被使用。是否要删除该字典项?删除后，不可恢复。", function () {
+            doPost("/action/dictItem/delete", {dictItemId: sel_dictitemmanager_id}, function (objs) {
+                if (objs.httpCode == "200") {
+                    showMsg("温馨提示", "删除成功。");
+                    loaddictitemmanagerTable("",sel_dictmanager_uuid);
+                    $("#dictitemmanager_widget-grid").show().siblings().hide();
+                    $("#dictitemmanager_btns,#regionList_dictitemmanager_div,#dictitemmanager_tab_ul").show();
+                } else {
+                    console.log("code :" + objs.code + "  msg:" + objs.message);
+                    showErrorMsg("", "code :" + objs.code + "  msg:" + objs.message);
+                }
+            });
+        });
+    });
+    //新增
+    $('#btn_dictitemmanager_create').unbind("click");
+    $("#btn_dictitemmanager_create").on("click",function(){
+        clearForm("dictitemmanager_add");
+        $("#dictitemmanager_validMark").val("1");
+        $("#dictmanager_uuid").val(sel_dictmanager_uuid);
+        $("#d_dictmanager_name").html(sel_dictmanager_code);
+        $("#dictitemmanager_add_modal").show().siblings().hide();
+
+    });
+    //新增取消
+    $('#dictitemmanager_add_cancelBtn').unbind("click");
+    $("#dictitemmanager_add_cancelBtn").on("click",function(){
+        clearForm("dictitemmanager_add");
+        $("#dictitemmanager_widget-grid").show().siblings().hide();
+        $("#dictitemmanager_btns,#regionList_dictitemmanager_div,#dictitemmanager_tab_ul").show();
+
+    });
+
+    $("#btn_dictitemmanager_edit").unbind("click");
+    $("#btn_dictitemmanager_edit").on("click",function(){
+        //获取详情
+        doPost("/action/dictItem/detail",{dictItemId:sel_dictitemmanager_id},function(objs){
+            if(objs.httpCode=="200"){
+                $("#dictitemmanager_edit_validMark").val(objs.data.validMark);
+                $("#dictitemmanager_edit_value").val(objs.data.value);
+                $("#dictitemmanager_edit_name").val(objs.data.name);
+                $("#dictitemmanager_edit_describe").val(objs.data.remark);
+                $("#dictmanager_d_edit_name").val(objs.data.dictPo.code);
+                $("#dictitemmanager_edit_modal").show().siblings().hide();
+            }else{
+                console.log("code :" + objs.code + "  msg:" + objs.message);
+                showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+            }
+        });
+    });
+    //编辑取消
+    $('#dictitemmanager_edit_cancelBtn,#dictitemmanager_add_cancelB,#dictitemmanager_edit_cancelB').unbind("click");
+    $("#dictitemmanager_edit_cancelBtn,#dictitemmanager_add_cancelB,#dictitemmanager_edit_cancelB").on("click",function(){
+        $("#dictitemmanager_widget-grid").show().siblings().hide();
+        $("#dictitemmanager_btns,#regionList_dictitemmanager_div,#dictitemmanager_tab_ul").show();
+        $("#btn_dictitemmanager_edit,#btn_dictitemmanager_delete").addClass("disabled");
+        $('input[name="cbx_dictitemmanager_list"]').attr("checked",false);
+    });
+    //编辑
+    $('#dictitemmanager_editBtn').unbind("click");
+    $("#dictitemmanager_editBtn").on("click",function(){
+        var name = $.trim($("#dictitemmanager_edit_name").val()),
+                validMark = $("#dictitemmanager_edit_validMark option:selected").val(),
+                value = $.trim($("#dictitemmanager_edit_value").val()),
+                remark = $.trim($("#dictitemmanager_edit_describe").val());
+
+        var data = {dictItemId: sel_dictitemmanager_id,name:name,value: value,validMark:validMark,remark:remark};
+        doPost("/action/dictItem/update",data,function(objs){
+            if(objs.httpCode=="200"){
+                showMsg("温馨提示","编辑成功。");
+                loaddictitemmanagerTable("",sel_dictmanager_uuid);
+                $("#dictitemmanager_widget-grid").show().siblings().hide();
+                $("#dictitemmanager_btns,#regionList_dictitemmanager_div,#dictitemmanager_tab_ul").show();
+            }else{
+                console.log("code :" + objs.code + "  msg:" + objs.message);
+                showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+            }
+        });
+
+    });
+
+
+
+</script>

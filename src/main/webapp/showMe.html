@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+    <title>展示页面</title>
+    <!-- START SIGMA IMPORTS -->
+<script src="./sigma.js-1.0.3/src/sigma.core.js"></script>
+<script src="./sigma.js-1.0.3/src/conrad.js"></script>
+<script src="./sigma.js-1.0.3/src/utils/sigma.utils.js"></script>
+<script src="./sigma.js-1.0.3/src/utils/sigma.polyfills.js"></script>
+<script src="./sigma.js-1.0.3/src/sigma.settings.js"></script>
+<script src="./sigma.js-1.0.3/src/classes/sigma.classes.dispatcher.js"></script>
+<script src="./sigma.js-1.0.3/src/classes/sigma.classes.configurable.js"></script>
+<script src="./sigma.js-1.0.3/src/classes/sigma.classes.graph.js"></script>
+<script src="./sigma.js-1.0.3/src/classes/sigma.classes.camera.js"></script>
+<script src="./sigma.js-1.0.3/src/classes/sigma.classes.quad.js"></script>
+<script src="./sigma.js-1.0.3/src/captors/sigma.captors.mouse.js"></script>
+<script src="./sigma.js-1.0.3/src/captors/sigma.captors.touch.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/sigma.renderers.canvas.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/sigma.renderers.webgl.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/sigma.renderers.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+<script src="./sigma.js-1.0.3/src/middlewares/sigma.middlewares.rescale.js"></script>
+<script src="./sigma.js-1.0.3/src/middlewares/sigma.middlewares.copy.js"></script>
+<script src="./sigma.js-1.0.3/src/misc/sigma.misc.animation.js"></script>
+<script src="./sigma.js-1.0.3/src/misc/sigma.misc.bindEvents.js"></script>
+<script src="./sigma.js-1.0.3/src/misc/sigma.misc.drawHovers.js"></script>
+<script src="./static/js/libs/jquery-2.0.2.min.js"></script>
+<!-- END SIGMA IMPORTS -->
+<script src="./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/shape-library.js"></script>
+<script src="./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/sigma.renderers.customEdgeShapes.js"></script>
+<script type="text/javascript">
+//生成图形方法
+var g = {
+	      nodes: [],
+	      edges: []
+	    },
+	    colors = [
+	                '#617db4',
+	                '#668f3c',
+	                '#c6583e',
+	                '#b956af'
+	              ],
+	    s;
+// var data={
+// 		  "nodes": [
+// 		            {
+// 		              "id": "n0",
+// 		              "label": "A node",
+// 		              "x": 0,
+// 		              "y": 0,
+// 		              "size": 3,
+// 		              "color":"#0022ff"
+// 		            },
+// 		            {
+// 		              "id": "n1",
+// 		              "label": "Another node",
+// 		              "x": 3,
+// 		              "y": 1,
+// 		              "size": 2,
+// 		              "color":"#ff22ff"
+// 		            },
+// 		            {
+// 		              "id": "n2",
+// 		              "label": "And a last one",
+// 		              "x": 1,
+// 		              "y": 3,
+// 		              "size": 1,
+// 		              "color":"#00ccff"
+// 		            }
+// 		            ,
+// 		            {
+// 		              "id": "n3",
+// 		              "label": "And a last one",
+// 		              "x": 2,
+// 		              "y": 3,
+// 		              "size": 5,
+// 		              "color":"#ff1122"
+// 		            }
+// 		          ],
+// 		          "edges": [
+// 		            {
+// 		              "id": "e0",
+// 		              "source": "n0",
+// 		              "target": "n1",
+// 		              "type":"curve",
+// 		              "arrowType":"target"
+// 		            },
+// 		            {
+// 		              "id": "e1",
+// 		              "source": "n1",
+// 		              "target": "n2",
+// 		              "type": "curve",
+// 		              "arrowType":"both"
+// 		            },
+// 		            {
+// 		              "id": "e2",
+// 		              "source": "n2",
+// 		              "target": "n0",
+// 		              "type" : "curve"
+// 		            }
+// 		            ,
+// 		            {
+// 		              "id": "e3",
+// 		              "source": "n3",
+// 		              "target": "n0",
+// 		              "type": "curve"
+// 		            }
+// 		          ]
+// 		        };
+	function initGraph(data){
+		debugger;
+		for (i = 0; i < data.nodePos.length; i++) {
+			  g.nodes.push({
+			    id: data.nodePos[i].id+"",
+			    label: data.nodePos[i].label,
+			    x:data.nodePos[i].positionX,
+			    y: data.nodePos[i].positionY,
+			    size: data.nodePos[i].size,
+			    color: colors[Math.floor(Math.random() * colors.length)]
+			  });
+			}
+
+			for (i = 0; i < data.edgePos.length; i++) {
+			  g.edges.push({
+			    id: data.edgePos[i].id+"",
+			    source: data.edgePos[i].source.id+"",
+			    target: data.edgePos[i].target.id+"",
+			    // note the EdgeShapeLibrary.enumerate() returns the names of all
+			    // supported renderers
+			    type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
+			    size: Math.random()
+			  });
+			}
+
+			s = new sigma({
+			  graph: g,
+			  renderer: {
+			    // IMPORTANT:
+			    // This works only with the canvas renderer, so the
+			    // renderer type set as "canvas" is necessary here.
+			    container: document.getElementById('graph-container'),
+			    type: 'canvas'
+			  },
+			  settings: {
+			    minNodeSize: 1,
+			    maxNodeSize: 10,
+			    minEdgeSize: 0.1,
+			    maxEdgeSize: 2,
+			  }
+			});
+			CustomEdgeShapes.init(s);
+			s.refresh();
+	}
+	$(function(){
+		doPost("/action/node/list",{shapeId:"1"},function(objs){
+			initGraph(objs.data)
+        });
+// 		initGraph(data);
+	});
+	
+</script>
+<style>
+#graph-container {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+</style>
+</head>
+<body>
+  <div id="graph-container"></div>
+</body>
+</html>

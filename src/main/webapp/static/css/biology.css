@@ -1,0 +1,384 @@
+body{
+    font-family: '微软雅黑' !important;
+}
+
+table tr td{
+    font-size: 13px !important;
+    font-family: '微软雅黑' !important;
+    /*text-align: center;*/
+}
+
+table tr th{
+    text-align: center;
+    font-size: 12px !important;
+    font-family: '微软雅黑' !important;
+    color: #666 !important;
+}
+table tr th.sorting, th.sorting_asc, th.sorting_desc {
+    /*background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;*/
+    padding-right: 8px !important;
+}
+.table-text-center{
+    text-align: center;
+}
+/*.table{
+    table-layout:fixed;
+}*/
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    vertical-align: middle;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+table .biology-span{
+    text-align: left;
+}
+.pay-balance{
+    color:#666666;
+    font-weight: bold;
+}
+.red{
+    color: red;
+    font-weight: bold;
+}
+.success-type{
+    color: green;
+}
+.blue-balance{
+    color: #3366aa;
+}
+.disable-type{
+    color: #e4393c;
+}
+.not-action-type{
+    color: #e4393c;
+}
+.biology-row{
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.vertical-align{
+    margin-left: 10px;
+    display: inherit;
+    width: 100%;
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    vertical-align: middle;
+}
+.biology-span{
+    margin-top: 10px;
+}
+.biology-mb{
+    margin-bottom: 10px;
+}
+.strong-font{
+    font-weight:600;
+}
+.font-big-size{
+    font-size: 20px;
+}
+.text-left{
+    float: left;
+}
+.text-right{
+    float: right;
+}
+.account-span{
+    text-align:left;
+    float:left;
+    padding-left:5px;
+}
+.check-tr{
+    width: 45px;
+}
+.text-input{
+    width: 75%;
+}
+.text-fa{
+    padding-left: 2%;
+     width: 10%;
+ }
+.time-input{
+    color:black;
+    width:23%
+}
+.time-section{
+    width:37.5%
+}
+.semi-bold{font-weight:400!important}
+.meal_table td{
+    padding: 9px 12px;
+    border:none;
+    border-bottom:1px dashed #aaa;
+    text-align:left;
+    font-size:14px;
+    font-weight:bold;
+}
+.inline-group,.smart-form .widget-body-toolbar .inline-group{float:left;margin-top:4px}
+.inline-group{margin:0 -30px -4px 0}
+.inline-group:after{content:'';display:table;clear:both}
+.inline-group .radio,.smart-form .inline-group .checkbox{float:left;margin-right:30px}
+.inline-group .radio:last-child{margin-top:10px}
+.col-biology-1{
+    float: left;
+    width: 10%;
+}
+.note{
+    font-size: 12px;
+}
+
+.fa-cniass-double-up{
+    background: url(../images/up-6.png) no-repeat left bottom;
+    width: 15px;
+    height: 15px;
+}
+.reminder-tip-body{
+    position: relative;
+    left:8px;
+    top:-70px;
+    height:70px;
+    background-color: #FFFFE9;
+    padding:15px 20px 15px 20px;
+    text-align: left;
+    margin-right:10px;
+    margin-left: -5px;
+}
+.reminder-tip-title{
+    width: 3px;
+    background-color:#FF9933;
+    border:0;
+    height: 70px;
+}
+.reminder-tip{
+
+}
+.reminder-tip i{
+    float:left;margin-left:5px;color: #3366CC;margin-top: 5px;
+}
+.reminder-tip span{
+    width:1px;
+}
+.reminder-tip h4{/*3366aa*/
+    float:left;
+    color:#808080;
+    width:15%;
+}
+.reminder-tip div{
+    border-bottom:1px dashed gray;position:relative;margin-top:12px;width:81%;float:right;margin-right:10px;
+}
+.reminder-tip-row{
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+/*
+.tab-pane-datepicker{
+
+}
+.tab-pane-datepicker span:first-child{
+    margin-left:-10px;
+    vertical-align: middle;
+}
+.tab-pane-datepicker span:first-child span{
+    color: red;
+}
+.tab-pane-datepicker i{
+     float:left;
+     margin-right:36%;
+ }
+.tab-pane-datepicker section label input{
+    height:18px;
+    margin-left:-12px;
+    width:26%;
+}*/
+
+
+
+/*   ----------------------------  新界面使用------------------------------------------------------------------*/
+.span-btn{
+    float: left ;text-align: center;
+}
+.span-btn a{
+    height:30px;width:35px;
+}
+.span-btn a i{
+    margin-top:8px;
+}
+.btn-biology{
+    width:80px;height:30px;
+}
+.custom-header{
+    background-image:none !important;
+    background-color: #235B48;
+}
+
+.custom-header nav > li >a:hover,
+.custom-header nav > li >a:focus{
+    background-color:#008DC6 !important;
+}
+/** 表格样式 */
+.biology-table tbody tr td{
+    vertical-align : middle;
+}
+.reg_right_table {
+    border-collapse: collapse;
+    word-break:break-all;
+    word-wrap:break-word;
+    font-size: 13px;
+}
+.reg_right_table tr td{
+    word-break:break-all;
+    border:1px solid #EEEFF0;
+    background:#FFF;
+    padding:5px 10px;
+    line-height:20px;
+    font-size:13px;
+    vertical-align: middle;
+}
+.reg_right_table tr td input[type=text]:first-child{
+    width: 50%;
+}
+.reg_right_table tr td input[type=checkbox]{
+    margin-top: 1px;
+}
+.reg_right_table tr td select{
+    width: 50%;
+}
+.add_table tr td:first-child{
+    width: 30%;
+}
+.band-input{
+    width: 20%;
+}
+.bandwidth-val-div{
+    word-wrap:break-word;
+    #width:70%;
+    margin-bottom: 10px;
+}
+.bandwidth-val-div a{
+    float: left;
+    margin-left: 20px;
+    position: relative;
+}
+.bandwidth-val-div input:first-child{
+    float: left;
+    position: relative;
+    width: 20%;
+}
+.bandwidth-product{
+    float: left;
+    #margin-left: 10px;
+    position: relative;
+    width: 20%;
+}
+.bandwidth-product-span{
+    margin-top: 3px;
+    width: 10%;
+    text-align: center;
+    float: left;
+    position: relative;
+}
+.bandwidth-val-div span:last-child{
+    width: 15%;
+}
+.band-td{
+    word-break:break-all;
+}
+/** 表格样式 */
+.tab-pane .order-add input,.tab-pane .order-add select{
+    height: 18px;
+}
+.tab-pane .add_table input,.tab-pane .add_table select{
+    height: 18px;
+}
+.smart-input{
+    width: 30px;
+}
+
+
+.modal-header,
+.modal-header > a{
+    color:#FFF;
+    opacity: 1;
+}
+
+h1, h2, h3, h4,h5,h6{
+    font-family: "微软雅黑" !important;
+}
+
+
+.list-inline > li{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.font-xl > strong{
+    font-weight: normal;
+}
+footer .copyright{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.biology.modal-header{
+    background-color: #404040;border-bottom: 1px solid #e5e5e5;min-height: 16.4286px;padding: 15px;
+}
+
+.option.cpu,
+.option.memory{
+    padding:0 6px;
+    width: 48px;
+    display:inline-block;
+    margin:0 3px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+.btn-span {
+    cursor: pointer;
+    border: #ccc solid 1px;
+    background: none repeat scroll 0 0 #EFEFEF;
+}
+
+.ins-span {
+    display: inline;
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.no-span,.no-span:hover,.no-span:focus {
+    display: none;
+    border: #fff solid 1px;
+    color: #999;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: not-allowed
+}
+
+.current {
+    background:  #659265;
+    color: #000000;
+    cursor: default;
+
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.current:hover {
+    background: #659265;
+    color: #000000;
+    cursor: default;
+
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}

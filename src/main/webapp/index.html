@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+	
+	<title> biology </title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+	<!-- Basic Styles -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">	
+	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+	<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production_unminified.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.css">	
+	
+	<!-- SmartAdmin RTL Support is under construction
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.css"> -->
+	
+	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/demo.css">
+	
+	<!-- FAVICONS -->
+    <link rel="shortcut icon" href="img/biologylogo.png" type="image/x-icon">
+    <link rel="icon" href="img/biologylogo.png" type="image/x-icon">
+	<!-- GOOGLE FONT -->
+	<link rel="stylesheet" href="css/google-fonts.css">
+    <link rel="stylesheet" href="css/biology.css">
+
+</head>
+
+<body class="" style="display: none;" id="body_main"> <!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
+	<!-- HEADER -->
+	<header id="header">
+		<div id="logo-group">
+		
+			<!-- PLACE YOUR LOGO HERE -->
+			<span id="logo" style="margin-top:7px;">
+				<!--<img src="img/biology_logo.png" alt="SmartAdmin"> -->
+                <img src="img/biology_logo.png" alt="biology">
+			</span>
+			<!-- END LOGO PLACEHOLDER -->
+			
+			<!-- Note: The activity badge color changes when clicked and resets the number to 0 
+				 Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications 
+				  暂用不到隐藏 -->
+			<span id="activity" class="activity-dropdown hide">
+				<i class="fa fa-user"></i>
+				<b class="badge">
+					21
+				</b>
+			</span>
+			
+			<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+			<div class="ajax-dropdown hide">
+				
+				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+			        <label class="btn btn-default">
+			          <input type="radio" name="activity" id="ajax/notify/mail.html"> Msgs (14)
+			        </label>
+			        <label class="btn btn-default">
+			          <input type="radio" name="activity" id="ajax/notify/notifications.html"> notify (3)
+			        </label>
+			        <label class="btn btn-default">
+			          <input type="radio" name="activity" id="ajax/notify/tasks.html"> Tasks (4)
+			        </label>
+			    </div>
+				
+				<!-- notification content -->
+				<div class="ajax-notifications custom-scroll">
+					
+					<div class="alert alert-transparent">
+						<h4>Click a button to show messages here</h4>
+						This blank page message helps protect your privacy, or you can show the first message here automatically.
+					</div>
+					
+					<i class="fa fa-lock fa-4x fa-border"></i>
+					
+				</div>
+				<!-- end notification content -->
+				
+				<!-- footer: refresh area -->
+				<span>
+					Last updated on: 12/12/2013 9:43AM
+					<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
+					  <i class="fa fa-refresh"></i>
+					</button>
+				</span>
+				<!-- end footer -->
+				
+			</div>
+			<!-- END AJAX-DROPDOWN -->
+		</div>
+		
+		<!-- projects dropdown 隐藏属性下拉-->
+		<div id="project-context" class="hide">
+			
+			<span class="label">Projects:</span>
+			<span id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+			
+			<!-- Suggestion: populate this list with fetch and push technique -->
+			<ul class="dropdown-menu">
+				<li>
+					<a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">Notes on pipeline upgradee</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">Assesment Report for merchant account</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
+				</li>
+			</ul>
+			<!-- end dropdown-menu-->
+			
+		</div>
+		<!-- end projects dropdown -->
+	
+		<!-- pulled right: nav area -->
+		<div class="pull-right">
+			
+			<!-- collapse menu button -->
+			<div id="hide-menu" class="btn-header pull-right">
+				<span>
+					<a href="javascript:void(0);" title="折叠菜单"><i class="fa fa-reorder"></i></a>
+				</span>
+			</div>
+			<!-- end collapse menu -->
+
+            <!-- edit password  -->
+            <div id="hide-editP" class="btn-header pull-right" style="display:none;" pname="user_editPwd">
+				<span>
+					<a href="javascript:void(0);" title="修改密码"><i class="fa  fa-pencil-square-o"></i></a>
+				</span>
+            </div>
+            <!-- end of edit password -->
+			
+			<!-- logout button -->
+			<div id="logout" class="btn-header transparent pull-right">
+				<span>
+					<a href="login.html" title="退出登录"><i class="fa fa-sign-out"></i></a>
+				</span>
+			</div>
+			<!-- end logout button -->
+            <!-- 当前登录用户名称 -->
+            <div id="login-user" class="btn-header transparent pull-right">
+				<span style="display: inline-block;height: 30px;margin-top:15px;">当前用户：<span id="userName" >
+                    <a id="a_show-shortcut-name" href="javascript:void(0);"></a>
+				</span></span>
+            </div>
+            <!-- END of 当前登录用户名称 -->
+
+
+            <!-- search mobile button (this is hidden till mobile view port) -->
+			<!--<div id="search-mobile" class="btn-header transparent pull-right">
+				<span>
+					<a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a>
+				</span>
+			</div>-->
+			<!-- end search mobile button -->
+			
+			<!-- input: search field -->	
+			<!--<form action="#ajax/search.html" class="header-search pull-right">
+				<input type="text"  id="search-fld">&lt;!&ndash; placeholder="Find reports and more" &ndash;&gt;
+				<button type="button">
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+			</form>	-->
+			<!-- end input: search field -->					
+			
+			<!-- multiple lang dropdown : find all flags in the image folder -->	
+			<ul class="hide header-dropdown-list "><!-- hidden-xs -->
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<img alt="" src="img/flags/us.png">
+						<span>
+							US
+						</span>
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-right">
+						<li class="active"><a href="javascript:void(0);"><img alt="" src="img/flags/us.png"> US</a></li>
+						<li><a href="javascript:void(0);"><img alt="" src="img/flags/es.png"> Spanish</a></li>
+						<li><a href="javascript:void(0);"><img alt="" src="img/flags/de.png"> German</a></li>
+					</ul>
+				</li>
+			</ul>
+			<!-- end multiple lang -->
+			
+		</div>
+		<!-- end pulled right: nav area -->
+		<div style="float: left;">
+		<!-- 表头下加页签页 -->
+		</div>
+	</header>
+	<!-- END HEADER -->
+	
+	<!-- 左侧导航开始 Left panel : Navigation area -->
+	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+	<aside id="left-panel">
+		
+		<!-- User info -->
+		<div class="login-info">
+			<span>
+				<!-- User image size is adjusted inside CSS, it should stay as it -->
+				<!-- <img src="img/biologylogo.png" alt="me" class="online" />	 -->
+				<a href="javascript:void(0);" id="show-shortcut" style="float:left;white-space: nowrap;width:100%;" class="ov-clip"></a><!-- <i class="fa fa-angle-down"></i>-->
+                <span id="show-shortcut-span" style="display:none;"></span>
+                <span style="display:none;" id="idcId_change_getSource" ></span>
+
+
+                <!--<span id="show-shortcut-name" style="display:none;"></span>-->
+                <!--<span id="show-shortcut-ui" style="display:none;"></span>-->
+                <!--<span id="show-shortcut-roleid" style="display:none;"></span>-->
+                <!--<span id="show-shortcut-roleType" style="display:none;"></span>-->
+                <!--<span id="show-shortcut-id" style="display:none;"></span>-->
+                <!--<span style="display:none;" id="idc_change_id" ></span>-->
+                <!--<span style="display:none;" id="region_change_uuid" ></span>-->
+                <!--<span style="display:none;" id="region_change_id" ></span>-->
+                <!--<span style="display:none;" id="region_change_ip" ></span>-->
+                <!--<span style="display:none;" id="ssi_user_id" ></span>-->
+
+
+			</span>
+		</div>
+		<!-- end user info -->
+		
+		<!-- NAVIGATION : This navigation is also responsive 
+			 
+			 To make this navigation dynamic please make sure to link the node 
+			 (the reference to the nav > ul) after page load. Or the navigation 
+			 will not initialize.
+		-->
+		<nav id="body-nav">
+			<!-- NOTE: Notice the gaps after each icon usage <i></i>.. 
+				 Please note that these links work a bit different than
+				 traditional hre="" links. See documentation for details.
+				-->
+			<ul id="left_nav">
+		        <!-- auto generate -->
+            </ul>
+		</nav>
+		<span class="minifyme">
+			<i class="fa fa-arrow-circle-left hit"></i>
+		</span>
+
+		
+	</aside>
+	<!-- END NAVIGATION -->
+		
+	<!-- MAIN PANEL -->
+	<div id="main" role="main">
+		
+		<!-- RIBBON -->
+		<div id="ribbon">
+			
+			<span class="ribbon-button-alignment">
+				<span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" 
+					data-original-title="<i class='text-warning fa fa-warning'></i> 警告!这将重置所有的部件设置。" data-html="true"><i class="fa fa-refresh"></i></span>
+					<!-- Warning! This will reset all your widget settings. -->
+			</span>
+
+			<!-- breadcrumb -->
+			<ol class="breadcrumb">
+				<!-- This is auto generated -->
+			</ol>		
+			<!-- end breadcrumb -->	
+			
+			<!-- You can also add more buttons to the 
+				 ribbon for further usability 
+				 
+				 Example below: 
+				 
+			<span class="ribbon-button-alignment pull-right">
+				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+			</span> -->
+			
+		</div>
+		<!-- END RIBBON -->
+		
+		<!-- MAIN CONTENT -->
+		<div id="content">
+
+            <h1><i class="fa fa-cog fa-spin"></i> Loading...</h1>
+
+        </div>
+		<!-- END MAIN CONTENT -->	
+		<div class="panel-footer">
+			<div style="text-align: center;">
+				Copyright © 2014 biology.com
+			</div>
+		</div>			
+				
+	</div>
+	<!-- END MAIN PANEL -->
+	
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+		 Note: These tiles are completely responsive,
+		 you can add as many as you like
+		-->
+    <div id="shortcut" class="server_switching">
+        <ul id="index_region_list">
+
+  <!--          <li>
+                <a href="javascript:void(0)" id="gd" class="jarvismetro-tile big-cubes bg-color-blue">
+                        <span class="iconbox">
+                            <i class="fa fa-desktop fa-4x"></i>
+                            <span>广东&lt;!&ndash;  <span class="label pull-right bg-color-darken">14</span> &ndash;&gt;</span>
+                        </span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" id="sh" class="jarvismetro-tile big-cubes bg-color-blue">
+                        <span class="iconbox">
+                            <i class="fa fa-desktop fa-4x"></i>
+                            <span>上海&lt;!&ndash;  <span class="label pull-right bg-color-darken">14</span> &ndash;&gt;</span>
+                        </span>
+                </a>
+            </li>-->
+
+        </ul>
+    </div>
+	<!-- END SHORTCUT AREA -->
+
+<!-- 当前用户详情-->
+<div class="modal fade" id="detail_user_modal" tabindex="-1" role="dialog" aria-labelledby="user_detail_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="col-sm-12">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" href="#"  data-dismiss="modal" aria-hidden="true">&times;</a>
+                    <h3 class="modal-title" id="detail_user_modal_label">用户信息</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="u-detail-wizard-1" novalidate="novalidate">
+                        <div id="detail_u_modal" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-4  col-sm-4 col-xs-4 col-lg-4 control-label">用户名：</label>
+                                <label id="d_username" class="col-md-8 control-label text-left"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4  col-sm-4 col-xs-4 col-lg-4 control-label">用户ID：</label>
+                                <label id="d_userID" class="col-md-8 control-label text-left"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4  col-sm-4 col-xs-4 col-lg-4 control-label">所属IDC UUID：</label>
+                                <label id="d_userIDCUUID" class="col-md-8 control-label text-left"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4  col-sm-4 col-xs-4 col-lg-4 control-label">角色类型：</label>
+                                <label id="d_userRoleType" class="col-md-8 control-label text-left"></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn_user_close" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 当前用户详情 -->
+<!-- 客服 修改密码 -->
+<div class="modal fade" id="u_pwd_modal" tabindex="-1" role="dialog" aria-labelledby="user_oper_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="col-sm-12">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" href="#"  data-dismiss="modal" aria-hidden="true">&times;</a>
+                    <h3 class="modal-title" id="u_pwd_modal_label">修改密码</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="u-pwd-wizard-1" novalidate="novalidate">
+                        <div id="pwd_u_modal" class="form-horizontal">
+                            <div class="form-group" id="pwd_uN_div">
+                                <label  style="margin-top: 10px;" class="col-md-3 control-label" for="edit_uold_pwd">原密码：</label>
+                                <div class="col-md-8">
+                                    <input  style="margin-top: 10px;" class="form-control name_input" maxlength='20' id="edit_uold_pwd"  placeholder="" type="password" name="user_oldPwd" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="pwd_uP_div">
+                                <label  style="margin-top: 10px;" class="col-md-3 control-label" for="pwd_u_Pwd">密码：</label>
+                                <div class="col-md-8">
+                                    <input  style="margin-top: 10px;" class="form-control pwd_input" maxlength='20' id="pwd_u_Pwd" placeholder="" type="password" name="user_editPwd" />
+                                    <span class="note note-error" id="u_PwdE_note">密码为8-20位字符，并且必须为数字，字母(字母需同时含有大小写)以及_!@%+，如Abcabc123!@是一个合法的密码符.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" id="pwd_uRp_div">
+                                <label  style="margin-top: 10px;" class="col-md-3 control-label" for="pwd_u_rePwd">重复密码：</label>
+                                <div class="col-md-8">
+                                    <input  style="margin-top: 10px;"   class="form-control pwd_input" maxlength='20' id="pwd_u_rePwd" placeholder="" type="password" name="user_editrePwd" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn_uPwd_close" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" id="btn_uPwd_confirm" class="btn disabled txt-color-darken" style="border:solid 1px #ccc;">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 客服 修改密码 -->
+
+	<!--================================================== -->	
+
+	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+	<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="js/libs/jquery.min.js"></script>
+	<script> if (!window.jQuery) { document.write('<script src="js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
+
+    <script src="js/libs/jquery-ui.min.js"></script>
+	<script> if (!window.jQuery.ui) { document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script>
+
+	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
+	<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+	
+	<!-- BOOTSTRAP JS -->		
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- CUSTOM NOTIFICATION -->
+	<script src="js/notification/SmartNotification.js"></script>
+
+	<!-- JARVIS WIDGETS -->
+	<script src="js/smartwidgets/jarvis.widget.js"></script>
+	<!--<script src="js/smartwidgets/jarvis.widget.min.js"></script>-->
+
+	<!-- EASY PIE CHARTS -->
+	<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+	
+	<!-- SPARKLINES -->
+	<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+	
+	<!-- JQUERY VALIDATE -->
+	<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+	<script src="js/plugin/jquery-validate/jquery.validate.additional-methods.js"></script>
+
+	<!-- JQUERY MASKED INPUT -->
+	<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+	
+	<!-- JQUERY SELECT2 INPUT -->
+	<script src="js/plugin/select2/select2-customized.js"></script>
+	<!--<script src="js/plugin/select2/select2.min.js"></script>-->
+
+	<!-- JQUERY UI + Bootstrap Slider -->
+	<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+	
+	<!-- browser msie issue fix -->
+	<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+	
+	<!--[if IE 7]>
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+	<![endif]-->
+	
+	<!-- json -->
+	<script src="js/json2.js"></script>
+	
+	<!-- 工具 -->
+	<script src="js/tools.js"></script>
+	<!-- ajax.js工具 -->
+	<script src="js/ajax.js"></script>
+	
+	<!-- i18n -->
+	<script src="js/i18n/i18n_locale.js"></script>
+	<script src="js/i18n/dynamicLocale.js"></script>
+	<!-- i18n -->
+	<!-- md5 -->
+	<script src="js/md5.js"></script>
+	<!-- md5 -->
+	
+	<!-- Demo purpose only -->
+	<script src="js/demo.js"></script>
+
+	<!-- MAIN APP JS FILE -->
+    <script src="js/Highcharts-3.0.5/highcharts.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/app_sa.js"></script>
+    <script type="text/javascript">
+    var permissions_L = '';
+        $(document).ready(function () {
+
+            getuser(function(objs){
+               // generate_left_nav_pane(obj);
+                var isAdmin=objs.role == "ADMIN";
+                var user=objs;
+                    permissionTree(isAdmin,objs.permissionModels,function(){
+                        loadMenu(function(){
+                            //console.log("iuid="+user.idcUuid);
+                            initRegion(user,function (){
+                            // fire this on page load if nav exists
+                            if ($('nav').length) {
+                                checkURL();
+                            }
+                            //init button access right;
+                            get_permission_name();
+                            // DO on hash change
+                            $("#a_show-shortcut-name").bind("click",getUserDetail);
+                            $(window).on('hashchange', function () {
+                                if(isAdmin){
+                                    if(window.location.hash!="#biology/region.html" && window.location.hash!="#biology/user.html" && window.location.hash!="#biology/custer.html" && window.location.hash!="#biology/idc.html"){
+                                        checkURL();
+                                    }
+                                }else{
+                                    checkURL();
+                                }
+                            });
+
+                        });
+                        });
+                    });
+
+
+            $(".server_switching").delegate("a", 'click', function (e) {
+      /*          var t=$("#show-shortcut-span").html();
+                var id = $(this).attr("id");
+                id=id.split(",");
+                if(t==id[1]){
+                    showMsg("温馨提示","你当前的位置已在"+$(this).text()+"集群,无需切换。");
+                }else{*/
+                    //get the link
+                    $.loginURL = $(this).attr('href');
+                    // ask verification
+                    var id = $(this).attr("id");
+                    var _region =id.split(",");
+                    id=_region[2];
+                    var uuid=_region[1];
+                    var ip=_region[0];
+                    var shortcut_ =  $(this).find(".region-name").html();
+
+                    $.SmartMessageBox({
+                        title: "<i class='fa fa-sign-out txt-color-orangeDark'></i>  <span class='txt-color-orangeDark'><strong>" +
+                            $('#show-shortcut').text() + "</strong></span> 是否切换?",
+                        content: "我们将切换到"+$(this).text()+"集群。",
+                        buttons: '[取消][确认]'
+                    }, function (ButtonPressed) {
+                        if (ButtonPressed == "确认") {
+                        doPostLogin("/action/serverSwitching.action",
+                            {"server_mark":uuid,"regionUuid":uuid},function (objs){
+                               if(objs.httpCode == "200"){
+                                    $("#show-shortcut").html(shortcut_+"[切换]");
+                                   // $("#show-shortcut").attr("name",shortcut_);
+                                  //  $("#show-shortcut-span").html(uuid);
+                                 //   $("#region_change_uuid").text(uuid);
+                                 //   $("#region_change_id").text(id);
+                                    //赋值默认region的ip TODO
+                                  //  $("#region_change_ip").text(ip);
+                                    //TODO 根据选择的地域 修改全局变量
+                                    var url = location.hash.replace(/^#/, '');
+                                    var con = $('#content');
+                                    loadURL(url,con);
+                               }else{
+                                   if(objs.httpCode=="202"){
+                                       showMsg("温馨提示","你当前的位置已在"+$(this).text()+"集群,无需切换。");
+                                   }else{
+                                       showErrorMsg(rpL(objs.code),rpLRespond(objs.message));
+                                   }
+                                   console.log("code :" + objs.code + "  msg:"+objs.message);
+                               }
+
+                            });
+                        }
+                    });
+                    e.preventDefault();
+
+            });
+        });
+
+         /*function LoadScript(scriptName, callback) {
+            var jsArray="";
+            if (jsArray.indexOf("[" + scriptName + "]") == -1) {
+                jsArray += "[" + scriptName + "]";
+
+                // adding the script tag to the head as suggested before
+                var body = document.getElementsByTagName('body')[0];
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = scriptName;
+
+                script.onload = callback;
+
+                // fire the loading
+                body.appendChild(script);
+            } else if (callback) {
+                callback();
+            }
+        }*/
+
+
+
+        });
+
+    //获取客服信息
+    function getuser(callback){
+        /*            var targetPath = "user" ;
+         var data = '{"action":"user_login"}';
+         doPost("/action/router.action",data,targetPath,function (objs){*/
+        doPostLogin("/action/userDetail.action",{},function (objs){
+            if(objs.httpCode=="200"){
+                //   $("#idc_change_id").text(objs.userModel.idcUuid);
+                  $("#idcId_change_getSource").text(objs.userModel.idcUuid);
+                $("#a_show-shortcut-name").text(objs.userModel.name);
+                 // $("#show-shortcut-name").text(objs.userModel.name);
+                //   $("#a_show-shortcut-uuid").text(objs.userModel.uuid);
+                //   $("#a_show-shortcut-id").text(objs.userModel.id);
+                //   $("#show-shortcut-roleid").text(objs.userModel.roleId);
+                //   $("#show-shortcut-roleType").text(objs.userModel.role);
+                $("#body_main").show();
+            }else{
+ //               $("#show-shortcut-ui").text("");
+               // $("#show-shortcut-roleid").text("");
+//                $("#show-shortcut-roleType").text("");
+//                $("#show-shortcut-id").text("");
+//                $("#idc_change_id").text("");
+                $("#idcId_change_getSource").text("");
+                $("#a_show-shortcut-name").text("");
+                //获取当前客服信息失败
+                console.log("code :" + objs.code + "  msg:"+objs.message);
+                showConfirm("fa-trash-o","温馨提示","获取客服信息失败！是否重新登录?",function(){
+                    window.location.href = "login.html";
+                });
+            }
+            callback(objs.userModel);
+        });
+    }
+
+        //get parent node
+        function get_parent_node(parent_id, items){
+            for(j=0;j<items.length;j++){
+                if(items[j].id == parent_id){
+                    return items[j];
+                }
+            }
+        }
+
+    function permissionTree(isAdmin,objs,callback){
+        //TODO 判断modellist是否存在idcs
+        var items = objs;
+        items.sort(function(a,b){if(a.sequence == undefined ){a.sequence = 99;} else if(b.sequence == undefined){ b.sequence = 99;}else{} return a.sequence - b.sequence;});
+        var hasAttestation=false;
+        for(i=0;i<items.length;i++){
+
+           if(isAdmin && items[i].permission_name=="attestation"){
+                hasAttestation=true;
+                var attestation=items[i];
+                idcLoadListModel(attestation,objs,function(){
+                    loadMenu(function(){
+                        callback();
+                    });
+                });
+            }else if(isAdmin &&(items[i].permission_name=="regions"||items[i].permission_name=="users"||items[i].permission_name=="customers"||items[i].permission_name=="idcs")){
+
+            }else if (items[i].permission_fid == 0){
+                    drawFirstLevelModel(items[i]);
+            } else {
+                    var parentNode = get_parent_node(items[i].permission_fid, items);
+                    if (parentNode.permission_fid == 0) {
+                        drawSecondLevelModel(items[i],parentNode);
+                    } else {
+                        var grandNode = get_parent_node(parentNode.id,items);
+                        drawThirdLevelModel(item,parentNode,grandNode);
+                    }
+            }
+        }
+
+        if(!isAdmin){
+            callback();
+        }
+    }
+
+        function drawGroupBlock(item){
+            $("ul#left_nav").append("<div class='nav_lines' id='group_"+item.groups +"' style='margin-bottom:5px;margin-top:5px; border-bottom:1px solid #525151;'><div style='border:solid transparent;border-bottom:1px solid #1A1817;border-width:1px 0;'></div></div>");
+        }
+
+        //导航分块
+        function drawDivider(hrefList){
+            hrefList = hrefList.reverse();
+            for(i=0;i<hrefList.length;i++){
+                if($('a[href="'+hrefList[i]+'"]').length > 0){
+                    $('li a[href="'+hrefList[i]+'"]').parent().after("<hr style='margin: 5px;border-bottom:1px solid #525151'>");
+                    break;
+                }
+            }
+        }
+
+        function drawFirstLevelModel(item){
+            if($('div#group_'+item.groups).length <= 0){
+                drawGroupBlock(item);
+            }
+
+            if ($('li#li_first_' + item.id).length <= 0){
+                    $('div#group_'+item.groups).before('<li id="li_first_' + item.id + '">' +
+                            '<a id="a_first_' + item.id + '" href="' + item.URL + '">' +
+                            '<i class="fa fa-lg fa-fw ' + item.img + '" ></i>' +
+                            '<span class="menu-item-parent">' + rpL(item.permission_name) + '</span>' +
+                            '</a></li>');
+            }
+
+            if(item.permission_name=="attestation"){
+                $("#a_first_"+item.id).attr("href","#");
+
+            }
+        }
+
+        function drawSecondLevelModel(item,parentNode){
+            if($('div#group_'+item.groups).length <= 0){
+                drawGroupBlock(item);
+            }
+            if ($('li#li_first_' + item.permission_fid).length <= 0) {
+                $('div#group_'+item.groups).before('<li id="li_first_' + parentNode.id + '">' +
+                        '<a id="a_first_' + parentNode.id + '" href="' + parentNode.URL + '">' +
+                        '<i class="fa fa-lg fa-fw ' + parentNode.img + '" ></i>' +
+                        '<span class="menu-item-parent">' + rpL(parentNode.permission_name) + '</span>' +
+                        '</a>' +
+                        '<ul id="ul_first_' + parentNode.id + '">' +
+                        '<li id="second_' + item.id + '">' +
+                        '<a href="' + item.URL + '">' +
+                        '<i class="fa fa-lg fa-fw  ' + item.img + '"></i>' + rpL(item.permission_name) +
+                        '</li></ul></li>');
+            } else if ($('ul#ul_first_' + item.permission_fid).length <= 0) {
+                $('li#li_first_' + item.permission_fid).append('<ul id="ul_first_' + item.permission_fid + '">' +
+                        '<li id="li_second_' + item.id + '">' +
+                        '<a href="' + item.URL + '">' +
+                        '<i class="fa fa-lg fa-fw  ' + item.img + '"></i>' + rpL(item.permission_name) +
+                        '</a></li></ul>');
+            } else {
+                $("ul#ul_first_" + item.permission_fid).append('<li id="li_second_' + item.id + '">' +
+                        '<a href="' + item.URL + '">' +
+                        '<i class="fa fa-lg fa-fw  ' + item.img + '"></i>' + rpL(item.permission_name) +
+                        '</li>');
+            }
+        }
+
+        function drawThirdLevelModel(item,parentNode,grandNode){
+            if($('div#group_'+item.groups).length <= 0){
+                drawGroupBlock(item);
+            }
+            if ($('li#li_first_' + parentNode.permission_fid).length <= 0) {
+                $('div#group_'+item.groups).before('<li id="li_first_' + grandNode.id + '">' +
+                        '<a id="a_first_' + grandNode.id + '" href="' + grandNode.URL + '">' +
+                        '<i class="fa fa-lg fa-fw ' + grandNode.img + '" ></i>' +
+                        '<span class="menu-item-parent">' + rpL(grandNode.permission_name) + '</span>' +
+                        '</a>' +
+                        '<ul id="ul_first_' + grandNode.id + '">' +
+                        '<li id="li_second_' + parentNode.id + '">' +
+                        '<a href="' + parentNode.URL + '">' +
+                        '<i class="fa fa-lg fa-fw  ' + parentNode.img + '"></i>' + rpL(parentNode.permission_name) +
+                        '<ul id="ul_third_' + parent.id + '"></ul></li></ul></li>');
+
+            } else if ($('li#li_second_' + item.permission_fid).length <= 0) {
+                $('li#li_first_' + parentNode.permission_fid).append('<ul id="ul_first_' + parentNode.permission_fid + '">' +
+                        '<li id="li_second_' + parentNode.id + '">' +
+                        '<a href="' + parentNode.URL + '">' +
+                        '<i class="fa fa-lg fa-fw  ' + parentNode.img + '"></i>' + rpL(parentNode.permission_name) +
+                        '</a><ul id="ul_second_' + parendNode.id + '"></ul></li></ul>');
+            } else if ($('ul#ul_second_' + item.permission_fid).length <= 0) {
+                $('li#li_second_' + item.permission_fid).append('<ul id="ul_second_' + item.permission_fid + '"></ul>');
+            } else {
+
+            }
+            $("ul#ul_second_" + item.permission_fid).append('<li id="li_third_' + item.id + '">' +
+                    '<a href="' + item.URL + '">' +
+                    '<i class="fa fa-lg fa-fw  ' + item.img + '"></i>' + rpL(item.permission_name) +
+                    '</li>');
+        }
+
+        function idcLoadListModel(attestation,data,callback){
+            var childStr = new Array([3]);
+            var hasIdc=false;
+            if($('before#group_'+attestation.groups).length <= 0){
+                drawGroupBlock(attestation);
+            }
+            $('div#group_'+attestation.groups).before('<li name="attestation_li" id="first_' + attestation.id + '">' +
+                    '<a  class="idc_li" id="a_first_' + attestation.id + '" href="' + attestation.URL + '">' +
+                    '<i class="fa fa-lg fa-fw ' + attestation.img + '" ></i>' +
+                    '<span class="menu-item-parent">' + rpL(attestation.permission_name) + '</span>' +
+                    '</a><ul id="attestation_first"></ul></li>');
+            for(var i=0;i<data.length;i++){
+               if(data[i].permission_name=="idcs"){
+                    hasIdc=true;
+                    var targetPath = "idc" ;
+                    var data1 = '{"action":"list_idcs"}';
+//                   var targetPath = "region" ;
+//                   var data1 = '{"action":"list_regions_by_idc","idcUuid":"4eed1717-1b9a-48e4-bcbe-418fd256a5e2"}';
+                    doPost("/action/router.action",data1,targetPath,function (objs){
+                        if(objs.httpCode=="200"){
+                            if(objs.idc_list.length<=0){
+                                $("ul").remove("#attestation_first");
+                                $(".idc_li b").remove(".collapse-sign");
+                                $('nav li.active').removeClass("active");
+                                $('nav li.biologyActive').removeClass("biologyActive");
+                                var con = $('#content');
+                                loadURL("biology/idc.html",con);
+                                $(this).parent("li").addClass("active");
+                                window.location.hash="#biology/idc.html";
+                                $("li[name='attestation_li']").unbind("click");
+                                $("li[name='attestation_li']").click(function(){
+                                    $('nav li.active').removeClass("active");
+                                    $('nav li.biologyActive').removeClass("biologyActive");
+                                    var con = $('#content');
+                                    loadURL("biology/idc.html",con);
+                                    $(this).parent("li").addClass("active");
+                                    window.location.hash="#biology/idc.html";
+                                });
+                                loadMenu(function() {
+                                    if ($('nav').length) {
+                                        checkURL();
+                                    }
+                                    $("#a_show-shortcut-name").bind("click", getUserDetail);
+                                    $(window).on('hashchange', function () {
+                                        if (window.location.hash != "#biology/region.html" && window.location.hash != "#biology/user.html" && window.location.hash != "#biology/custer.html" && window.location.hash != "#biology/idc.html") {
+                                            checkURL();
+                                        }
+                                    });
+
+                                });
+                            }else{
+                                $("li[name='attestation_li']").unbind("click");
+                                $("idc_li").attr("href","");
+                                if($("#attestation_first").length <= 0){
+                                    $("li[name='attestation_li']").append("<ul id='attestation_first'></ul>");
+                                }
+                              //  $("#idc_change_id").text(objs.idc_list[0].uuid);
+                                $("#idcId_change_getSource").text(objs.idc_list[0].uuid);
+                                for(var i=0;i<objs.idc_list.length;i++){
+                                    $("#attestation_first").append("<li class='idc_li auth' id='idc_"+objs.idc_list[i].uuid+"'><a href='#' id='"+objs.idc_list[i].uuid+"' class='idcChange'><i class='fa fa-lg fa-fw  fa-road'></i>"+objs.idc_list[i].idcName+"</a><ul id='idcUl_"+objs.idc_list[i].uuid+"'></ul></li>");
+                                    for(var j=0;j<data.length;j++){
+                                        if(data[j].permission_name=="regions"){
+                                            $("#idcUl_"+objs.idc_list[i].uuid).append("<li class='auth'><a href='biology/region.html' class='auth_change_li'><i class='fa fa-lg fa-fw fa-globe'></i>地域</a></li>");
+                                        }
+                                        if(data[j].permission_name=="users"){
+                                            $("#idcUl_"+objs.idc_list[i].uuid).append("<li class='auth'><a href='biology/user.html' class='auth_change_li'><i class='fa fa-lg fa-fw fa-user-md'></i>客服</a></li>");
+                                        }
+                                        if(data[j].permission_name=="customers"){
+                                            $("#idcUl_"+objs.idc_list[i].uuid).append("<li class='auth'><a href='biology/custer.html' class='auth_change_li'><i class='fa fa-lg fa-fw fa-user'></i>客户</a></li>");
+                                        }
+                                    }
+                                }
+                                callback();
+                            }
+                        }else{
+//                            $("#idc_change_id").text("");
+                            $("#idcId_change_getSource").text("");
+                            showConfirm("fa-trash-o","温馨提示","获取客服IDC信息失败！是否重新登录?",function(){
+                                window.location.href = "login.html";
+                            });
+                        }
+                    });
+                }else{
+                   if(data[i].permission_name=="regions"){
+                       childStr.push("regions");
+                   }
+                   if(data[i].permission_name=="users"){
+                       childStr.push("users");
+                   }
+                   if(data[i].permission_name=="customers"){
+                       childStr.push("customers");
+                   }
+               }
+            }
+            if(!hasIdc){
+                $("#a_first_"+attestation.id).attr("href","#").removeClass("idc_li");
+                for(var m=0;m<childStr.length;m++){
+                    if(childStr[m]=="regions"){
+                        $("#attestation_first").append("<li class='auth'><a href='biology/region.html' class='auth_change_li'><i class='fa fa-lg fa-fw fa-globe'></i>地域</a></li>");
+                    }
+                    if(childStr[m]=="users"){
+                        $("#attestation_first").append("<li class='auth'><a href='biology/user.html' class='auth_change_li'><i class='fa fa-lg fa-fw fa-user-md'></i>客服</a></li>");
+                    }
+                    if(childStr[m]=="customers"){
+                        $("#attestation_first").append("<li class='auth'><a href='biology/custer.html' class='auth_change_li'><i class='fa fa-lg fa-fw fa-user'></i>客户</a></li>");
+                    }
+                }
+            }
+        }
+    function getUserDetail() {
+        /*            var targetPath = "user" ;
+         var data = '{"action":"user_login"}';
+         doPost("/action/router.action",data,targetPath,function (objs){*/
+        doPostLogin("/action/userDetail.action",{},function (objs){
+            if(objs.httpCode == "200"){
+                $("#d_username").html(objs.userModel.name);
+                $("#d_userID").html(objs.userModel.uuid);
+                $("#d_userIDCUUID").html(objs.userModel.idcUuid);
+                $("#d_userRoleType").html(objs.userModel.role);
+                $("#d_userStatus").html(objs.userModel.status);
+                $("#detail_user_modal").modal('show');
+            }else{
+                $("#d_username").html('');
+                $("#d_userID").html('');
+                $("#d_userIDCUUID").html('');
+                $("#d_userRoleType").html('');
+                $("#d_userStatus").html('');
+            }
+        });
+    }
+        //获取默认地域
+        function initRegion(user,callback){
+            var targetPath = "region" ;
+            var idc_id=user.idcUuid;
+            idc_id=  $("#idcId_change_getSource").text();
+            if(idc_id==null||idc_id==""){
+                showConfirm("fa-trash-o","温馨提示","获取客服IDC失败。 是否重新登录?",function(){
+                    window.location.href = "login.html";
+                });
+            }else{
+                //切换地域
+                var data = '{"action":"list_regions","idcUuid":"'+idc_id+'"}';
+                //赋值默认UUid
+               // $("#region_change_uuid").text("");
+                //$("#region_change_id").text("");
+                //赋值默认region的ip TODO
+             //   $("#region_change_ip").text("");
+                doPost("/action/router.action",data,targetPath,function (objs){
+                    var regionStr="";
+                    if(objs.httpCode=="200"){
+                        if(objs.region_list.length==0){
+                            //设置当前的region
+                            $("#show-shortcut-span").html("");
+
+                            //设置当前切换地址
+                            $("#show-shortcut").html("当前IDC下无地域");
+
+                            $("#index_region_list").empty();
+                        }else{
+                            //设置当前的region
+                            $("#show-shortcut-span").html(objs.region_list[0].uuid);
+                            //赋值默认UUid
+                          //  $("#region_change_uuid").text(objs.region_list[0].uuid);
+                          //  $("#region_change_id").text(objs.region_list[0].id);
+                            //赋值默认region的ip TODO
+                          //  $("#region_change_ip").text(objs.region_list[0].ip);
+                            //设置当前切换地址
+                            $("#show-shortcut").html(objs.region_list[0].name+"[切换]");
+
+                            for(var i=0;i<objs.region_list.length;i++){
+                                regionStr+="<li>"+
+                                        "<a href='javascript:void(0)' name='region_name_"+objs.region_list[i].uuid+"'  id='"+objs.region_list[i].ip+","+objs.region_list[i].uuid+","+objs.region_list[i].id+"' class='jarvismetro-tile big-cubes bg-color-blue'>"+
+                                        " <span class='iconbox'>"+
+                                        "<i class='fa fa-desktop fa-4x'></i>"+
+                                        " <span class='region-name ov-clip' style='width:100%;'>"+objs.region_list[i].name+"</span>"+
+                                        "</span>"+
+                                        "</a>"+
+                                        "</li>";
+                            }
+                        }
+                    }else{
+                        //showErrorMsg("","获取客服地域失败。请刷新界面或重新登录。");
+                            showConfirm("fa-trash-o","温馨提示","获取客服地域信息失败。是否重新登录?",function(){
+                            window.location.href = "login.html";
+                        });
+                    }
+                    $("#index_region_list").empty().append(regionStr);
+                    callback();
+                });
+            }
+        }
+	</script>
+	<!-- Your GOOGLE ANALYTICS CODE Below
+	**** google分析 ga.js已下载到本地 暂注此代码。
+	<script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	-->
+
+</body>
+
+</html>

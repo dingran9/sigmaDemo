@@ -1,0 +1,78 @@
+.smart-style-3 nav>ul>li:hover,
+.smart-style-3 nav>ul>li > a:hover
+{
+    background-color: #1b1e24;
+}
+.smart-style-3 nav ul li a,
+.smart-style-3 nav ul li a:hover{
+    background-color: #1b1e24;
+    color: #8b91a0;
+}
+.smart-style-3 nav ul li a:hover{
+    background-color: #1b1e24;
+    color: #FFF;
+}
+.smart-style-3 nav ul li.active > a,
+.smart-style-3 nav ul li.active >  a > span{
+    color: #FFF;
+}
+.smart-style-3 nav>ul>li{
+    border-bottom: 0;
+}
+.smart-style-3 #header{
+    background-color: #F2f2f2;
+}
+.smart-style-3 .icon-not nav>ul>li>a>i{
+    color: #8b91a0;
+}
+
+
+/*
+.smart-style-3 nav>ul>li.open {
+    border-left: 4px solid #1b1e24;
+}
+*/
+nav ul ul{
+    padding: 0;
+    background: #22262E;
+}
+
+.jarviswidget>div{
+    border-bottom-color: #CCC!important;
+}
+.widget-body.no-padding{
+    border-top: 1px solid #CCC!important;
+}
+nav>ul>li:last-child.open {
+    border-bottom: 1px solid #1b1e24;
+}
+.smart-style-3 .btn-header>:first-child>a, .smart-style-3 #logo-group span#activity{
+    background-color: #666
+    border: 1px solid #666;
+}
+
+.smart-style-3.minified nav>ul>li{
+    border-bottom: 0;
+    border-top: 1px solid #525151;
+}
+
+ .smart-style-3 #logo #logo-img.minify-logo-img{
+    max-width: 40px;
+    margin-top: -8px;
+    left: -9px;
+    position: relative;
+    top: 5px;
+}
+
+#logo-group.minify-logo-group{
+    background-color: #22262e;
+    position: relative;
+    right: 2px;
+    margin-top: 0;
+    width: 45px;
+}
+#logo-group.nominify-logo-group{
+    background-color: #22262e;
+    position: relative;
+    right: 2px;
+}

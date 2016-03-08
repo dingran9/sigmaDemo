@@ -1,0 +1,223 @@
+a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#biology-header{
+    position: relative;
+    width:100%;
+    background-color:#FFFFFF;
+    border-color:#FFFFFF;
+}
+
+#biology-header .logo {
+    float: left;
+    display: block;
+    min-height: 65px;
+    text-indent: -999em;
+}
+#biology-header #logo {
+    width: 220px;
+    background: url(../images/logo2.png) no-repeat left bottom;
+}
+
+#biology-header #brand-logo {
+    width: 60px;
+}
+#biology-header li a:hover{
+    color: #E48D30;
+}
+
+#footer {
+    width: 100%;
+    bottom: 55px;
+    padding-top:60px;
+    text-align: center;
+    background-color:#FFFFFF;
+    border-color:#FFFFFF;
+}
+
+#login-bg {
+    background: url(../images/admin-login-bg.jpg) no-repeat left top;
+    max-height: 800px;
+    min-height: 800px;
+    background-size: 100%;
+}
+
+#login #login-box{
+    margin:0 auto;
+    text-align:center;
+    background-color: #FFFFFF;
+    box-shadow:0px 0px 8px #000;
+}
+
+.input-group1,.input-group-register{
+    padding: 12px 30px 0;
+}
+.input-group1{
+    width:100%;
+}
+.input-group1 input{
+    #width: 160px;
+    background-color: transparent;
+}
+
+.input-group1 i {
+    position: relative;
+    float: right;
+    top: -22px;
+    color:#CCCCCC;
+}
+.input-group1 input[type="checkbox"]{
+    display: block;
+    width: 17px;
+    background-color: transparent;
+    -webkit-appearance:checkbox;
+    height:17px;
+    postion:relative;
+    top:3px;
+}
+.input-group-register input[type='radio']{
+    height: 20px;
+}
+.note-error{
+    top:10px;
+    color:#FF0000;
+    display: none;
+}
+.forget-password{
+    position: relative;
+    float: right;
+    padding-right: 30px;
+    color: steelblue;
+}
+.input-group1 .stayLogin{
+    font-size: 1em;
+    display: block;
+    position: relative;
+    left: 22px;
+    top: -25px;
+    border: 0;
+    background-color: transparent;
+}
+
+.staylogin-div{
+    top:-20px;
+}
+
+.btn-primary{
+    color:#FFFFFF;
+    border-color: #3276b1;
+    background-color: #3276b1;
+}
+.btn-primary:hover{
+    border-color: #FFFFFF;
+    background-color:#3276b1;
+}
+.btn-primary1{
+    color:#FFFFFF;
+    border-color: #E48D30;
+    background-color: #E48D30;
+}
+.btn-primary1:hover{
+    border-color: #FFFFFF;
+    background-color:#E48D30;
+}
+
+.vertical-line {
+    margin:0;
+    position: relative;
+    left: 210px;
+    top:-25px;
+    border-left: #D1D1D1 1px solid;
+    width: 1px;
+    height: 18px;
+}
+
+.input-group-addon-text{
+    text-align: right;
+    line-height: 34px;
+}
+
+.horizontal-line{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    height:18px;
+    margin-top:18px;
+    padding:0;
+    border:solid 5px #E6E6E6;
+    background-color:#8F8F8F;
+    overflow:hidden;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
+    border-radius: 30px;
+}
+
+.rounded-rectangle {
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    height: 50px;
+    line-height:42px;
+    width:50px;
+    padding:0;
+    border: solid 5px #E6E6E6;
+    background-color: #99CC33;
+    overflow: hidden;
+    -moz-border-radius:21px;
+    -webkit-border-radius:21px;
+    border-radius: 21px;
+}
+
+.rounded-rectangle{
+    font-size: 1.6em;
+    font-weight:bold;
+    color: #FFFFFF;
+    font-family: Monospace;
+}
+
+.input-group-register input{
+    height: 34px;
+}
+
+.input-group-register .sex-span{
+    position: relative;
+    left: 15px;
+    bottom: 5px;
+}
+
+.txt-color-darken
+{
+    background-color: #B7B7B7;
+    color:#FFFFFF!important
+}
+
+.verify-code-img, .verify-code-text{
+    height: 34px;
+    padding-right:0;
+    padding-left:0
+}
+
+.verify-code-text{
+    font-size: 0.6em;
+    line-height: 34px;
+}
+
+.has-success input{
+    border: solid 1px #468847;
+}
+
+.has-error input{
+    border: solid 1px #FC4343;
+}
+
+
+.icon-append
+{
+    right:5px;
+    padding-left:3px;
+    border-left-width:1px;
+    border-left-style:solid
+}
+

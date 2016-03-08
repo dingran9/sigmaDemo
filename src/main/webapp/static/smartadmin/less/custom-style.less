@@ -1,0 +1,287 @@
+@header-bg-color:#464543;
+@header-font-color:#FFFFFF;
+@logo-bg-color:#464543;
+@aside-bg-color:#464543;
+@aside-font-color:#a8a8a8;
+@main-font-color:#3276b1;
+@btn-bg-color:#cccccc;
+@aside-li-linear: #464543;
+@aside-li-hover: #464543;
+
+.smart-style-custom #ribbon{
+  background: #FFF;
+}
+.login-info > span{
+  border-bottom: 0 !important;
+}
+//logo
+#logo-group.smart-style-custom{
+  background: @logo-bg-color;
+  border-color: transparent transparent;
+}
+
+
+// header
+#content #header.smart-style-custom,
+#header.smart-style-custom .btn-header>:first-child>a{
+  background: @header-bg-color ;
+  background-color: @header-bg-color;
+  background-image: none ;
+  color:@header-font-color;
+}
+.smart-style-custom .btn-header>:first-child>a{
+  border: 0!important;
+}
+#header.smart-style-custom .btn-header>:first-child>a:active,
+#header.smart-style-custom .btn-header>:first-child>a:hover {
+  border: 1px solid @header-bg-color;
+  background: @header-font-color;
+  color: @header-bg-color !important;
+  cursor: pointer;
+  box-shadow:none;
+}
+
+#header.smart-style-custom  .nav > li > a:hover,
+#header.smart-style-custom  .nav > li > a:focus {
+  text-decoration: none;
+  background: @header-font-color;
+  color: @header-bg-color;
+}
+
+#header.smart-style-custom .navbar-nav > li > a > span{
+  color:@header-font-color;
+}
+
+//left panel
+#left-panel.smart-style-custom{
+  background: @aside-bg-color;
+  border-right: 0;
+}
+
+#left-panel.smart-style-custom .login-info {
+  background-color: @aside-bg-color;
+  background-image: none;
+  border-color: transparent transparent;
+  opacity: 1;
+}
+
+#left-panel.smart-style-custom nav > ul > li > a{
+  border-bottom: 0;
+  background-image: linear-gradient(to bottom,@aside-li-linear, @aside-bg-color);
+}
+#left-panel.smart-style-custom  nav > ul > li {
+  background-color: @aside-bg-color;
+}
+
+
+#left-panel.smart-style-custom #show-shortcut,
+#left-panel.smart-style-custom nav > ul > li > a > i,
+#left-panel.smart-style-custom nav ul li a,
+#left-panel.smart-style-custom .login-info a span
+{
+  color:@aside-font-color;
+  border: 0;
+}
+#left-panel.smart-style-custom nav ul li a{
+  background-color: @aside-bg-color;
+}
+
+#left-panel.smart-style-custom nav ul li.active,
+#left-panel.smart-style-custom nav ul li.active a,
+#left-panel.smart-style-custom nav > ul > li.active > a > i,
+#left-panel.smart-style-custom nav > ul > li > a:hover > i,
+#left-panel.smart-style-custom nav > ul > li:hover i,
+#left-panel.smart-style-custom nav ul li a:hover,
+#left-panel.smart-style-custom nav > ul > li:hover{
+  color:@aside-font-color;
+  font-weight: bold;
+  background:@aside-li-hover;
+}
+
+#left-panel.smart-style-custom nav > ul > li.active > a,
+#left-panel.smart-style-custom nav > ul > li:hover > a,
+#left-panel.smart-style-custom nav > ul > li > a:hover{
+  border-bottom:1px solid @aside-bg-color;
+}
+#left-panel.smart-style-custom nav > ul > li.open,
+#left-panel.smart-style-custom nav > ul > li.open > a{
+  color: @aside-font-color;
+  background: @aside-bg-color;
+}
+
+#left-panel.smart-style-custom nav > ul > li.open > ul,
+#left-panel.smart-style-custom nav > ul > li.open > ul > li,
+#left-panel.smart-style-custom nav > ul > li.open > ul > li > a{
+  color: @aside-font-color;
+  background: @aside-li-linear;
+}
+#left-panel.smart-style-custom nav > ul > li.open > ul > li.active > a{
+  color: @aside-font-color;
+  background: @aside-li-hover;
+  font-weight: bold;
+}
+#left-panel.smart-style-custom nav > ul > li.open > ul > li a:hover,
+#left-panel.smart-style-custom nav > ul > li.open > ul > li:hover a{
+  color:@aside-font-color;
+}
+#left-panel.smart-style-custom nav ul li > a:before{
+  color:@aside-font-color;
+}
+#left-panel.smart-style-custom nav ul li.active > a:before{
+  color:@aside-bg-color;
+}
+
+#left-panel.smart-style-custom #show-shortcut > i:hover{
+  opacity: 1;
+}
+
+/*#left-panel.smart-style-custom nav ul li a:focus,
+#left-panel.smart-style-custom nav ul li a:hover,*/
+#left-panel.smart-style-custom nav ul li.open>a,
+#left-panel.smart-style-custom nav ul li.open>a b{
+  color:@aside-font-color;
+  background-color: @aside-li-hover;
+}
+
+#left-panel.smart-style-custom nav ul ul{
+  background-color: @aside-bg-color;
+}
+
+
+
+#left-panel.smart-style-custom .nav > li > a{
+  color:@header-font-color;
+}
+
+#left-panel.smart-style-custom .minifyme{
+  background: @aside-font-color;
+  color: @logo-bg-color;
+  right:0;
+}
+
+// MAIN CONTENT　COLOR
+#main.smart-style-custom .pagination > .active > a,
+#main.smart-style-custom .pagination > .active > span,
+#main.smart-style-custom .pagination > .active > a:hover,
+#main.smart-style-custom .pagination > .active > span:hover,
+#main.smart-style-custom .pagination > .active > a:focus,
+#main.smart-style-custom .pagination > .active > span:focus{
+  z-index: 2;
+  color: @main-font-color;
+  background-color: @btn-bg-color;
+  border-color: @btn-bg-color;
+  cursor: default;
+}
+
+#main.smart-style-custom .dropdown-menu>.active>a,
+#main.smart-style-custom .dropdown-menu>.active>a:hover,
+#main.smart-style-custom .dropdown-menu>li>a:hover,
+#main.smart-style-custom .dropdown-menu>li>a:focus,
+#main.smart-style-custom .tt-suggestion.tt-is-under-cursor {
+  background-color: @btn-bg-color;
+  color: @main-font-color;
+}
+
+#main.smart-style-custom a:hover,
+#main.smart-style-custom a,
+#main.smart-style-custom a:focus{
+  color:@main-font-color;
+}
+
+
+#main.smart-style-custom .smart-timeline-icon{
+  background: @btn-bg-color;
+}
+
+#main.smart-style-custom .smart-timeline-list:after{
+  left:99px;
+}
+
+#main.smart-style-custom .btn-primary{
+  background: @btn-bg-color;
+  color: @main-font-color;
+  border-color:@btn-bg-color;
+}
+
+#main.smart-style-custom .pagination > .disabled > span,
+#main.smart-style-custom .pagination > .disabled > span:hover,
+#main.smart-style-custom .pagination > .disabled > span:focus,
+#main.smart-style-custom .pagination > .disabled > a,
+#main.smart-style-custom .pagination > .disabled > a:hover,
+#main.smart-style-custom .pagination > .disabled > a:focus{
+  color:#999;
+}
+
+
+//demo page
+#header.smart-style-custom .navbar-nav > li > a > span{
+  background: @header-font-color;
+}
+
+#header.smart-style-custom .navbar-nav > li > a:hover > span,
+#header.smart-style-custom .navbar-nav > li > a > span:hover,{
+  background: @header-bg-color;
+  color:@header-bg-color;
+}
+
+#left-panel.smart-style-custom #show-shortcut span,
+#left-panel.smart-style-custom nav ul li a span{
+  background: @aside-font-color;
+}
+#left-panel.smart-style-custom nav ul li.active a span,
+#left-panel.smart-style-custom nav ul li:hover a span,
+{
+  background: @aside-font-color;
+  color:@aside-font-color;
+}
+
+#main.smart-style-custom .btn-primary > span,
+#main.smart-style-custom .btn-default > span,
+#main.smart-style-custom .btn.disabled > span,{
+  background: @main-font-color;
+  border-color:@btn-bg-color;
+}
+
+#main.smart-style-custom .pagination > li > a >span,
+#main.smart-style-custom .pagination > li > span >span ,
+#main.smart-style-custom .pagination > li > a:hover >span ,
+#main.smart-style-custom .pagination > li > span:hover >span ,
+#main.smart-style-custom .pagination > li > a:focus >span ,
+#main.smart-style-custom .pagination > li > span:focus >span,
+#main.smart-style-custom .pagination > .active > a >span,
+#main.smart-style-custom .pagination > .active > span >span ,
+#main.smart-style-custom .pagination > .active > a:hover >span ,
+#main.smart-style-custom .pagination > .active > span:hover >span ,
+#main.smart-style-custom .pagination > .active > a:focus >span ,
+#main.smart-style-custom .pagination > .active > span:focus >span, {
+  z-index: 2;
+  background-color: @main-font-color;
+  border-color: @btn-bg-color;
+}
+
+#main.smart-style-custom .pagination > .disabled > span >span,
+#main.smart-style-custom .pagination > .disabled > span:hover >span,
+#main.smart-style-custom .pagination > .disabled > span:focus >span,
+#main.smart-style-custom .pagination > .disabled > a >span,
+#main.smart-style-custom .pagination > .disabled > a:hover >span,
+#main.smart-style-custom .pagination > .disabled > a:focus >span{
+  background-color:#999;
+}
+
+
+#main.smart-style-custom .dropdown-menu> li >a > span,
+#main.smart-style-custom .dropdown-menu>.active>a,
+#main.smart-style-custom .dropdown-menu>.active>a:hover,
+#main.smart-style-custom .tt-suggestion.tt-is-under-cursor{
+  background: @main-font-color;
+}
+
+#main.smart-style-custom .dropdown-menu>li>a:hover,
+#main.smart-style-custom .dropdown-menu>li>a:focus{
+  background: @btn-bg-color;
+}
+
+#left-panel.smart-style-custom nav ul li.active > a,
+#left-panel.smart-style-custom nav ul li.active > a > span{
+  color:@aside-font-color;
+}

@@ -1,0 +1,179 @@
+a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+#biology-userCenter-header{
+    position: relative;
+    width:100%;
+    background-color:#095D89;
+    border-color:#095D89;
+}
+
+#biology-userCenter-header .logo {
+    float: left;
+    display: block;
+    min-height: 65px;
+    text-indent: -999em;
+}
+#biology-userCenter-header #logo {
+    width: 220px;
+    background: url(../images/logo2.png) no-repeat left bottom;
+}
+
+#biology-userCenter-header #brand-logo {
+    width: 60px;
+}
+.navbar-nav > li > a{
+    color: #FFFFFF;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#biology-userCenter-header li a:hover{
+    color: #E48D30;
+}
+
+#footer {
+    width: 100%;
+    bottom: 55px;
+    padding-top:60px;
+    text-align: center;
+    background-color:#FFFFFF;
+    border-color:#FFFFFF;
+}
+
+.icon-append
+{
+    font-size: 1.3em;
+    right:5px;
+    padding-left:3px;
+    border-left:solid  4px #EE591F;
+}
+
+.userCenter li {
+    float: right;
+    padding-right: 18px;
+    padding-left: 18px;
+}
+.userCenter li a{
+    color: #000;
+}
+.userCenter div{
+    width: 100%;
+    height: 3px;
+    margin-bottom: -10px;
+    background-color: #3193B6;
+    bottom: -17px;
+    position: relative;
+}
+.modify-pwd-btn{
+    width: 100%;
+    top: 30px;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding:0;
+    font-size: 1.2em;
+}
+
+.base-info {
+    list-style: none;
+}
+
+.base-info li{
+    font-size:1.2em;
+    padding:7px 0px;
+}
+
+.btn-primary{
+    color:#FFFFFF;
+    border-color: #CA7C0F;
+    background-color: #FFAB00;
+}
+.btn-primary:hover{
+    border-color: #CA7C0F;
+    background-color:#FFAB00;
+}
+
+.base-info-input{
+    padding:20px  10px;
+    font-size: 1.4em;
+}
+
+.base-info-input .input-group-addon-text{
+
+}
+
+.biology-nav-tabs>li>a:hover,.nav>li>a:focus {
+    text-decoration: none;
+    background-color: #fff
+}
+
+.biology-nav-tabs>li>a:hover {
+    border-color: #fff
+}
+
+.biology-nav-tabs>li:hover {
+    border-color: #FF0000
+}
+
+.biology-nav-tabs {
+    border-bottom: 1px solid #fff
+}
+
+.biology-nav-tabs>li>a:hover {
+    border-color: #fff
+}
+
+.biology-nav-tabs>li.active>a,.biology-nav-tabs>li.active>a:hover,.biology-nav-tabs>li.active>a:focus
+{
+    color: #555;
+    background-color: #fff;
+    border-left: 0;
+    border-top:0;
+    border-right: 0;
+    border-bottom: 2px solid #3193B6;
+    cursor: default
+}
+
+.biology-nav-tabs > li {
+    margin-bottom: -8px
+}
+
+.nav-vertical{
+    border-bottom: 0;
+}
+.nav-vertical > li.active > a, .nav-vertical > li.active > a:hover, .nav-vertical > li.active > a:focus {
+     background-color: #fff;
+     border-color:#fff;
+     float:none;
+     margin-right: 0;
+     color:#095D89
+ }
+.nav-vertical > li > a:hover, {
+    color:#095D89;
+}
+
+.nav-vertical > li:hover{
+    color:#095D89;
+}
+
+.nav-vertical > li {
+    background-color: #095D89;
+    float:none;
+    border-color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+.nav-vertical > li > a{
+    text-align: center;
+    margin:0;
+    color:#FFFFFF;
+    border-radius: 0;
+    border-bottom:solid 1px #fff;
+}
+
+.nav[role='left-tablist']>li>a:hover,.nav[role='left-tablist']>li>a:focus{
+    text-decoration: none;
+    background-color: #fff;
+    color:#095D89;
+}

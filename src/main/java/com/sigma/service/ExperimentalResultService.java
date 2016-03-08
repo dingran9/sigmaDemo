@@ -3,6 +3,7 @@ package com.sigma.service;
 import com.sigma.po.ExperimentalResultPo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2015/12/20.
@@ -36,4 +37,16 @@ public interface ExperimentalResultService {
      * @param id
      */
     void delete(Long id);
+    /**
+     * 根据疾病Id查询实验结果记录
+     * @return
+     */
+    List<ExperimentalResultPo> findByDiseaseId(String diseaseId);
+    
+    /**
+     * 将实验结果转换成图形节点、图形节点关系
+     * @param experimentalResultPo
+     * @return
+     */
+    Map<String,List> convertToNodes(ExperimentalResultPo experimentalResultPo);
 }

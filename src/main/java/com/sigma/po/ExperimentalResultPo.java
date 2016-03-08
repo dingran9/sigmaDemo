@@ -16,25 +16,78 @@ public class ExperimentalResultPo {
     private Long id;
 
     private String uuid = UIDGenerator.getUUID();
+    /**
+     * 实验结果类型
+     */
     private Integer type;
-    @Column(name = "first_author")
+    /**
+     * 疾病ID
+     */
+    @Column(name = "disease_id")
     private Long diseaseId;
+    /**
+     * 干预物
+     */
+    @Column(name="intervention")
     private String intervention;
+    /**
+     * 干预物注释
+     */
+    @Column(name="intervention_note")
+    private String interventionNote;
+    /**
+     * 干预物对疾病影响
+     */
     @Column(name = "intervention_effect")
-    private String interventionEffect ;
-    private String microorganism ;
+    private String interventionEffect;
+    /**
+     * 微生物
+     */
+    @Column(name="microorganism")
+    private String microorganism;
+    /**
+     * 菌种变化
+     */
     @Column(name = "strain_variation")
-    private String strainVariation ;
+    private String strainVariation;
+    /**
+     * 生理过程
+     */
     @Column(name = "physiological_process")
     private String physiologicalProcess;
+    /**
+     * 生理过程变化
+     */
     @Column(name = "physiological_process_change")
-    private String physiologicalProcessChange ;
+    private String physiologicalProcessChange;
+    /**
+     * 实验类型
+     */
     @Column(name = "experiment_type")
-    private Integer experimentType ;
+    private Integer experimentType;
+    /**
+     * 宿主名称
+     */
     @Column(name = "host_name")
     private String hostName;
+    /**
+     * 动物模型/人群特征
+     */
     @Column(name = "animal_model")
     private String animalModel;
+    /**
+     * 引发源
+     */
+    @Column(name = "source_element")
+    private String sourceElement;
+    /**
+     * 文献Id
+     */
+    @Column(name = "document_id")
+    private String documentId;
+    /**
+     * 创建时间
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date", updatable = false)
     private Date createDate= new Date();
@@ -176,4 +229,28 @@ public class ExperimentalResultPo {
     public void setDiseasePo(DiseasePo diseasePo) {
         this.diseasePo = diseasePo;
     }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getSourceElement() {
+        return sourceElement;
+    }
+
+    public void setSourceElement(String sourceElement) {
+        this.sourceElement = sourceElement;
+    }
+
+    public String getInterventionNote() {
+		return interventionNote;
+	}
+
+	public void setInterventionNote(String interventionNote) {
+		this.interventionNote = interventionNote;
+	}
 }

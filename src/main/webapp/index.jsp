@@ -35,8 +35,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="static/smartadmin/css/your_style.css?version=4.2.6.2">
 
     <!-- FAVICONS -->
-    <link rel="shortcut icon" href="static/smartadmin/img/favicon/favicon.ico" type="image/png">
-    <link rel="icon" href="static/smartadmin/img/favicon/favicon.ico" type="image/png">
+<!--     <link rel="shortcut icon" href="static/smartadmin/img/favicon/favicon.ico" type="image/png"> -->
+<!--     <link rel="icon" href="static/smartadmin/img/favicon/favicon.ico" type="image/png"> -->
 
     <!-- GOOGLE FONT -->
     <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">-->
@@ -114,25 +114,25 @@
         traditional hre="" links. See documentation for details.
         -->
         <ul class="ms-yahei">
-            <li>
-                <a id="defalutPage" href="#jsp/dict/dictmanager.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项管理</span></a>
-                <ul>
-                    <li>
-                        <a id="dictInfoManager" href="#jsp/dict/dictmanager.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项信息维护</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li>
+            <li id="defalutPage" >
                 <a href="#"><i class="fa fa-lg fa-fw fa-random"></i> <span class="menu-item-parent" >信息管理</span></a>
                 <ul>
                     <li>
                         <a id="diseaseInfoManager" href="#jsp/disease/getdiseaselist.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >疾病信息维护</span></a>
                     </li>
                     <li>
-                        <a id="experimentalResultManager" href="#jsp/experimental/experimentallist.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验结果维护</span></a>
+                        <a id="entryManager" href="#jsp/entry/documentlist.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >文献信息维护</span></a>
                     </li>
                     <li>
-                        <a id="entryManager" href="#jsp/entry/documentlist.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >词条信息维护</span></a>
+                        <a id="experimentalResultManager" href="#jsp/experimental/experimentallist.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验结果维护</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#jsp/dict/dictmanager.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项管理</span></a>
+                <ul>
+                    <li>
+                        <a id="dictInfoManager" href="#jsp/dict/dictmanager.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项信息维护</span></a>
                     </li>
                 </ul>
             </li>
@@ -164,7 +164,10 @@
     <!-- END RIBBON -->
 
     <!-- MAIN CONTENT -->
-    <div id="content" style="margin-left: 11px;" class="realContent"></div>
+    <div id="content" style="margin-left: 11px;" class="realContent">
+    <span><img alt="搜索" src="static/images/search/search.jpg" onclick="searchDisease()"></span>
+<!--     <span> <img src='static/images/testee.png'></span> -->
+    </div> 
     <!-- END MAIN CONTENT -->
 
 </div>
@@ -376,11 +379,7 @@
             $("#edit_password_confirm").removeClass("btn-primary").addClass("disabled").addClass("txt-color-darken");
         }
     }
-
-
-
     $(document).ready(function() {
-
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         pageSetUp();
         //$("body").css("width", $(window).width());
@@ -393,11 +392,21 @@
                 .bind("click",function(){if($(this).attr("href")=== window.location.hash){$(window).trigger('hashchange');}});
 //        checkURL();
         $("#defalutPage").click();
-
     });
-
-
-
+    
+    //测试搜索
+    function searchDisease(){
+    	var _keyWord="消化系统疾病";
+        doPost("/action/disease/search",{keyWord:_keyWord},function(objs){
+            if(objs.httpCode === "200"){
+                showMsg("操作成功",objs.datas[0].name,3000);
+                
+            }else{
+                console.log(objs);
+                showErrorMsg("操作失败",rpLRespond(objs.message));
+            }
+        });
+    }
 </script>
 
 </body>

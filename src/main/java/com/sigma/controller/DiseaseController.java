@@ -55,7 +55,50 @@ public class DiseaseController {
 
         }
     }
+    /**
+     * 
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findParents")
+    @ResponseBody
+    public ResponseItem findParents(HttpServletRequest request) throws Exception {
 
+        ResponseItem ri = new ResponseItem();
+
+        try {
+            List<DiseasePo> diseasePos= diseaseService.findByParents();
+            ri.setData(diseasePos);
+            return ri;
+        } catch (Exception e) {
+            logger.error("list exception:", e);
+            return ResponseItem.responseWithName(ri, ResponseCode.SERVICE_ERROR.toString(), "list exception");
+
+        }
+    }
+    /**
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findChildren")
+    @ResponseBody
+    public ResponseItem findChildren(HttpServletRequest request) throws Exception {
+
+        ResponseItem ri = new ResponseItem();
+
+        try {
+            List<DiseasePo> diseasePos= diseaseService.findChildren();
+            ri.setData(diseasePos);
+            return ri;
+        } catch (Exception e) {
+            logger.error("list exception:", e);
+            return ResponseItem.responseWithName(ri, ResponseCode.SERVICE_ERROR.toString(), "list exception");
+
+        }
+    }
     /**
      * 详情
      *
@@ -72,9 +115,6 @@ public class DiseaseController {
             DiseasePo diseasePo= diseaseService.findByUuid(diseaseId);
             if(diseasePo== null){
                 return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "diseasePo");
-            }
-            if(diseasePo.getParentId()!=null){
-                diseasePo.setParentDiseasePo(diseaseService.findOne(diseasePo.getParentId()));
             }
             diseasePo.setDiseaseAttachedPo(diseaseAttachedService.findByDiseaseId(diseasePo.getId()));
             ri.setData(diseasePo);
@@ -95,7 +135,7 @@ public class DiseaseController {
     @ResponseBody
     public ResponseItem add(
             @RequestParam(value = "name") String name,
-            @RequestParam(value = "ategory") String category,
+            @RequestParam(value = "category") String category,
             @RequestParam(value = "pathogeny") String pathogeny ,
             @RequestParam(value = "parentId",required = false) String parentId,
             @RequestParam(value = "change",required = false) String change,
@@ -107,7 +147,7 @@ public class DiseaseController {
             @RequestParam(value = "pathogenMetabolites",required = false) String pathogenMetabolites ,
             @RequestParam(value = "physiologicalProcess",required = false) String physiologicalProcess ,
             @RequestParam(value = "researchMethod",required = false) String researchMethod ,
-            @RequestParam(value = "documentId",required = false) String documentId,
+//            @RequestParam(value = "documentId",required = false) String documentId,
             HttpServletRequest request) throws Exception {
         ResponseItem ri = new ResponseItem();
         try {
@@ -116,7 +156,7 @@ public class DiseaseController {
             if(parentId!=null){
                 DiseasePo fDiseasePo= diseaseService.findByUuid(parentId);
                 if(fDiseasePo != null){
-                    diseasePo.setParentId(fDiseasePo.getId());
+                    diseasePo.setParentDiseasePo(fDiseasePo);
                     diseasePo.setLevel(1);
                 }
             }
@@ -124,12 +164,13 @@ public class DiseaseController {
             diseasePo.setCategory(category);
             diseasePo.setPathogeny(pathogeny);
             DiseaseAttachedPo diseaseAttachedPo=new DiseaseAttachedPo();
-            if(documentId!=null){
-                DocumentPo documentPo= documentService.findByUuid(documentId);
-                if(documentPo != null){
-                    diseaseAttachedPo.setDocumentId(documentPo.getId());
-                }
-            }
+            //文献不记录
+//            if(documentId!=null){
+//                DocumentPo documentPo= documentService.findByUuid(documentId);
+//                if(documentPo != null){
+//                    diseaseAttachedPo.setDocumentId(documentPo.getId());
+//                }
+//            }
             diseaseAttachedPo.setChange(change);
             diseaseAttachedPo.setMicrobialChanges(microbialChanges);
             diseaseAttachedPo.setRelatedFamily(relatedFamily);
@@ -159,8 +200,9 @@ public class DiseaseController {
     public ResponseItem update(
             @RequestParam(value = "diseaseId") String diseaseId,
             @RequestParam(value = "name",required = false) String name,
-            @RequestParam(value = "ategory",required = false) String category,
+            @RequestParam(value = "category",required = false) String category,
             @RequestParam(value = "pathogeny",required = false) String pathogeny ,
+            //父级疾病：此处应该是id ，但是目前输入内容为疾病name
             @RequestParam(value = "parentId",required = false) String parentId,
             @RequestParam(value = "change",required = false) String change,
             @RequestParam(value = "microbialChanges",required = false) String microbialChanges,
@@ -171,7 +213,7 @@ public class DiseaseController {
             @RequestParam(value = "pathogenMetabolites",required = false) String pathogenMetabolites ,
             @RequestParam(value = "physiologicalProcess",required = false) String physiologicalProcess ,
             @RequestParam(value = "researchMethod",required = false) String researchMethod ,
-            @RequestParam(value = "documentId",required = false) String documentId,
+//            @RequestParam(value = "documentId",required = false) String documentId,
             HttpServletRequest request) throws Exception {
         ResponseItem ri = new ResponseItem();
         try {
@@ -190,8 +232,9 @@ public class DiseaseController {
             }
             if(parentId!=null){
                 DiseasePo fDiseasePo= diseaseService.findByUuid(parentId);
+//                DiseasePo parentDiseasePo= diseaseService.findByName(parentId);
                 if(fDiseasePo != null){
-                    diseasePo.setParentId(fDiseasePo.getId());
+                    diseasePo.setParentDiseasePo(fDiseasePo);
                     diseasePo.setLevel(1);
                 }
             }
@@ -228,12 +271,12 @@ public class DiseaseController {
             if(StringUtils.isNotBlank(researchMethod)){
                 diseaseAttachedPo.setResearchMethod(researchMethod);
             }
-            if(documentId!=null){
-                DocumentPo documentPo= documentService.findByUuid(documentId);
-                if(documentPo != null){
-                    diseaseAttachedPo.setDocumentId(documentPo.getId());
-                }
-            }
+//            if(documentId!=null){
+//                DocumentPo documentPo= documentService.findByUuid(documentId);
+//                if(documentPo != null){
+//                    diseaseAttachedPo.setDocumentId(documentPo.getId());
+//                }
+//            }
 
             ri.setData(diseaseService.update(diseasePo,diseaseAttachedPo));
             return ri;
@@ -265,5 +308,29 @@ public class DiseaseController {
             logger.error("delete exception:", e);
             return ResponseItem.responseWithName(ri, ResponseCode.SERVICE_ERROR.toString(), "delete exception");
         }
+    }
+    /**
+     * 搜索
+     *
+     * @return ResponseItem
+     * @throws Exception
+     */
+    @RequestMapping(value = "/search")
+    @ResponseBody
+    public ResponseItem search(
+    		@RequestParam(value = "keyWord") String keyWord,
+    		HttpServletRequest request) throws Exception {
+    	ResponseItem ri = new ResponseItem();
+    	try {
+    		List<DiseasePo> diseasePos= diseaseService.findByKeyWord(keyWord);
+    		if(diseasePos== null){
+    			return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "diseasePos");
+    		}
+    		ri.setDatas(diseasePos);
+    		return ri;
+    	} catch (Exception e) {
+    		logger.error("search exception:", e);
+    		return ResponseItem.responseWithName(ri, ResponseCode.SERVICE_ERROR.toString(), "search exception");
+    	}
     }
 }

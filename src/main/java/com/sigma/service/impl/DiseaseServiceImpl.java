@@ -6,12 +6,14 @@ import com.sigma.po.DiseaseAttachedPo;
 import com.sigma.po.DiseasePo;
 import com.sigma.service.DiseaseAttachedService;
 import com.sigma.service.DiseaseService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+
 import java.util.List;
 
 /**
@@ -67,4 +69,29 @@ public class DiseaseServiceImpl implements DiseaseService {
         diseaseAttachedService.deleteByDiseaseId(id);
         diseaseDao.delete(id);
     }
+
+	@Override
+	public DiseasePo findByName(String diseaseName) {
+		return diseaseDao.findByName(diseaseName);
+	}
+
+	@Override
+	public List<DiseasePo> findByParents() {
+		return diseaseDao.findByParents();
+	}
+
+    @Override
+    public List<DiseasePo> findChildren() {
+        return diseaseDao.findChildren();
+    }
+
+	@Override
+	/**
+	 * 根据关键字查询疾病列表
+	 * 	当前测试为默认疾病名称
+	 */
+	public List<DiseasePo> findByKeyWord(String keyWord) {
+		// TODO Auto-generated method stub
+		return diseaseDao.findByLikeName("%"+keyWord+"%");
+	}
 }

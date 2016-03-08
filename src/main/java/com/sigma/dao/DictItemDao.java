@@ -15,8 +15,9 @@ public interface DictItemDao  extends CrudRepository<DictItemPo, Long> {
 
     DictItemPo findByUuid(String uuid);
 
-
     @Query("select d from  DictItemPo  d where d.dictPo.id=?1")
     List<DictItemPo> findByDictId(Long id);
 
+    @Query("select d from DictItemPo d where d.dictPo.id=?1 and d.value=?2")
+    DictItemPo findByDictIdAndItemValue(Long dictId,String value);
 }

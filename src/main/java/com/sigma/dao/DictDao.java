@@ -9,4 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface DictDao  extends CrudRepository<DictPo, Long> {
 
     DictPo findByUuid(String uuid);
+
+    DictPo findByCode(String code);
 }

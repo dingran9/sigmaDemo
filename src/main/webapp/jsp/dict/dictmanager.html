@@ -101,7 +101,7 @@
         </div>
         <div class="" style="padding-top: 20px;">
             <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="dictmanager_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
-            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictmanagerBtn" onclick="addDocument();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictmanagerBtn" onclick="addDictManager();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
         </div>
     </form>
 
@@ -257,7 +257,7 @@
         </div>
         <div class="" style="padding-top: 20px;">
             <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="dictitemmanager_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
-            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictitemmanagerBtn" onclick="addDocument();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="dictitemmanagerBtn" onclick="addDictItem();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
         </div>
     </form>
 
@@ -435,7 +435,7 @@
 
             var data = {dictmanagerId: sel_dictmanager_id,name:name,
                 code: code,validMark:validMark,
-                remark:remark};
+                describe:remark};
             doPost("/action/dictmanager/update",data,function(objs){
                 if(objs.httpCode=="200"){
                     showMsg("温馨提示","编辑成功。");

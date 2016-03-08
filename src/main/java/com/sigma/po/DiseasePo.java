@@ -1,6 +1,9 @@
 package com.sigma.po;
 
 import com.sigma.util.UIDGenerator;
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -14,19 +17,23 @@ public class DiseasePo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name="uuid")
     private String uuid = UIDGenerator.getUUID();
     private String name;
-    @Column(name = "parent_id")
-    private Long parentId;
+//    @Column(name = "parent_id")
+    @ManyToOne
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
+    @ForeignKey(name = "none")
+    @NotFound(action= NotFoundAction.IGNORE)
+    private DiseasePo parentDiseasePo;
     private Integer level;
     private String category;
     private String pathogeny;
 
     @Transient
     private DiseaseAttachedPo diseaseAttachedPo;
-    @Transient
-    private DiseasePo parentDiseasePo;
+/*    @Transient
+    private DiseasePo parentDiseasePo;*/
 
     public Long getId() {
         return id;
@@ -50,14 +57,6 @@ public class DiseasePo {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
     }
 
     public Integer getLevel() {

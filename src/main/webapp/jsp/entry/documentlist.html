@@ -3,6 +3,7 @@
         <div id='regionList_document'  class="row bs-callout bs-callout-info">
         </div>
         <input id = userType_document type="hidden">
+        <input id="attachIds" type="hidden" name="attachIds" value="">
     </div>
 </div>
 
@@ -112,6 +113,14 @@
                         </section>
                     </td>
                 </tr>
+                <tr class="basic">
+                    <td style="text-align:right;">附件</td>
+                    <td style="text-align: left;vertical-align: middle;">
+                        <div>
+					        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="upload_button"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="width: 80px">上传附件</a></span>
+					    </div>
+                    </td>
+                </tr>
             </table>
         </div>
         <div class="" style="padding-top: 20px;">
@@ -168,6 +177,14 @@
                         </section>
                     </td>
                 </tr>
+                <tr class="basic">
+                    <td style="text-align:right;">附件</td>
+                    <td style="text-align: left;">
+                        <div>
+					        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="upload_edit_button"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3" style="width: 80px">上传附件</a></span>
+					    </div>
+                    </td>
+                </tr>
             </table>
         </div>
     </form>
@@ -207,7 +224,6 @@ function documentloadDataTableScripts() {
     function dt_6() {
         loadScript("static/smartadmin/js/plugin/datatables/media/js/TableTools.min.js?version=4.2.6.2", dt_7);
     }
-
     function dt_7() {
         loadScript("static/smartadmin/js/plugin/datatables/DT_bootstrap.js?version=4.2.6.2", dt_8);
     }
@@ -218,6 +234,9 @@ function documentloadDataTableScripts() {
         loadScript("static/smartadmin/js/libs/jquery.event.drag-2.2.js?version=4.2.6.2", dt_10);
     }
     function dt_10() {
+        loadScript("static/js/libs/ajaxupload.3.6.min.js?version=4.2.6.2", dt_11);
+    }
+    function dt_11() {
         loadScript("biology/document.js?version=4.2.6.2", documentInit);
     }
 
@@ -281,6 +300,8 @@ function documentInit(){
                 $("#document_edit_impact_factors").val(objs.data.impactFactors);
                 $("#package_edit_offline_date").val(new Date(objs.data.publishDate).Format("yyyy-MM-dd"));
                 $("#document_edit_modal").show().siblings().hide();
+                initUploadBtn("upload_edit_button");
+                initAttachDiv(objs.data.attachPos,"upload_edit_button")
             }else{
                 console.log("code :" + objs.code + "  msg:" + objs.message);
                 showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
@@ -298,14 +319,15 @@ function documentInit(){
     //编辑
     $('#document_editBtn').unbind("click");
     $("#document_editBtn").on("click",function(){
-        var name = $.trim($("#document_edit_name").val()),
-            type = $("#document_edit_type option:selected").val(),
+        var name = $.trim($("#document_edit_name").val());
+        var type = $("#document_edit_type option:selected").val(),
                 first_author = $.trim($("#document_edit_first_author").val()),
                 correspondent_author = $.trim($("#document_edit_correspondent_author").val()),
                 impact_factors = $.trim($("#document_edit_impact_factors").val()),
                 offline_date = $.trim($("#package_edit_offline_date").val());
+        var attachIds=$("#attachIds").val().replace(/\'/g,'');
 
-        var data = {documentId: sel_document_id,name:name,
+        var data = {attachIds:attachIds,documentId: sel_document_id,name:name,
             firstAuthor: first_author,correspondentAuthor:correspondent_author,
             publishDate:offline_date ,entryType: type,impactFactors: impact_factors};
         doPost("/action/document/update",data,function(objs){
@@ -322,8 +344,82 @@ function documentInit(){
 
     });
 
-    //点击tr赋值
+    //初始化上传按钮
+    initUploadBtn("upload_button");
 }
-
-
+/**
+ * 文献编辑附件信息初始化
+ */
+function initAttachDiv(datas,id){
+	//移除上次编辑时增加的附件信息
+	$("#"+id).siblings("span").remove();
+	for(var i=0;i<datas.length;i++){
+		uploadCallBack(datas[i],id);
+	}
+}
+/**
+ * 初始化附件上传按钮
+ */
+function initUploadBtn(id){
+	var idStr='#'+id;
+	new AjaxUpload(idStr, {
+		action: '/action/uploadDocumentAttach/upload',
+		name: 'uploadFile',
+		data: {},
+		autoSubmit: true,
+		responseType: 'json',
+		onSubmit: function(filename, ext) {
+			showMsg("文件上传","上传中，请稍候...",3000);
+		},
+		onComplete: function(filename, data) {
+			var code=data.code;
+			switch(code){
+				case "Success":
+					showMsg("文件上传","文件上传成功！",3000);
+					uploadCallBack(data.data,id);
+					break;
+				default :
+					showErrorMsg("文件上传","文件上传失败，请稍后重试或者联系管理员！",3000);
+					break;
+			}
+		}
+	});
+}
+/**
+ * 附件上传回调函数：回调显示附件信息
+ */
+function uploadCallBack(data,currId){
+	//生成新上传的附件显示内容
+	var callbackHtm='<span id="'+data.uuid+'"><br/><br/>'
+		+data.attachName+'&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick=deleteAttach("'+data.uuid+'")>删除</a></span>';
+	//父级div
+	var parentDiv=$("#"+currId).parent().html();
+	//拼接后用于显示的内容
+	var currHtml=parentDiv+callbackHtm;
+	//显示相关内容
+	$("#"+currId).parent().html(currHtml);
+	//重新初始化上传按钮
+	initUploadBtn(currId);
+	//附件id赋值
+	var attachIds=$("#attachIds").val();
+	$("#attachIds").val(attachIds+",'"+data.uuid+"'");
+}
+/**
+ * 删除附件方法
+ */
+function deleteAttach(uuid){
+	var data={uuid:uuid};
+	doPost("/action/uploadDocumentAttach/delete",data,function(objs){
+        if(objs.httpCode=="200"){
+            showMsg("温馨提示","删除成功。");
+            //隐藏附件显示对应内容
+            $("#"+uuid).hide();
+            var attachIds=$("#attachIds").val().split("'"+data.uuid+"'").join(",");
+            $("#attachIds").val(attachIds);
+        }else{
+            console.log("code :" + objs.code + "  msg:" + objs.message);
+            showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+        }
+    });
+}
 </script>

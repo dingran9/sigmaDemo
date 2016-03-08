@@ -17,7 +17,7 @@
     </context:component-scan>
 
     <!--<context:property-placeholder location="file:/etc/sigma/conf/sigma_demo.properties"/>-->
-    <context:property-placeholder location="classpath*:conf/**/dbcp.properties"/>
+    <context:property-placeholder location="classpath*:conf/**/*.properties"/>
 
     <!-- 任务调度器 -->
     <task:scheduler id="scheduler" pool-size="10"/>

@@ -1,11 +1,10 @@
 package com.sigma.controller;
 
-import com.sigma.po.DictPo;
-import com.sigma.po.DiseasePo;
-import com.sigma.service.DictItemService;
-import com.sigma.service.DictService;
-import com.sigma.util.ResponseCode;
-import com.sigma.util.ResponseItem;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import com.sigma.po.DictItemPo;
+import com.sigma.po.DictPo;
+import com.sigma.service.DictItemService;
+import com.sigma.service.DictService;
+import com.sigma.util.ResponseCode;
+import com.sigma.util.ResponseItem;
 
 /**
  * Created by Administrator on 2015/12/20.
@@ -164,6 +166,10 @@ public class DictController {
             DictPo dictPo= dictService.findByUuid(dictmanagerId);
             if(dictPo== null){
                 return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "dictPo");
+            }
+            List<DictItemPo> list=  dictItemService.findByDictId(dictPo.getId());
+            if(list!=null && list.size()>0){
+                return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_INUSE.toString(), "该字典下有字典项，不能删除.");
             }
             dictService.delete(dictPo.getId());
             return ri;

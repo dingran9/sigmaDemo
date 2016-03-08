@@ -11,6 +11,9 @@ import org.springframework.data.repository.CrudRepository;
 public interface DiseaseAttachedDao  extends CrudRepository<DiseaseAttachedPo, Long> {
 
     DiseaseAttachedPo findByDocumentId(Long id);
+    
+    @Query("select d from DiseaseAttachedPo d where d.diseaseId=?")
+    DiseaseAttachedPo findByDiseaseId(Long id);
 
     @Modifying
     @Query("delete from DiseaseAttachedPo d where d.diseaseId=?1")

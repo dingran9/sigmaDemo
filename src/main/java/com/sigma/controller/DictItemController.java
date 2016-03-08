@@ -42,6 +42,7 @@ public class DictItemController {
     @ResponseBody
     public ResponseItem list(
             @RequestParam(value = "dictmanagerId",required = false) String dictmanagerId,
+            @RequestParam(value = "dictmanagerCode",required = false) String dictmanagerCode,
             HttpServletRequest request) throws Exception {
 
         ResponseItem ri = new ResponseItem();
@@ -50,6 +51,11 @@ public class DictItemController {
             List<DictItemPo> dictItemPos=new ArrayList<>();
             if(StringUtils.isNotBlank(dictmanagerId)){
                 DictPo dictPo= dictService.findByUuid(dictmanagerId);
+                if(dictPo!=null){
+                    dictItemPos= dictItemService.findByDictId(dictPo.getId());
+                }
+            }else if(StringUtils.isNotBlank(dictmanagerCode)){
+                DictPo dictPo= dictService.findByCode(dictmanagerCode);
                 if(dictPo!=null){
                     dictItemPos= dictItemService.findByDictId(dictPo.getId());
                 }

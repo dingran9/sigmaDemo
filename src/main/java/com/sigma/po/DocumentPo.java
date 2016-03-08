@@ -3,7 +3,9 @@ package com.sigma.po;
 import com.sigma.util.UIDGenerator;
 
 import javax.persistence.*;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2015/12/20.
@@ -31,6 +33,11 @@ public class DocumentPo {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date", updatable = false)
     private Date createDate= new Date();
+    /**
+     * 附件列表
+     */
+    @Transient
+    private List<AttachPo> attachPos;
 
     public Long getId() {
         return id;
@@ -103,4 +110,12 @@ public class DocumentPo {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+	public List<AttachPo> getAttachPos() {
+		return attachPos;
+	}
+
+	public void setAttachPos(List<AttachPo> attachPos) {
+		this.attachPos = attachPos;
+	}
 }

@@ -31,6 +31,11 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
+    public DictPo findByCode(String code) {
+        return dictDao.findByCode(code);
+    }
+
+    @Override
     public List<DictPo> findAll() {
         return (List<DictPo>) dictDao.findAll();
     }

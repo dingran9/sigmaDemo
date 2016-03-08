@@ -47,6 +47,15 @@ public class ExperimentalResultController {
 
         try {
             List<ExperimentalResultPo> experimentalResultPos= experimentalResultService.findAll();
+            if (experimentalResultPos!=null&&experimentalResultPos.size()>0) {
+            	for (ExperimentalResultPo experimentalResultPo : experimentalResultPos) {
+            		if (experimentalResultPo==null) {
+						continue;
+					}
+            		DiseasePo diseasePo=diseaseService.findOne(experimentalResultPo.getDiseaseId());
+            		experimentalResultPo.setDiseasePo(diseasePo);
+            	}
+			}
             ri.setData(experimentalResultPos);
             return ri;
         } catch (Exception e) {
@@ -95,6 +104,7 @@ public class ExperimentalResultController {
     public ResponseItem add(
             @RequestParam(value = "type") Integer type,
             @RequestParam(value = "diseaseId") String diseaseId,
+            @RequestParam(value = "interventionNote") String interventionNote,
             @RequestParam(value = "intervention") String intervention,
             @RequestParam(value = "interventionEffect") String interventionEffect,
             @RequestParam(value = "microorganism") String microorganism  ,
@@ -104,25 +114,41 @@ public class ExperimentalResultController {
             @RequestParam(value = "experimentType") Integer experimentType  ,
             @RequestParam(value = "hostName") String hostName  ,
             @RequestParam(value = "animalModel") String animalModel  ,
+            @RequestParam(value = "documentId") String documentId  ,
+            @RequestParam(value = "sourceElement") String sourceElement  ,
             HttpServletRequest request) throws Exception {
         ResponseItem ri = new ResponseItem();
         try {
             DiseasePo diseasePo= diseaseService.findByUuid(diseaseId);
             if(diseasePo== null){
-                return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "diseasePo");
+                return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "疾病类型");
             }
             ExperimentalResultPo experimentalResultPo=new ExperimentalResultPo();
+            //实验结果类型
             experimentalResultPo.setType(type);
+            //疾病id
             experimentalResultPo.setDiseaseId(diseasePo.getId());
+            //干预物
             experimentalResultPo.setIntervention(intervention);
+            //干预物注释
+            experimentalResultPo.setInterventionNote(interventionNote);
+            //干预物影响
             experimentalResultPo.setInterventionEffect(interventionEffect);
+            //微生物
             experimentalResultPo.setMicroorganism(microorganism);
             experimentalResultPo.setStrainVariation(strainVariation);
+            //生理过程
             experimentalResultPo.setPhysiologicalProcess(physiologicalProcess);
+            //生理过程变化
             experimentalResultPo.setPhysiologicalProcessChange(physiologicalProcessChange);
+            //实验类型
             experimentalResultPo.setExperimentType(experimentType);
+            //宿主
             experimentalResultPo.setHostName(hostName);
+            //模型
             experimentalResultPo.setAnimalModel(animalModel);
+            experimentalResultPo.setDocumentId(documentId);
+            experimentalResultPo.setSourceElement(sourceElement);
             ri.setData(experimentalResultService.save(experimentalResultPo));
             return ri;
         } catch (Exception e) {
@@ -152,6 +178,7 @@ public class ExperimentalResultController {
             @RequestParam(value = "experimentType") Integer experimentType  ,
             @RequestParam(value = "hostName") String hostName  ,
             @RequestParam(value = "animalModel") String animalModel  ,
+            @RequestParam(value = "sourceElement") String sourceElement  ,
             HttpServletRequest request) throws Exception {
         ResponseItem ri = new ResponseItem();
         try {
@@ -194,6 +221,9 @@ public class ExperimentalResultController {
             }
             if(StringUtils.isNotBlank(animalModel)){
                 experimentalResultPo.setAnimalModel(animalModel);
+            }
+            if(StringUtils.isNotBlank(sourceElement)){
+                experimentalResultPo.setSourceElement(sourceElement);
             }
             ri.setData(experimentalResultService.save(experimentalResultPo));
             return ri;

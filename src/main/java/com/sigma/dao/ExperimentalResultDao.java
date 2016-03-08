@@ -1,6 +1,9 @@
 package com.sigma.dao;
 
+import java.util.List;
+
 import com.sigma.po.ExperimentalResultPo;
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -10,4 +13,5 @@ public interface ExperimentalResultDao  extends CrudRepository<ExperimentalResul
 
     ExperimentalResultPo findByUuid(String uuid);
 
+    List<ExperimentalResultPo> findByDiseaseId(String diseaseId);
 }

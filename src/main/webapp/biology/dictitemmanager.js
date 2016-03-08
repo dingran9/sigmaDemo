@@ -208,7 +208,7 @@ function btnConfirmState(){
     }
 }
 
-function addDocument(){
+function addDictItem(){
 
     var validMark= $("#dictitemmanager_validMark option:selected").val(),
      name = $.trim($("#dictitemmanager_name").val()),

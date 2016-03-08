@@ -16,6 +16,8 @@ public interface DictService {
     DictPo findOne(Long id);
 
     DictPo findByUuid(String uuid);
+
+    DictPo findByCode(String code);
     /**
      * 查找
      *

@@ -18,7 +18,7 @@ function loaddictmanagerTable(id,catId){
             "<th class='table-thead' width='15%'>名称</th>"+
             "<th class='table-thead' width='10%'>是否可用</th>"+
             "<th class='table-thead' width='10%'>描述</th>"+
-            "<th class='table-thead' width='25%'>字典项</th>"+
+            "<th class='table-thead' width='20%'>字典项</th>"+
             "<th class='table-thead' style='display: none'>创建时间</th>"+
             "</tr>");
 
@@ -233,14 +233,13 @@ function btnConfirmState(){
     }
 }
 
-function addDocument(){
+function addDictManager(){
 
     var validMark= $("#dictmanager_validMark option:selected").val(),
      name = $.trim($("#dictmanager_name").val()),
      code = $.trim($("#dictmanager_code").val()),
      remark = $.trim($("#dictmanager_describe").val());
-
-    var data = {name:name,validMark: validMark,code:code,remark:remark };
+    var data = {name:name,validMark: validMark,code:code,describe:remark };
     doPost("/action/dictmanager/add",data,function(objs){
         if(objs.httpCode=="200"){
             showMsg("温馨提示","添加成功。");

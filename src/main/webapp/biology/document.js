@@ -219,6 +219,7 @@ function addDocument(){
     var correspondent_author = $.trim($("#document_correspondent_author").val());
     var impact_factors = $.trim($("#document_impact_factors").val());
     var offline_date = $.trim($("#package_offline_date").val());
+    var attachIds=$("#attachIds").val().replace(/\'/g,'');
 /*
     if(isNaN(Number(billUnitCount))){
         showErrorMsg("","计费单位只能是数字");
@@ -229,7 +230,7 @@ function addDocument(){
         return;
     }
 */
-    var data = {name:name,firstAuthor: first_author,correspondentAuthor:correspondent_author,publishDate:offline_date ,entryType: type,impactFactors: impact_factors};
+    var data = {attachIds:attachIds,name:name,firstAuthor: first_author,correspondentAuthor:correspondent_author,publishDate:offline_date ,entryType: type,impactFactors: impact_factors};
     doPost("/action/document/add",data,function(objs){
         if(objs.httpCode=="200"){
             showMsg("温馨提示","添加成功。");

@@ -1,20 +1,21 @@
-<div class="row" id="regionList_product_div">
+<link rel="stylesheet" href="../../../static/css/console.css?version=4.2.6.2">
+<div class="row" id="regionList_disease_div">
     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-12">
-        <div id='regionList_product'  class="row bs-callout bs-callout-info">
+        <div id='regionList_disease'  class="row bs-callout bs-callout-info">
         </div>
-        <input id = userType_product type="hidden">
+        <input id = userType_disease type="hidden">
     </div>
 </div>
 
-<ul class="nav nav-tabs bordered" id="product_tab_ul"></ul>
+<ul class="nav nav-tabs bordered" id="disease_tab_ul"></ul>
 
-<div class="tab-content"  id="product_widget-grid">
-    <div class="tab-pane fade active in" id="pro_product_href" style="padding: 5px;">
+<div class="tab-content"  id="disease_widget-grid">
+    <div class="tab-pane fade active in" id="pro_disease_href" style="padding: 5px;">
         <!-- 按钮 -->
-        <div id='product_btns' class="row margin-bottom-5 col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        <div id='disease_btns' class="row margin-bottom-5 col-sm-12 col-xs-12 col-md-12 col-lg-12"
              xmlns="http://www.w3.org/1999/html">
-            <a id="btn_disease_refresh" class="btn btn-default" href="javascript:void(0);" onclick="loadDiseaseTable()"><i class="fa fa-refresh"></i> 刷新</a>
-            <a id="btn_disease_create"  class="btn btn-success"  pname="disease_add" data-toggle="modal" data-target="#disease_oper_modal" href="#" ><i class="fa fa-plus"></i> 新增</a>
+            <a id="btn_disease_refresh" class="btn btn-default" href="javascript:void(0);" onclick="loaddiseaseTable()"><i class="fa fa-refresh"></i> 刷新</a>
+            <a id="btn_disease_create"  class="btn btn-success" ><i class="fa fa-plus"></i> 新增</a>
             <a id="btn_disease_edit"  class="btn btn-default disabled"  pname="disease_update"><i class="fa fa-pencil"></i> 编辑</a>
             <a id="btn_disease_delete"  class="btn btn-default disabled"  pname="disease_update"><i class="fa fa-trash-o"></i> 删除</a>
         </div>
@@ -72,174 +73,211 @@
                 <div class="order-title">
                     <h1>新增疾病信息</h1>
                     <div class="order-line"></div>
-                    <span><a id="disease_add_cancelB" class="pull-right cancelBtn" href="#jsp/disease/getdiseaselist.html" style="float: right;">返回产品列表</a></span>
+                    <span><a id="disease_add_cancelB" class="pull-right cancelBtn" href="#jsp/disease/getdiseaselist.html" style="float: right;">返回列表</a></span>
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
 
                 <tr>
-                    <td style="text-align:right;">疾病名称<span class="biology-red" >*</span></td>
-                    <td><input type="text" id="disease_bill_unit_count" name="bill_unit_count" maxlength="5"
+                    <td style="text-align:right;">疾病名称<span class="ezcloud-red" >*</span></td>
+                    <td><input type="text" id="disease_name" name="disease_name" maxlength="10"
                                class="form-control" placeholder="疾病名称">
+
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">父级大类<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select class="form-control" id="disease_region" name="disease_region" onchange="changeR()">
+                    <td style="text-align:right;">父级大类<span class="ezcloud-red">*</span>：</td>
+                    <td><!--<input type="text" id="disease_parentId" name="disease_parentId" maxlength="50"
+                               class="form-control" placeholder="所属分类">-->
+                        <select class="form-control" id="disease_parentId" name="disease_parentId">
+
                         </select>
                     </td>
                 </tr>
                 <tr class=" image">
-                    <td style="text-align:right;">所属分类<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select class="form-control"  id="disease_image" name="disease_image">
-                        </select>
+                    <td style="text-align:right;">所属分类<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_category" name="disease_category" maxlength="20"
+                               class="form-control" placeholder="所属分类">
                     </td>
                 </tr>
                 <tr class=" ">
-                    <td style="text-align:right;">状态<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select class="form-control"  id="disease_status" name="disease_status">
-                            <option value="enable">启用</option>
-                            <option value="disable">禁用</option>
-                        </select>
+                    <td style="text-align:right;">病因<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_pathogeny" name="disease_pathogeny" maxlength="50"
+                               class="form-control" placeholder="病因">
                     </td>
                 </tr>
-                <tr id="pd_add_services">
-                    <td style="text-align:right;">磁盘类型<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select  id="disease_add_services" name="disease_add_services" class="form-control">
-                        </select>
+                <tr class=" ">
+                    <td style="text-align:right;">变化<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_change" name="disease_change" maxlength="50"
+                               class="form-control" placeholder="变化">
                     </td>
                 </tr>
-                <tr class=" basic">
-                    <td style="text-align:right;">计费单位<span class="biology-red">*</span>：</td>
-                    <td><input type="text" id="disease_bill_unit_count" name="bill_unit_count" maxlength="5"
-                               class="form-control" placeholder="">
-                        <span id="disease_bill_unit_count_note" class="note col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float: left;text-align:left;margin-bottom: 10px;">根据不同的产品类型填写适当的值。如：当选择CPU产品类型，该处可填入2</span>
-                        <em class="invalid" id="diseaseCat_unit_note" style="text-align: left; color: rgb(252, 67, 67); float: left;display: none;">磁盘类型产品的计费最大值不能为零且可被10整除</em>
+                <tr class=" ">
+                    <td style="text-align:right;">微生物变化<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_microbial_changes" name="disease_microbial_changes" maxlength="50"
+                               class="form-control" placeholder="微生物变化">
                     </td>
                 </tr>
-                <tr class="noCpuMem">
-                    <td style="text-align:right;">计费最小值<span class="biology-red">*</span>：</td>
-                    <td><input type="text" min="1" id="disease_unit_count_min" name="unit_count_min" class="form-control" placeholder=""></td>
-                </tr>
-
-                <tr class=" noCpuMem hand-disk">
-                    <td style="text-align:right;">计费最大值<span class="biology-red">*</span>：</td>
-                    <td><input type="text" maxlength="5"  id="disease_unit_count_max" onblur="checkDiskMaxCount(this,'diseaseCat_type','diseaseCat_type_note')"  name="unit_count_max"  class="form-control" placeholder="">
-                        <em class="invalid" id="diseaseCat_type_note" style="text-align: left; color: rgb(252, 67, 67); float: left;display: none;">磁盘类型产品的计费最大值不能为零且可被10整除</em>
+                <tr class=" ">
+                    <td style="text-align:right;">正科相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_related_family" name="disease_related_family" maxlength="50"
+                               class="form-control" placeholder="正科相关">
                     </td>
                 </tr>
-                <tr class=" priceBasic">
-                    <td style="text-align:right;">价格<span class="biology-red">*</span>：</td>
-                    <td><input type="text" id="disease_price" name="price" class="form-control" placeholder="元">
-                </tr>
-                <tr class="">
-                    <td style="text-align:right;">描述：</td>
-                    <td><input type="text" id="disease_description" maxlength="255" name="description" class="form-control" placeholder=""></td>
-                </tr>
-                <tr style="display: none;" class="bandwidth">
-                    <td style="display:none;" id="product-billUtilName-"></td>
-                    <td style="text-align:right;">区间范围<span class="biology-red">*</span>：</td>
-                    <td id="band_test" class="band-td">
-                        <div class="bandwidth-val-div" name="bandwidth-val">
-                            <input type="text" min="1" name="band_min" class="form-control" placeholder="" style="width: 20%;"/>
-                            <span class="bandwidth-product-span">-</span>
-                            <input type="text" name="band_max" class="form-control bandwidth-product" placeholder=""/>
-                            <span class="bandwidth-product-span" style="width: 15%;">单价：</span>
-                            <input type="text" name="band_price" class="form-control bandwidth-product" placeholder=""/>
-                            <a id="create_product_band"  onclick="addNOIP()" class='btn btn-default' href='javascript:void(0);'><i class='fa fa-plus'></i></a>
-                        </div>
+                <tr class=" ">
+                    <td style="text-align:right;">负科相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_related_negative_family" name="disease_related_negative_family" maxlength="50"
+                               class="form-control" placeholder="负科相关">
                     </td>
                 </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">正属相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_related_genus" name="disease_related_genus" maxlength="50"
+                               class="form-control" placeholder="正属相关">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">负属相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_related_negative_genus" name="disease_related_negative_genus" maxlength="50"
+                               class="form-control" placeholder="负属相关">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">与病症相关菌代谢产物<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_pathogen_metabolites" name="disease_pathogen_metabolites" maxlength="50"
+                               class="form-control" placeholder="与病症相关菌代谢产物">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">菌调控的生理过程<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_physiological_process" name="disease_physiological_process" maxlength="50"
+                               class="form-control" placeholder="菌调控的生理过程">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">研究方法 <span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_research_method" name="disease_research_method" maxlength="50"
+                               class="form-control" placeholder="研究方法 ">
+                    </td>
+                </tr>
+<!--                 <tr class=" "> -->
+<!--                     <td style="text-align:right;">文献记录<span class="ezcloud-red">*</span>：</td> -->
+<!--                     <td><input type="text" id="disease_documentId" name="disease_documentId" maxlength="50" -->
+<!--                                class="form-control" placeholder="文献记录"> -->
+<!--                     </td> -->
+<!--                 </tr> -->
             </table>
         </div>
         <div class="" style="padding-top: 20px;">
-            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="product_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
-            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="productBtn" onclick="addProduct();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="disease_add_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="diseaseBtn" onclick="adddisease();" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">新增</a></span>
         </div>
     </form>
 
 </div>
 <!--编辑产品-->
-<div id="product_edit_modal" class="text-center" style="display:none;">
-    <form id="product_edit-form">
+<div id="disease_edit_modal" class="text-center" style="display:none;">
+    <form id="disease_edit-form">
         <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
-            <div class="tab-pane active" id="product_edit_m_create">
+            <div class="tab-pane active" id="disease_edit_m_create">
                 <div class="order-title">
-                    <h1>编辑产品</h1>
+                    <h1>编辑疾病记录信息</h1>
                     <div class="order-line"></div>
-                    <span><a id="product_edit_cancelB" class="pull-right cancelBtn" href="#../../action/biology/products/product.html" style="float: right;">返回产品列表</a></span>
+                    <span><a id="disease_edit_cancelB" class="pull-right cancelBtn" href="#jsp/disease/getdiseaselist.html" style="float: right;">返回列表</a></span>
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
                 <tr>
-                    <td style="text-align:right;">产品类型<span class="biology-red" >*</span></td>
-                    <td>
-                        <select disabled="disabled" id="productCat_edit_type" name="productCat_type" class="form-control">
-                        </select>
+                    <td style="text-align:right;">疾病名称<span class="ezcloud-red" >*</span></td>
+                    <td><input type="text" id="disease_edit_name" name="disease_edit_namet" maxlength="50"
+                               class="form-control" placeholder="疾病名称">
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">地域<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select  disabled="disabled" id="product_edit_region" name="product_edit_region" class="form-control"></select>
+                    <td style="text-align:right;">父级大类<span class="ezcloud-red">*</span>：</td>
+                    <td><!--<input type="text" id="disease_edit_parentId" name="disease_edit_parentId" maxlength="50"
+                               class="form-control" placeholder="所属分类">-->
+                        <select class="form-control" id="disease_edit_parentId" name="disease_edit_parentId" > </select>
                     </td>
                 </tr>
                 <tr class=" image">
-                    <td style="text-align:right;">镜像<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select  id="product_edit_image" name="product_image" class="form-control"></select>
+                    <td style="text-align:right;">所属分类<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_category" name="disease_edit_category" maxlength="50"
+                               class="form-control" placeholder="所属分类">
                     </td>
                 </tr>
-                <tr id="pd_edit_services">
-                    <td style="text-align:right;">磁盘类型<span class="biology-red">*</span>：</td>
-                    <td>
-                        <select  id="product_edit_services" name="product_image" class="form-control"></select>
+                <tr class=" ">
+                    <td style="text-align:right;">病因<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_pathogeny" name="disease_edit_pathogeny" maxlength="50"
+                               class="form-control" placeholder="病因">
                     </td>
                 </tr>
-
-                <tr class=" basic">
-                    <td style="text-align:right;">计费单位<span class="biology-red">*</span>：</td>
-                    <td><input type="text" min="1" id="product_edit_bill_unit_count" name="bill_unit_count"  class="form-control" placeholder="">
-                        <span class="note col-lg-12 col-md-12 col-sm-12 col-xs-12" id="product_edit_bill_unit_count_note" style="float: left;text-align:left;margin-bottom: 10px;">根据不同的产品类型填写适当的值。如：当选择CPU产品类型，该处可填入2</span>
+                <tr class=" ">
+                    <td style="text-align:right;">变化<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_change" name="disease_edit_change" maxlength="50"
+                               class="form-control" placeholder="变化">
                     </td>
                 </tr>
-                <tr class=" noCpuMem">
-                    <td style="text-align:right;">计费最小值<span class="biology-red">*</span>：</td>
-                    <td><input type="text" min="1" id="product_edit_unit_count_min" name="unit_count_min" class="form-control" placeholder=""></td>
-                </tr>
-
-                <tr class=" noCpuMem hand-disk">
-                    <td style="text-align:right;">计费最大值<span class="biology-red">*</span>：</td>
-                    <td> <input type="text" min="1" maxlength="5" onblur="checkDiskMaxCount(this,'productCat_edit_type','product_edit_unit_count_max_note')" id="product_edit_unit_count_max" name="unit_count_max"  class="form-control" placeholder="">
-                        <em class="invalid" id="product_edit_unit_count_max_note" style="text-align: left; color: rgb(252, 67, 67); float: left;display: none;">磁盘类型产品的计费最大值不能为零且可被10整除</em>
+                <tr class=" ">
+                    <td style="text-align:right;">微生物变化<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_microbial_changes" name="disease_edit_microbial_changes" maxlength="50"
+                               class="form-control" placeholder="微生物变化">
                     </td>
                 </tr>
-                <tr class=" priceBasic">
-                    <td style="text-align:right;">价格<span class="biology-red">*</span>：</td>
-                    <td> <input type="text" id="product_edit_price" name="price" class="form-control" placeholder=""></td>
-                </tr>
-                <tr class="">
-                    <td style="text-align:right;">描述：</td>
-                    <td> <input type="text" id="product_edit_description" name="description" class="form-control" placeholder=""></td>
-                </tr>
-                <tr  style="display: none;" class="bandwidth">
-                    <span style="display:none;" id="product-billUtilName-e"></span>
-                    <td style="text-align:right;">区间范围<span class="biology-red">*</span>：</td>
-                    <td id="edit_band_test" class="band-td">
-                        <div class="bandwidth-val-div" name="bandwidth-val">
-                        </div>
+                <tr class=" ">
+                    <td style="text-align:right;">正科相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_related_family" name="disease_edit_related_family" maxlength="50"
+                               class="form-control" placeholder="正科相关">
                     </td>
                 </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">负科相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_related_negative_family" name="disease_edit_related_negative_family" maxlength="50"
+                               class="form-control" placeholder="负科相关">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">正属相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_related_genus" name="disease_edit_related_genus" maxlength="50"
+                               class="form-control" placeholder="正属相关">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">负属相关<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_related_negative_genus" name="disease_edit_related_negative_genus" maxlength="50"
+                               class="form-control" placeholder="负属相关">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">与病症相关菌代谢产物<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_pathogen_metabolites" name="disease_edit_pathogen_metabolites" maxlength="50"
+                               class="form-control" placeholder="与病症相关菌代谢产物">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">菌调控的生理过程<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_physiological_process" name="disease_edit_physiological_process" maxlength="50"
+                               class="form-control" placeholder="菌调控的生理过程">
+                    </td>
+                </tr>
+                <tr class=" ">
+                    <td style="text-align:right;">研究方法 <span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_research_method" name="disease_edit_research_method" maxlength="50"
+                               class="form-control" placeholder="研究方法 ">
+                    </td>
+                </tr>
+            <!--    <tr class=" ">
+                    <td style="text-align:right;">文献记录<span class="ezcloud-red">*</span>：</td>
+                    <td><input type="text" id="disease_edit_documentId" name="disease_edit_documentId" maxlength="50"
+                               class="form-control" placeholder="文献记录">
+                    </td>
+                </tr>-->
             </table>
         </div>
     </form>
     <div class="" style="padding-top: 20px;">
-        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="product_edit_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
-        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="product_editBtn" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">保存</a></span>
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-right:0;" ><a id="disease_edit_cancelBtn"  class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:right;">取消</a></span>
+        <span class="col-lg-5 col-md-5 col-sm-5 col-xs-7" style="padding-left:10px;" ><a id="disease_editBtn" class="btn btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-3"  style="float:left;">保存</a></span>
     </div>
     <div class="" style="padding-top: 0;"></div>
 </div>
@@ -249,9 +287,9 @@
 pageSetUp();
 // PAGE RELATED SCRIPTS
 
-productloadDataTableScripts();
+diseaseloadDataTableScripts();
 
-function productloadDataTableScripts() {
+function diseaseloadDataTableScripts() {
     loadScript("../../static/js/plugin/datatables/jquery.dataTables-cust.js?version=4.2.6.2", dt_2);
 
     function dt_2() {
@@ -278,31 +316,30 @@ function productloadDataTableScripts() {
         loadScript("../../static/js/plugin/datatables/DT_bootstrap.js?version=4.2.6.2", dt_8);
     }
     function dt_8() {
-        loadScript("../../static/js/biology/product.js?version=4.2.6.2", productInit);
+        loadScript("biology/disease.js?version=4.2.6.2", diseaseInit);
     }
-
 }
 
-function productInit(){
+function diseaseInit(){
     //初始化表格
-    listRegionsBtns("regionList_product","loadproductTableRegion",function(){
-        listProductCatsBtns("product_tab_ul",function(){
-            loadproductTable();
-        });
-    });
-
-    addProductCatValidate();
+//     listRegionsBtns("regionList_disease","loaddiseaseTableRegion",function(){
+//         listdiseaseCatsBtns("disease_tab_ul",function(){
+//             loaddiseaseTable();
+//         });
+//     });
+	loaddiseaseTable();
+	addProductCatValidate();
     //删除
 
-    $('#btn_product_delete').unbind("click");
-    $('#btn_product_delete').on("click",function(){
+    $('#btn_disease_delete').unbind("click");
+    $('#btn_disease_delete').on("click",function(){
         showConfirm("fa-trash-o", "删除产品", "删除该产品前,请先确定该产品是否已被某产品套餐中引用,若存在,请先禁用或删除该产品套餐，否则该产品套餐中的产品配置仍可被使用。是否要删除该产品?删除后，不可恢复。", function () {
-            doPost("/action/product/delete", {productId: sel_product_id}, function (objs) {
+            doPost("/action/disease/delete", {diseaseId: sel_disease_id}, function (objs) {
                 if (objs.httpCode == "200") {
                     showMsg("温馨提示", "删除成功。");
-                    loadproductTable();
-                    $("#product_widget-grid").show().siblings().hide();
-                    $("#product_btns,#regionList_product_div,#product_tab_ul").show();
+                    loaddiseaseTable();
+                    $("#disease_widget-grid").show().siblings().hide();
+                    $("#disease_btns,#regionList_disease_div,#disease_tab_ul").show();
                 } else {
                     console.log("code :" + objs.code + "  msg:" + objs.message);
                     showErrorMsg("", "code :" + objs.code + "  msg:" + objs.message);
@@ -314,17 +351,8 @@ function productInit(){
     $('#btn_disease_create').unbind("click");
     $("#btn_disease_create").on("click",function(){
         clearForm("disease_add");
-        //获取当前地域
-        var regionId=  $("#regionList_disease a.btn-primary").attr("data-value");
-        initProductRegion("disease_region",function(){
-            initProductCat(function(){
-                changeProductCat();
-            });
-        },regionId);
-        //
-
-        $("#disease_status").val("enable");
         $("#disease_add_modal").show().siblings().hide();
+        getdiseaselistParents("disease_parentId","",function(){});
 
     });
     //新增取消
@@ -335,151 +363,146 @@ function productInit(){
         $("#disease_btns,#regionList_disease_div,#disease_tab_ul").show();
 
     });
+    function getdiseaselistParents(id,pid,callback){
+        var disease = document.getElementById(id).options;
+        clearOptions(disease);
+        addOption(disease,"---正在加载中---","");
+        doPost("/action/disease/findParents",{},function(objs){
+            if(objs.httpCode=="200"){
+                clearOptions(disease);
+            	//添加基础分级：为添加一级疾病打算
+                addOption(disease, "无", "-1");
+                if (objs.data.length > 0) {
+                    for (var i = 0; i < objs.data.length; i++) {
+                        addOption(disease, objs.data[i].name, objs.data[i].uuid);
+                    }
+                }
+                if(convertStr(pid)!=""){
+                    $("#"+id).val(pid);
+                }
+                if(callback!=null || callback !=undefined){
+                    callback();
+                }
+            }else{
+                console.log("code :" + objs.code + "  msg:" + objs.message);
+                showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+            }
+        });
+    }
 
     var $billUnitCount = $("#disease_edit_bill_unit_count");
     $("#btn_disease_edit").unbind("click");
     $("#btn_disease_edit").on("click",function(){
-        initProductRegion("disease_edit_region",function(){
-            //获取详情
-            doPost("/action/product/detail",{productId:sel_product_id},function(objs){
-                if(objs.httpCode=="200"){
-                    $("#product-billUtilName-e").html(objs.data.productCat.billUnitName);
-                    $("#product_edit_description").val(objs.data.description);
-                    var productCat = document.getElementById("productCat_edit_type").options;
-                    clearOptions(productCat);
-                    addOption(productCat, objs.data.productCat.name, objs.data.productCat.id);
-                    $("#product_edit_region").val(objs.data.systemRegionPo.id);
-                    if(objs.data.productCat.billType=="Linear"){
-                        $("#product_edit_modal .bandwidth").show();
-                        $("#product_edit_modal .basic,#product_edit_modal .noCpuMem,#product_edit_modal .priceBasic,#pd_edit_services").hide();
-                        if(objs.data.productCat.innerName=="image"){
-                            $("#product_edit_modal .image").show();
-                        }else{
-                            $("#product_edit_modal .image").hide();
-                        }
-                        var str="";
-                        if(convertStr(objs.datas)!=""){
-                            for(var i=0;i<objs.datas.length;i++){
-                                if(i==0){
-                                    str+='<div class=" bandwidth-val-div" name="bandwidth-val">'+
-                                            '<input type="text" min="1" name="band_min"   maxlength=9 class="form-control" style="width: 20%;"  placeholder="'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].unitCountMin+'">'+
-                                            '<span class="bandwidth-product-span">-</span>' +
-                                            '<input type="text" name="band_max"  maxlength=9 class="form-control bandwidth-product"  placeholder="'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].unitCountMax+'">'+
-                                            '<span class="bandwidth-product-span"  style="width: 15%;">单价：</span>' +
-                                            '<input type="text" name="band_price" maxlength=8 class="form-control bandwidth-product" placeholder="元/'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].price+'">'+
-                                            '<a id="edit_product_band" onclick="editNOIP()" class="btn btn-default" href="javascript:void(0);"><i class="fa fa-plus"></i></a></div>';
+        getdiseaseDetail(function(id){
+            console.log("pid="+id)
+            getdiseaselistParents("disease_edit_parentId",id,function(){});
 
-                                }else if(i==(objs.datas.length-1)){
-                                    str+='<div class="bandwidth-val-div " name="bandwidth-val">'+
-                                            '<input type="text" name="band_min"  maxlength=9  class="form-control" style="width: 20%;"  placeholder="'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].unitCountMin+'"/>'+
-                                            '<span class="bandwidth-product-span">-</span>' +
-                                            '<input type="text" name="band_max" maxlength=9 class="form-control bandwidth-product"  placeholder="'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].unitCountMax+'"/>'+
-                                            '<span class="bandwidth-product-span"  style="width: 15%;">单价：</span>' +
-                                            '<input type="text" name="band_price" maxlength=8 class="form-control bandwidth-product"  placeholder="元/'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].price+'"/>'+
-                                            "<a onclick='minusNo(this)' class='btn btn-default maint_del_noIp' href='javascript:void(0);'><i class='fa fa-minus'></i></a></div>";
-                                }else{
-                                    str+='<div class="bandwidth-val-div" name="bandwidth-val">'+
-                                            '<input type="text" name="band_min"   maxlength=9 class="form-control" style="width: 20%;"   placeholder="'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].unitCountMin+'">'+
-                                            '<span class="bandwidth-product-span">-</span>' +
-                                            '<input type="text" name="band_max" maxlength=9  class="form-control bandwidth-product"   placeholder="'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].unitCountMax+'">'+
-                                            '<span class="bandwidth-product-span"  style="width: 15%;">单价：</span>' +
-                                            '<input type="text" name="band_price" maxlength=8 class="form-control bandwidth-product" placeholder="元/'+objs.data.productCat.billUnitName+'" value="'+objs.datas[i].price+'"></div>';
-                                }
-                            }
-                            $("#edit_band_test").empty().append(str);
-                        }else{
-                            showMsgs("温馨提示","该产品为单一价类型，但它的产品类别已更新为阶梯价")
-                        }
-                    }else{
-                        if((objs.data.productCat.innerName=="cpu") || (objs.data.productCat.innerName=="mem") || (objs.data.productCat.innerName=="snapshot" ||  objs.data.productCat.innerName == "diskSnap")){
-                            $("#product_edit_modal .basic,#product_edit_modal .priceBasic").show();
-                            $("#product_edit_modal .noCpuMem,#product_edit_modal .image,#product_edit_modal .bandwidth,#pd_edit_services").hide();
-                        }else if(objs.data.productCat.innerName=="image"){
-                            var image = document.getElementById("product_edit_image").options;
-                            clearOptions(image);
-                            addOption(image, objs.data.name, objs.data.name);
-                            $("#product_edit_modal .bandwidth,#product_edit_modal .basic,#product_edit_modal .noCpuMem,#pd_edit_services").hide();
-                            $("#product_edit_modal .priceBasic,#product_edit_modal .image").show();
-                        }else if(objs.data.productCat.innerName=="disk"){
-                            $("#product_edit_modal .basic,#product_edit_modal .priceBasic").show();
-                            $("#product_edit_modal .noCpuMem,#product_edit_modal .image,#product_edit_modal .bandwidth").hide();
-                            $("#product_edit_modal .hand-disk,#pd_edit_services").show();
-                        }else{
-                            $("#product_edit_modal .basic,#product_edit_modal .priceBasic").show();
-                            $("#product_edit_modal .noCpuMem,#product_edit_modal .image,#product_edit_modal .bandwidth,#pd_edit_services").hide();
-                            $("#product_edit_modal .hand-disk").show();
-
-                        }
-                    }
-                    if(objs.data.productCat.innerName=="disk"){
-                        var services = document.getElementById("product_edit_services").options;
-                        clearOptions(services);
-                        addOption(services, objs.data.name, objs.data.name);
-
-                        $("#pd_edit_services").show();
-
-                        $billUnitCount.val(10).attr("disabled","disabled");
-                        $("#product_edit_bill_unit_count_note").hide();
-                    }else if(objs.data.productCat.innerName=="bandwidth"||objs.data.productCat.innerName=="snapshot" || objs.data.productCat.innerName == "diskSnap"){
-                        $billUnitCount.val(1).attr("disabled","disabled");
-                        $("#product_edit_bill_unit_count_note").hide();
-                        $("#pd_edit_services").hide();
-                    }else{
-                        $billUnitCount.val("").removeAttr("disabled");
-                        $("#product_edit_bill_unit_count_note").show();
-                        $("#pd_edit_services").hide();
-                    }
-                    $("#product_edit_modal").show().siblings().hide();
-                    $billUnitCount.val(objs.data.billUnitCount);
-                    $("#product_edit_unit_count_min").val(objs.data.unitCountMin);
-                    $("#product_edit_unit_count_max").val(objs.data.unitCountMax);
-                    $("#product_edit_price").val(objs.data.price);
-                }else{
-                    console.log("code :" + objs.code + "  msg:" + objs.message);
-                    showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
-                }
-            });
-        });
+        })
     });
+    function getdiseaseDetail(callback){
+        //获取详情
+        doPost("/action/disease/detail",{diseaseId:sel_disease_id},function(objs){
+            if(objs.httpCode=="200"){
+                $("#disease_edit_name").val(objs.data.name);
+
+                $("#disease_edit_category").val(objs.data.category);
+                $("#disease_edit_pathogeny").val(objs.data.pathogeny);
+                if(convertStr(objs.data.diseaseAttachedPo)!=""){
+                    $("#disease_edit_change").val(objs.data.diseaseAttachedPo.change);
+                    $("#disease_edit_microbial_changes").val(objs.data.diseaseAttachedPo.microbialChanges);
+                    $("#disease_edit_related_family").val(objs.data.diseaseAttachedPo.relatedFamily);
+                    $("#disease_edit_related_negative_family").val(objs.data.diseaseAttachedPo.relatedNegativeFamily);
+                    $("#disease_edit_related_genus").val(objs.data.diseaseAttachedPo.relatedGenus);
+                    $("#disease_edit_related_negative_genus").val(objs.data.diseaseAttachedPo.relatedNegativeGenus);
+                    $("#disease_edit_pathogen_metabolites").val(objs.data.diseaseAttachedPo.pathogenMetabolites);
+                    $("#disease_edit_physiological_process").val(objs.data.diseaseAttachedPo.physiologicalProcess);
+                    $("#disease_edit_research_method").val(objs.data.diseaseAttachedPo.researchMethod);
+                    $("#disease_edit_documentId").val(objs.data.diseaseAttachedPo.documentId);
+                }
+                $("#disease_edit_modal").show().siblings().hide();
+                if(convertStr(objs.data.parentDiseasePo)!=""){
+                    $("#disease_edit_parentId").val(objs.data.parentDiseasePo.uuid);
+                    callback(objs.data.parentDiseasePo.uuid);
+                }else{
+                    callback();
+                }
+
+            }else{
+                console.log("code :" + objs.code + "  msg:" + objs.message);
+                showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
+            }
+        });
+    }
     //编辑取消
-    $('#product_edit_cancelBtn,#product_add_cancelB,#product_edit_cancelB').unbind("click");
-    $("#product_edit_cancelBtn,#product_add_cancelB,#product_edit_cancelB").on("click",function(){
-        $("#product_widget-grid").show().siblings().hide();
-        $("#product_btns,#regionList_product_div,#product_tab_ul").show();
-        $("#btn_product_edit,#btn_product_delete").addClass("disabled");
-        $('input[name="cbx_product_list"]').attr("checked",false);
+    $('#disease_edit_cancelBtn,#disease_add_cancelB,#disease_edit_cancelB').unbind("click");
+    $("#disease_edit_cancelBtn,#disease_add_cancelB,#disease_edit_cancelB").on("click",function(){
+        $("#disease_widget-grid").show().siblings().hide();
+        $("#disease_btns,#regionList_disease_div,#disease_tab_ul").show();
+        $("#btn_disease_edit,#btn_disease_delete").addClass("disabled");
+        $('input[name="cbx_disease_list"]').attr("checked",false);
     });
     //编辑
-    $('#product_editBtn').unbind("click");
-    $("#product_editBtn").on("click",function(){
-        var productCat_edit_type = $.trim($("#productCat_edit_type").val()),
-            billUnitCount = $billUnitCount.val(),
-            unitCountMin = $.trim($("#product_edit_unit_count_min").val()),
-            unitCountMax = $.trim($("#product_edit_unit_count_max").val()),
-            price = $.trim($("#product_edit_price").val()),
-            description = $.trim($("#product_edit_description").val()),
-            regionId = $.trim($("#product_edit_region").val()),
-            units="";
+    $('#disease_editBtn').unbind("click");
+    $("#disease_editBtn").on("click",function(){
+//         var diseaseCat_edit_type = $.trim($("#diseaseCat_edit_type").val()),
+//             billUnitCount = $billUnitCount.val(),
+//             unitCountMin = $.trim($("#disease_edit_unit_count_min").val()),
+//             unitCountMax = $.trim($("#disease_edit_unit_count_max").val()),
+//             price = $.trim($("#disease_edit_price").val()),
+//             description = $.trim($("#disease_edit_description").val()),
+//             regionId = $.trim($("#disease_edit_region").val()),
+//             units="";
 
-        if($("#productCat_edit_type option:selected").text()== "bandwidth"){
-            units = getBandWidthValue("#edit_band_test");
-            if(!units){
-                return;
-            }
-        }
+//         if($("#diseaseCat_edit_type option:selected").text()== "bandwidth"){
+//             units = getBandWidthValue("#edit_band_test");
+//             if(!units){
+//                 return;
+//             }
+//         }
 
-        if(isNaN(Number(billUnitCount))){
-            showErrorMsg("","计费单位应该是数值");
-            return;
-        }
-
-        var data = {productId: sel_product_id,regionId: regionId ,billUnitCount: billUnitCount,price: price ,unitCountMin: unitCountMin ,unitCountMax: unitCountMax,description:description,units:units};
-        doPost("/action/product/edit",data,function(objs){
+//         if(isNaN(Number(billUnitCount))){
+//             showErrorMsg("","计费单位应该是数值");
+//             return;
+//         }
+		
+		var _diseaseId = sel_disease_id;
+		var _name = $.trim($("#disease_edit_name").val());
+	    var _parentId = $.trim($("#disease_edit_parentId").val());
+	    var _category = $.trim($("#disease_edit_category").val());
+	    var _pathogeny = $.trim($("#disease_edit_pathogeny").val());
+	    var _change = $.trim($("#disease_edit_change").val());
+	    var _microbialChanges = $.trim($("#disease_edit_microbial_changes").val());
+	    var _relatedFamily = $.trim($("#disease_edit_related_family").val());
+	    var _relatedNegativeFamily = $.trim($("#disease_edit_related_negative_family").val());
+	    var _relatedGenus = $.trim($("#disease_edit_related_genus").val());
+	    var _relatedNegativeGenus = $.trim($("#disease_edit_related_negative_genus").val());
+	    var _pathogenMetabolites = $.trim($("#disease_edit_pathogen_metabolites").val());
+	    var _physiologicalProcess = $.trim($("#disease_edit_physiological_process").val());
+	    var _researchMethod = $.trim($("#disease_edit_research_method").val());
+	    var _documentId = $.trim($("#disease_edit_documentId").val());
+	    var data = {
+	    		diseaseId:_diseaseId,
+	    		name:_name,//疾病名称
+	    		category: _category,//疾病分类
+	    		pathogeny:_pathogeny,//病因
+	    		parentId:_parentId,//疾病所属大类
+	    		change: _change,//变化
+	    		microbialChanges: _microbialChanges,//微生物变化
+	    		relatedFamily: _relatedFamily,//正科相关
+	    		relatedNegativeFamily: _relatedNegativeFamily,//负科相关
+	    		relatedGenus: _relatedGenus,//正属相关
+	    		relatedNegativeGenus: _relatedNegativeGenus,//负属相关
+	    		pathogenMetabolites: _pathogenMetabolites,//与病症相关菌代谢产物 
+	    		physiologicalProcess: _physiologicalProcess,//菌调控的生理过程
+	    		researchMethod: _researchMethod,//研究方法 
+	    		documentId: _documentId//文献id 
+	    		};
+        doPost("/action/disease/update",data,function(objs){
             if(objs.httpCode=="200"){
                 showMsg("温馨提示","编辑成功。");
-                loadproductTable();
-                $("#product_widget-grid").show().siblings().hide();
-                $("#product_btns,#regionList_product_div,#product_tab_ul").show();
+                loaddiseaseTable();
+                $("#disease_widget-grid").show().siblings().hide();
+                $("#disease_btns,#regionList_disease_div,#disease_tab_ul").show();
             }else{
                 console.log("code :" + objs.code + "  msg:" + objs.message);
                 showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
@@ -491,95 +514,13 @@ function productInit(){
     //点击tr赋值
 }
 
-function addNOIP(){
-    var unitName=$("#product-billUtilName-").html();
-        $("#band_test .maint_del_noIp").remove();
-    var str="";
-    str+='<div class="bandwidth-val-div" name="bandwidth-val">'+
-            '<input type="text" name="band_min" maxlength="9" class="form-control" style="width: 20%;" placeholder="'+unitName+'">'+
-            '<span class="bandwidth-product-span">-</span>' +
-            '<input type="text" name="band_max" maxlength="9" class="form-control bandwidth-product" placeholder="'+unitName+'">'+
-            '<span class="bandwidth-product-span"  style="width: 15%;">单价：</span>' +
-            '<input type="text" name="band_price" maxlength="8" class="form-control bandwidth-product" placeholder="元/'+unitName+'">'+
-            "<a onclick='minusNo(this)' class='btn btn-default maint_del_noIp' href='javascript:void(0);'><i class='fa fa-minus'></i></a></div>";
-    $('#band_test').append(str);
-}
-function editNOIP(){
-    var unitName=$("#product-billUtilName-e").html();
-    $("#edit_band_test .maint_del_noIp").remove();
-    var str="";
-    str+='<div class="bandwidth-val-div" name="bandwidth-val">'+
-            '<input type="text" name="band_min" maxlength="9" class="form-control" style="width: 20%;" placeholder="'+unitName+'">'+
-            '<span class="bandwidth-product-span">-</span><input type="text" name="band_max" maxlength="9" class="form-control bandwidth-product" placeholder="'+unitName+'">'+
-            '<span  class="bandwidth-product-span"  style="width: 15%;">单价：</span><input type="text" maxlength="8" name="band_price" class="form-control bandwidth-product" placeholder="元/'+unitName+'">'+
-            "<a onclick='minusNo(this)' class='btn btn-default maint_del_noIp' href='javascript:void(0);'><i class='fa fa-minus'></i></a></div>";
-    $('#edit_band_test').append(str);
-}
-function minusNo(obj){
-    var a = document.getElementById("band_test").getElementsByTagName("div");
-    if(a.length>2){
-        $(obj).parent().prev().append("<a onclick='minusNo(this)' class='btn btn-default maint_del_noIp' href='javascript:void(0);'><i class='fa fa-minus'></i></a>");
-    }
-    var b = document.getElementById("edit_band_test").getElementsByTagName("div");
-    if(b.length>2){
-        $(obj).parent().prev().append("<a onclick='minusNo(this)' class='btn btn-default maint_del_noIp' href='javascript:void(0);'><i class='fa fa-minus'></i></a>");
-    }
-    $(obj).parent().remove();
-
-}
-function changeProductCat(){
-    var $product_bill_unit_count = $("#product_bill_unit_count"),
-        val=$("#productCat_type option:selected").val().split("_");
-    if(val[1]=="Linear"){
-        if(val[2]=="image"){
-            $("#product_add_modal .image").show();
-        }else{
-            $("#product_add_modal .image").hide();
-        }
-        $("#product_add_modal .noCpuMem,#product_add_modal .basic,#product_add_modal .priceBasic").hide();
-        $("#product_add_modal .bandwidth").show();
-    }else{
-        if(val[2] == "diskSnap" || val[2]=="snapshot" ||val[2]=="mem" ||val[2]=="cpu"){
-            $("#product_add_modal .basic,#product_add_modal .priceBasic").show();
-            $("#product_add_modal .noCpuMem,#product_add_modal .image,#product_add_modal .bandwidth").hide();
-        }else if(val[2]=="image"){
-            initProductImage("product_image",function(){});
-            $("#product_add_modal .bandwidth,#product_add_modal .basic,#product_add_modal .noCpuMem").hide();
-            $("#product_add_modal .priceBasic,#product_add_modal .image").show();
-        }else{
-            $("#product_add_modal .basic,#product_add_modal .priceBasic").show();
-            $("#product_add_modal .noCpuMem,#product_add_modal .image,#product_add_modal .bandwidth").hide();
-            $("#product_add_modal .hand-disk").show();
-        }
-        $("#product_add_modal .bandwidth").hide();
-    }
-    if(val[2]=="disk") {
-        $("#pd_add_services").show();
-        initProductServices("product_add_services",function(){});
-        $product_bill_unit_count.val(10).attr("disabled", "disabled");
-        $("#product_bill_unit_count_note").hide();
-    }else if(val[2]=="bandwidth" ||(val[2]=="snapshot") || val[2] == "diskSnap" || val[2] == "diskSnap"){
-        $("#pd_add_services").hide();
-        $product_bill_unit_count.val(1).attr("disabled", "disabled");
-        $("#product_bill_unit_count_note").hide();
-    }else{
-        $("#pd_add_services").hide();
-        $product_bill_unit_count.val("").removeAttr("disabled");
-        $("#product_bill_unit_count_note").show();
-    }
-    $("input[name=band_max],input[name=band_min]").attr("placeholder",val[3]);
-    $("input[name=band_price]").attr("placeholder","元/"+val[3]);
-    $product_bill_unit_count.attr("placeholder",val[3]);
-    $("#product-billUtilName-").html(val[3]);
-}
-
 function changeR(){
-    var cat=$('#productCat_type').find("option:checked").val();
+    var cat=$('#diseaseCat_type').find("option:checked").val();
     if(cat.indexOf("image")>=0){
-        var image = document.getElementById("product_image").options;
+        var image = document.getElementById("disease_image").options;
         clearOptions(image);
         addOption(image,"---正在加载中---","");
-        doPost("/action/systemImage/notUseList",{regionId:$("#product_region").val()},function(objs){
+        doPost("/action/systemImage/notUseList",{regionId:$("#disease_region").val()},function(objs){
             if(objs.httpCode=="200"){
                 clearOptions(image);
                 if (objs.datas.length > 0) {
@@ -593,60 +534,21 @@ function changeR(){
             }
         });
     }
-
-
 }
 
-function loadproductTableRegion(id){
+function loaddiseaseTableRegion(id){
     $(id).addClass("btn-primary").siblings().removeClass("btn-primary");
-    loadproductTable(id);
+    loaddiseaseTable(id);
 }
 
-function checkDiskMaxCount(obj,id,nodeId){
-    var type=$("#"+id).val().split("_")[2],
-            t=$("#"+id).text();
-
-    if( Number($(obj).val())<=0 || Number($(obj).val())%Number(10)!=0 ){
-        $('#'+nodeId).html("磁盘类型产品的计费最大值不能小于零且可被10整除").show();
-        $(obj).removeClass("product-hsa-success");
-        $("#productBtn,#product_editBtn").removeClass("btn-primary").addClass("disabled").addClass("txt-color-darken");
-    }if( Number($(obj).val())<=0 || Number($(obj).val())%Number(1)!=0 ||  Number($(obj).val()) > 99999){
-        $('#'+nodeId).html("计费最大值应介于1~99999之间").show();
-        $(obj).removeClass("product-hsa-success");
-        $("#productBtn,#product_editBtn").removeClass("btn-primary").addClass("disabled").addClass("txt-color-darken");
-    }else{
-        $(obj).addClass("product-hsa-success");
-        $("#productBtn,#product_editBtn").addClass("btn-primary").removeClass("disabled txt-color-darken");
-        $('#'+nodeId).hide();
-    }
-}
-
-/**
- * 验证产品
- *
-*/
-function checkBillUnit(obj,id,nodeId){
-    var type=$("#"+id).val().split("_")[2],
-            t=$("#"+id).text();
-
-    if((type=="cpu" || t=="cpu") && Number($(obj).val())<=0 || Number($(obj).val())%Number(1)!=0 ||  Number($(obj).val()) > 99999){
-        $('#'+nodeId).html("CPU计费单位值应介于1~99999之间").show();
-        $(obj).removeClass("product-hsa-success");
-    }else{
-        $(obj).addClass("product-hsa-success");
-        $('#'+nodeId).hide();
-    }
-}
-
-
-function changeProductCatI(obj,id){
-    loadproductTable('',id);
+function changediseaseCatI(obj,id){
+    loaddiseaseTable('',id);
 }
 /**
  * 产品类别列表
  */
-function listProductCatsBtns(id,callback){
-    doPost("/action/productCat/list",{},function(objs){
+function listdiseaseCatsBtns(id,callback){
+    doPost("/action/diseaseCat/list",{},function(objs){
         if(objs.httpCode == "200") {
             var data = objs.datas,str = "";
             if(data==null||data.length<=0){
@@ -656,11 +558,11 @@ function listProductCatsBtns(id,callback){
             for(var i=0;i<data.length;i++){
                 if(i==0){
                     str +=' <li class="active">'+
-                            '<a data-toggle="tab" href="#pro_product_href" id="product_pCat_'+data[i].id+'" name="'+data[i].id+'_'+data[i].billType+'_'+data[i].innerName+'_'+data[i].billUnitName+'" onclick="changeProductCatI(this,'+data[i].id+')" func="'+i+'">'+data[i].name+' </a>'+
+                            '<a data-toggle="tab" href="#pro_disease_href" id="disease_pCat_'+data[i].id+'" name="'+data[i].id+'_'+data[i].billType+'_'+data[i].innerName+'_'+data[i].billUnitName+'" onclick="changediseaseCatI(this,'+data[i].id+')" func="'+i+'">'+data[i].name+' </a>'+
                             '</li>';
                 }else{
                     str +=' <li>'+
-                            '<a data-toggle="tab" href="#pro_product_href" id="product_pCat_'+data[i].id+'" name="'+data[i].id+'_'+data[i].billType+'_'+data[i].innerName+'_'+data[i].billUnitName+'" onclick="changeProductCatI(this,'+data[i].id+')" func="'+i+'">'+data[i].name+' </a>'+
+                            '<a data-toggle="tab" href="#pro_disease_href" id="disease_pCat_'+data[i].id+'" name="'+data[i].id+'_'+data[i].billType+'_'+data[i].innerName+'_'+data[i].billUnitName+'" onclick="changediseaseCatI(this,'+data[i].id+')" func="'+i+'">'+data[i].name+' </a>'+
                             '</li>';
                 }
             }
@@ -673,27 +575,4 @@ function listProductCatsBtns(id,callback){
     });
 }
 
-/**
- * 获取磁盘方案列表
- */
-function initProductServices(id,callback){
-    var ser = document.getElementById(id).options;
-    clearOptions(ser);
-    addOption(ser,"---正在加载中---","");
-    var regionId=$("#product_region").val();
-    doPost("/action/systemDiskOffering/notUseList",{regionId:regionId},function(objs){
-        if(objs.httpCode=="200"){
-            clearOptions(ser);
-            if (objs.datas.length > 0) {
-                for (var i = 0; i < objs.datas.length; i++) {
-                    addOption(ser, objs.datas[i].name, objs.datas[i].id);
-                }
-            }
-            callback();
-        }else{
-            console.log("code :" + objs.code + "  msg:" + objs.message);
-            showErrorMsg("","code :" + objs.code + "  msg:" + objs.message);
-        }
-    });
-}
 </script>

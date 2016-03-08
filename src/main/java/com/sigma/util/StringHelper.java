@@ -335,4 +335,12 @@ public class StringHelper {
         }
         return DateUtils.getYmdHmsTime() + str;
     }
+    /**
+     * 是否为null，是否是""
+     * @param string
+     * @return
+     */
+    public static boolean isEmpty(String string) {
+		return string == null || string.length() == 0;
+	}
 }

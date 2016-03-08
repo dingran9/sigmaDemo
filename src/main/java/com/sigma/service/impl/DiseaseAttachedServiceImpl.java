@@ -27,7 +27,7 @@ public class DiseaseAttachedServiceImpl implements DiseaseAttachedService {
 
     @Override
     public DiseaseAttachedPo findByDiseaseId(Long id) {
-        return diseaseAttachedDao.findByDocumentId(id);
+        return diseaseAttachedDao.findByDiseaseId(id);
     }
 
     @Override

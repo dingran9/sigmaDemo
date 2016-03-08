@@ -27,7 +27,18 @@ public interface DiseaseService {
      * @return
      */
     List<DiseasePo> findAll();
-
+    /**
+     * 查找
+     *
+     * @return
+     */
+    List<DiseasePo> findByParents();
+    /**
+     * 查找
+     *
+     * @return
+     */
+    List<DiseasePo> findChildren();
     /**
      * 新增/更新
      *
@@ -49,6 +60,18 @@ public interface DiseaseService {
      * @return
      */
     DiseasePo update(DiseasePo diseasePo,DiseaseAttachedPo diseaseAttachedPo);
+    /**
+     * 根据疾病名称查询疾病
+     * @param diseaseName
+     * @return
+     */
+    DiseasePo findByName(String diseaseName);
+    /**
+     * 根据疾病名称进行模糊查询
+     * @param diseaseName
+     * @return
+     */
+    List<DiseasePo> findByKeyWord(String keyWord);
     /**
      * 删除
      *

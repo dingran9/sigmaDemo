@@ -2,6 +2,10 @@ package com.sigma.service.impl;
 
 import com.sigma.dao.DictItemDao;
 import com.sigma.dao.ExperimentalResultDao;
+import com.sigma.node.NodeDirector;
+import com.sigma.node.impl.DiseaseNodeBuilder;
+import com.sigma.node.impl.InterventionNodeBuilder;
+import com.sigma.node.impl.MicroorganismNodeBuilder;
 import com.sigma.po.DictItemPo;
 import com.sigma.po.EdgePo;
 import com.sigma.po.ExperimentalResultPo;
@@ -78,14 +82,55 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 		Map<String, List> shapeEle=new HashedMap<String, List>();
 		//节点List
 		List<NodePo> nodeList=new ArrayList<NodePo>();
-		//生成干预物节点
-		nodeList.add(buildNode("intervention", experimentalResultPo.getIntervention(), experimentalResultPo.getDiseaseId()));
-		//生成微生物节点
-		nodeList.add(buildNode("microorganism", experimentalResultPo.getIntervention(), experimentalResultPo.getDiseaseId()));
-		shapeEle.put("nodes", nodeList);
-		
 		//节点关系List
 		List<EdgePo> edgeList=new ArrayList<EdgePo>();
+		switch (experimentalResultPo.getType()) {
+			case 0:
+				/*
+				 *实验结果类型1
+				 *	包含节点：疾病 干预物 ("干预物对疾病的作用" 暂时定位节点关系) 
+				 */
+				//疾病
+				nodeList.add(new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
+				//干预物
+				nodeList.add(new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo)));
+				break;
+			case 1:
+				/*
+				 * 实验结果类型2
+				 * 	疾病 干预物	微生物  （菌种变化、 干预物对疾病的作用  定位节点关系）
+				 */
+				//疾病
+				nodeList.add(new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
+				//干预物
+				nodeList.add(new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo)));
+				//微生物
+				nodeList.add(new NodeDirector().constructNode(new MicroorganismNodeBuilder(experimentalResultPo)));
+				break;
+			case 2:
+				/*
+				 * 实验结果类型3:
+				 * 	疾病 干预物 干预物对疾病的作用	生理过程  生理过程变化	
+				 */
+				break;
+			case 3:
+						
+				break;
+			case 4:
+							
+				break;
+			case 5:
+								
+				break;
+			case 6:
+									
+				break;
+
+		default:
+			break;
+		}
+		
+		
 		
 		return shapeEle;
 	}

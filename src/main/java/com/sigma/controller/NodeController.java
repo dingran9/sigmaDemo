@@ -56,8 +56,10 @@ public class NodeController {
                 return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "shapePo");
             }
             Map<String,Object> data=new HashMap<>();
+            //生成节点关系：节点之间的指向、线条粗细等信息
             List<EdgePo> edgePos= edgeService.findByShapeId(shapeId);
             data.put("edgePos",edgePos);
+            //生成节点信息：节点显示内容、节点颜色、节点大小等信息
             List<NodePo> nodePos= nodeService.findByShapeId(shapeId);
             data.put("nodePos",nodePos);
             ri.setData(data);

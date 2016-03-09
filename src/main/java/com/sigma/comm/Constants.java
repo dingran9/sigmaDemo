@@ -23,5 +23,8 @@ public final class Constants {
     public static String NODE_TYPE_INTERVENTION="intervention";
     //微生物
     public static String NODE_TYPE_MICROORGANISM="microorganism";
-    public static String NODE_TYPE_DISEASE="disease";
+    //生理过程
+    public static String NODE_TYPE_PHYSIOLOGICALPROCESS="physiological_process";
+    //生理过程变化
+    public static String NODE_TYPE_PHYSIOLOGICALPROCESS_CHANGE="physiological_process_change";
 }

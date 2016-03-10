@@ -39,11 +39,6 @@ public class EdgePo {
     @NotFound(action = NotFoundAction.IGNORE)
     private NodePo target;
     /**
-     * 
-     */
-    @Column(nullable = false)
-    private Type type;
-    /**
      * 节点关系指向类型：单向指向终止节点、双向指向节点
      */
     @Column(nullable = false)
@@ -52,7 +47,7 @@ public class EdgePo {
      * 节点之间的线条类型：曲线、直线
      */
     @Column(name="edge_type")
-    private ArrowType edgeType;
+    private EdgeType edgeType;
     /**
      * 节点直接的线条：线条粗细
      */
@@ -60,10 +55,16 @@ public class EdgePo {
     private ArrowType edgeSize;
 
     /**
-     * 状态 0：待支付 1：已支付 2：已取消  3: 已使用
+     * 线条类型：曲线、直线
      */
-    public enum Type {
+    public enum EdgeType {
+    	/**
+    	 * 曲线
+    	 */
         Curve(0),
+        /**
+         * 直线
+         */
         Line(1);
 
         private final int value;
@@ -72,9 +73,36 @@ public class EdgePo {
             return value;
         }
 
-        Type(int value) {
+        EdgeType(int value) {
             this.value = value;
         }
+    }
+    /**
+     * 线条粗细：
+     */
+    public enum EdgeSize {
+    	/**
+    	 * 细线
+    	 */
+    	Thin(0),
+    	/**
+    	 * 中等
+    	 */
+    	Medium(1),
+    	/**
+    	 * 粗线
+    	 */
+    	Thick(2);
+    	
+    	private final int value;
+    	
+    	public int getValue() {
+    		return value;
+    	}
+    	
+    	EdgeSize(int value) {
+    		this.value = value;
+    	}
     }
 
     /**
@@ -129,14 +157,6 @@ public class EdgePo {
         this.target = target;
     }
 
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
     public ArrowType getArrowType() {
         return arrowType;
     }
@@ -145,11 +165,11 @@ public class EdgePo {
         this.arrowType = arrowType;
     }
 
-	public ArrowType getEdgeType() {
+	public EdgeType getEdgeType() {
 		return edgeType;
 	}
 
-	public void setEdgeType(ArrowType edgeType) {
+	public void setEdgeType(EdgeType edgeType) {
 		this.edgeType = edgeType;
 	}
 

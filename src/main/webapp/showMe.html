@@ -52,72 +52,128 @@ var g = {
 	                '#b956af'
 	              ],
 	    s;
-// var data={
-// 		  "nodes": [
-// 		            {
-// 		              "id": "n0",
-// 		              "label": "A node",
-// 		              "x": 0,
-// 		              "y": 0,
-// 		              "size": 3,
-// 		              "color":"#0022ff"
-// 		            },
-// 		            {
-// 		              "id": "n1",
-// 		              "label": "Another node",
-// 		              "x": 3,
-// 		              "y": 1,
-// 		              "size": 2,
-// 		              "color":"#ff22ff"
-// 		            },
-// 		            {
-// 		              "id": "n2",
-// 		              "label": "And a last one",
-// 		              "x": 1,
-// 		              "y": 3,
-// 		              "size": 1,
-// 		              "color":"#00ccff"
-// 		            }
-// 		            ,
-// 		            {
-// 		              "id": "n3",
-// 		              "label": "And a last one",
-// 		              "x": 2,
-// 		              "y": 3,
-// 		              "size": 5,
-// 		              "color":"#ff1122"
-// 		            }
-// 		          ],
-// 		          "edges": [
-// 		            {
-// 		              "id": "e0",
-// 		              "source": "n0",
-// 		              "target": "n1",
-// 		              "type":"curve",
-// 		              "arrowType":"target"
-// 		            },
-// 		            {
-// 		              "id": "e1",
-// 		              "source": "n1",
-// 		              "target": "n2",
-// 		              "type": "curve",
-// 		              "arrowType":"both"
-// 		            },
-// 		            {
-// 		              "id": "e2",
-// 		              "source": "n2",
-// 		              "target": "n0",
-// 		              "type" : "curve"
-// 		            }
-// 		            ,
-// 		            {
-// 		              "id": "e3",
-// 		              "source": "n3",
-// 		              "target": "n0",
-// 		              "type": "curve"
-// 		            }
-// 		          ]
-// 		        };
+var data={
+		  "nodePos": [
+		            {
+		              "id": "n0",
+		              "label": "A node",
+		              "positionX": 0,
+		              "positionY": 0,
+		              "size": 3,
+		              "color":"#0022ff"
+		            },
+		            {
+		              "id": "n1",
+		              "label": "Another node",
+		              "positionX": 3,
+		              "positionY": 1,
+		              "size": 2,
+		              "color":"#ff22ff"
+		            },
+		            {
+		              "id": "n2",
+		              "label": "And a last one",
+		              "positionX": 1,
+		              "positionY": 3,
+		              "size": 1,
+		              "color":"#00ccff"
+		            }
+		            ,
+		            {
+		              "id": "n3",
+		              "label": "And a last one",
+		              "positionX": 2,
+		              "positionY": 3,
+		              "size": 5,
+		              "color":"#ff1122"
+		            }
+		          ],
+         "edgePos": [
+           {
+             "id": "e0",
+             "source": {
+	              "id": "n0",
+	              "label": "A node",
+	              "positionX": 0,
+	              "positionY": 0,
+	              "size": 3,
+	              "color":"#0022ff"
+	            },
+             "target": {
+	              "id": "n1",
+	              "label": "Another node",
+	              "positionX": 3,
+	              "positionY": 1,
+	              "size": 2,
+	              "color":"#ff22ff"
+	            },
+             "type":"curve",
+             "arrowType":"target"
+           },
+           {
+             "id": "e1",
+             "source": {
+	              "id": "n1",
+	              "label": "Another node",
+	              "positionX": 3,
+	              "positionY": 1,
+	              "size": 2,
+	              "color":"#ff22ff"
+	            },
+             "target": {
+	              "id": "n2",
+	              "label": "And a last one",
+	              "positionX": 1,
+	              "positionY": 3,
+	              "size": 1,
+	              "color":"#00ccff"
+	            },
+             "type": "curve",
+             "arrowType":"both"
+           },
+           {
+             "id": "e2",
+             "source": {
+	              "id": "n2",
+	              "label": "And a last one",
+	              "positionX": 1,
+	              "positionY": 3,
+	              "size": 1,
+	              "color":"#00ccff"
+	            },
+             "target": {
+	              "id": "n0",
+	              "label": "A node",
+	              "positionX": 0,
+	              "positionY": 0,
+	              "size": 3,
+	              "color":"#0022ff"
+	            },
+             "type" : "curve"
+           }
+           ,
+           {
+             "id": "e3",
+             "source": {
+	              "id": "n3",
+	              "label": "And a last one",
+	              "positionX": 2,
+	              "positionY": 3,
+	              "size": 5,
+	              "color":"#ff1122"
+	            },
+             "target": {
+	              "id": "n0",
+	              "label": "A node",
+	              "positionX": 0,
+	              "positionY": 0,
+	              "size": 3,
+	              "color":"#0022ff"
+	            },
+             "type": "curve"
+           }
+         ]
+       };
 	function initGraph(data){
 		debugger;
 		for (i = 0; i < data.nodePos.length; i++) {
@@ -163,10 +219,10 @@ var g = {
 			s.refresh();
 	}
 	$(function(){
-		doPost("/action/node/list",{shapeId:"1"},function(objs){
-			initGraph(objs.data)
-        });
-// 		initGraph(data);
+// 		doPost("/action/node/list",{shapeId:"1"},function(objs){
+// 			initGraph(objs.data)
+//         });
+		initGraph(data);
 	});
 	
 </script>

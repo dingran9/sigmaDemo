@@ -12,6 +12,7 @@ import com.sigma.po.ExperimentalResultPo;
 import com.sigma.po.NodePo;
 import com.sigma.proxy.ProxyDictItem;
 import com.sigma.service.DiseaseService;
+import com.sigma.util.UIDGenerator;
 /**
  * 疾病节点Builder
  * @author Administrator
@@ -76,6 +77,14 @@ public class DiseaseNodeBuilder implements NodeBuilder{
 	@Override
 	public NodePo buildNodePo() {
 		return nodePo;
+	}
+	
+	/**
+	 * 设置唯一标识符UUid
+	 */
+	@Override
+	public void buildUuid() {
+		nodePo.setUuid(UIDGenerator.getUUID());
 	}
 
 }

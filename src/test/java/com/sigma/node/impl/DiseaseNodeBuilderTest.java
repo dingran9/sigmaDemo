@@ -20,9 +20,9 @@ public class DiseaseNodeBuilderTest {
 	private DiseaseNodeBuilder diseaseNodeBuilder;
 	@Test
 	public void testBuildLabel() {
-//		ExperimentalResultPo exp=new ExperimentalResultPo();
-//		exp.setDiseaseId(10L);
-//		NodeBuilder disNode=new DiseaseNodeBuilder(exp);
+		ExperimentalResultPo exp=new ExperimentalResultPo();
+		exp.setDiseaseId(10L);
+		NodeBuilder disNode=new DiseaseNodeBuilder(exp);
 		NodePo nodePo=new NodeDirector().constructNode(diseaseNodeBuilder);
 		System.out.println(nodePo.getLabel());
 	}

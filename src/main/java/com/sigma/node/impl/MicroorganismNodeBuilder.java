@@ -6,6 +6,7 @@ import com.sigma.po.DictItemPo;
 import com.sigma.po.ExperimentalResultPo;
 import com.sigma.po.NodePo;
 import com.sigma.proxy.ProxyDictItem;
+import com.sigma.util.UIDGenerator;
 /**
  * 微生物节点Builder
  * @author Administrator
@@ -66,6 +67,13 @@ public class MicroorganismNodeBuilder implements NodeBuilder {
 
 	public void setExperimentalResultPo(ExperimentalResultPo experimentalResultPo) {
 		this.experimentalResultPo = experimentalResultPo;
+	}
+	/**
+	 * 设置唯一标识符UUid
+	 */
+	@Override
+	public void buildUuid() {
+		nodePo.setUuid(UIDGenerator.getUUID());
 	}
 
 }

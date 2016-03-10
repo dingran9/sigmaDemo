@@ -1,5 +1,7 @@
 package com.sigma.service;
 
+import com.sigma.po.DiseasePo;
+import com.sigma.po.ExperimentalResultPo;
 import com.sigma.po.NodePo;
 import com.sigma.po.ShapePo;
 
@@ -50,4 +52,18 @@ public interface NodeService {
      */
     void delete(Long id);
 
+    /**
+     * 生成疾病的引发节点
+     * @param experimentalResultPo
+     * @param nodeType
+     * @return
+     */
+    NodePo create(ExperimentalResultPo experimentalResultPo,String nodeType);
+
+    /**
+     * 生成疾病节点
+     * @param diseasePo
+     * @return
+     */
+    NodePo create(DiseasePo diseasePo);
 }

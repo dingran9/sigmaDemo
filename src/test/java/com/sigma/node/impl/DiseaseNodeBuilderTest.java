@@ -2,8 +2,15 @@ package com.sigma.node.impl;
 
 import javax.inject.Inject;
 
+import com.google.gson.Gson;
+import com.sigma.BaseTest;
+import com.sigma.service.DiseaseService;
+import com.sigma.service.ExperimentalResultService;
+import com.sigma.service.NodeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -12,19 +19,37 @@ import com.sigma.node.NodeDirector;
 import com.sigma.po.ExperimentalResultPo;
 import com.sigma.po.NodePo;
 
-@RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration(locations={"classpath:/conf/spring-comm-conf.xml","classpath:/conf/spring-comm-dao.xml"})
-public class DiseaseNodeBuilderTest {
+import java.util.List;
+import java.util.Map;
 
-	@Inject
-	private DiseaseNodeBuilder diseaseNodeBuilder;
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations={"classpath:/conf/spring-comm-conf.xml","classpath:/conf/spring-comm-dao.xml"})
+public class DiseaseNodeBuilderTest extends BaseTest{
+    private final Logger logger = LoggerFactory.getLogger(DiseaseNodeBuilderTest.class);
+
+//	@Inject
+//	private DiseaseNodeBuilder diseaseNodeBuilder;
+
+    private Gson gson=new Gson();
+    @Inject
+    private NodeService nodeService;
+    @Inject
+    private DiseaseService diseaseService;
+    @Inject
+    private ExperimentalResultService experimentalResultService;
+
 	@Test
 	public void testBuildLabel() {
-		ExperimentalResultPo exp=new ExperimentalResultPo();
+	/*	ExperimentalResultPo exp=new ExperimentalResultPo();
 		exp.setDiseaseId(10L);
 		NodeBuilder disNode=new DiseaseNodeBuilder(exp);
-		NodePo nodePo=new NodeDirector().constructNode(diseaseNodeBuilder);
-		System.out.println(nodePo.getLabel());
-	}
+		NodePo nodePo=new NodeDirector().constructNode(disNode);
+		System.out.println(nodePo.getLabel());*/
+        NodePo dNodePo= nodeService.create(diseaseService.findOne(10l));
+        ExperimentalResultPo exp= experimentalResultService.findOne(10l);
+        Map<String, List> date= experimentalResultService.convertToNodes(exp, dNodePo);
+        logger.debug(gson.toJson(date));
+
+    }
 
 }

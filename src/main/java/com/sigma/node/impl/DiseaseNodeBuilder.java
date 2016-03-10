@@ -1,7 +1,11 @@
 package com.sigma.node.impl;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.sigma.comm.Constants;
@@ -23,8 +27,8 @@ public class DiseaseNodeBuilder implements NodeBuilder{
 	private NodePo nodePo=new NodePo();
 	private ExperimentalResultPo experimentalResultPo;
 	
-	@Inject
-	private DiseaseService diseaseService;
+	@Autowired
+    private DiseaseService diseaseService;
 	
 	public DiseaseNodeBuilder (){
 	}

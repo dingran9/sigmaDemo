@@ -50,7 +50,12 @@ public class DictItemServiceImpl implements DictItemService {
     public void delete(Long id) {
         dictItemDao.delete(id);
     }
-    
+
+    @Override
+    public DictItemPo findByDictCodeAndItemValue(String dictCode, String itemValue) {
+        return dictItemDao.findByDictCodeAndItemValue(dictCode,itemValue);
+    }
+
     public DictItemPo findByDictIdAndItemValue(Long dictId,String value){
     	return dictItemDao.findByDictIdAndItemValue(dictId, value);
     }

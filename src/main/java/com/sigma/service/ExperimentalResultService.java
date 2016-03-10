@@ -1,6 +1,7 @@
 package com.sigma.service;
 
 import com.sigma.po.ExperimentalResultPo;
+import com.sigma.po.NodePo;
 
 import java.util.List;
 import java.util.Map;
@@ -48,5 +49,5 @@ public interface ExperimentalResultService {
      * @param experimentalResultPo
      * @return
      */
-    Map<String,List> convertToNodes(ExperimentalResultPo experimentalResultPo);
+    Map<String,List> convertToNodes(ExperimentalResultPo experimentalResultPo,NodePo diseaseNode);
 }

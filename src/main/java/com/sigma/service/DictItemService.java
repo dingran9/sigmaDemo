@@ -42,4 +42,6 @@ public interface DictItemService {
      * @param id
      */
     void delete(Long id);
+
+    DictItemPo findByDictCodeAndItemValue(String dictCode,String itemValue);
 }

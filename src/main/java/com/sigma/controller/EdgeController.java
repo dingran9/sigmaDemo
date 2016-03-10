@@ -100,7 +100,7 @@ public class EdgeController {
             edgePo.setSource(sourceNode);
             edgePo.setShapeId(sourceNode.getShapeId());
             edgePo.setTarget(targetNode);
-            edgePo.setType(getEdgeType(type));
+            edgePo.setEdgeType(getEdgeType(type));
             edgePo.setArrowType(getEdgeArrowType(arrowType));
             ri.setData(edgeService.save(edgePo));
             return ri;
@@ -110,12 +110,12 @@ public class EdgeController {
         }
     }
 
-    private  EdgePo.Type getEdgeType(String type){
+    private  EdgePo.EdgeType getEdgeType(String type){
         switch (type){
             case "Line":
-                return EdgePo.Type.Line;
+                return EdgePo.EdgeType.Line;
             default:
-                return EdgePo.Type.Curve;
+                return EdgePo.EdgeType.Curve;
         }
     }
     private  EdgePo.ArrowType getEdgeArrowType(String type){

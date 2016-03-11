@@ -1,5 +1,7 @@
 package com.sigma.node.impl;
 
+import javax.inject.Inject;
+
 import com.sigma.comm.Constants;
 import com.sigma.node.NodeBuilder;
 import com.sigma.po.DictItemPo;
@@ -17,6 +19,8 @@ public class InterventionNodeBuilder implements NodeBuilder{
 	//节点Po
 	private NodePo nodePo;
 	private ExperimentalResultPo experimentalResultPo;
+	@Inject
+	private ProxyDictItem proxyDictItem;
 	
 	public InterventionNodeBuilder(){}
 	
@@ -26,13 +30,13 @@ public class InterventionNodeBuilder implements NodeBuilder{
 
 	@Override
 	public void buildLabel() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem(Constants.NODE_TYPE_INTERVENTION, experimentalResultPo.getIntervention());
+		DictItemPo invenDict = proxyDictItem.getDictItem(Constants.NODE_TYPE_INTERVENTION, experimentalResultPo.getIntervention());
 		nodePo.setLabel(invenDict.getName());
 	}
 
 	@Override
 	public void buildColor() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem("nodeColor", Constants.NODE_TYPE_INTERVENTION);
+		DictItemPo invenDict = proxyDictItem.getDictItem("nodeColor", Constants.NODE_TYPE_INTERVENTION);
 		if (invenDict==null) {
 			System.out.println("--------节点颜色设置错误：InterventionNodeBuilder--------");
 			return ;
@@ -58,7 +62,7 @@ public class InterventionNodeBuilder implements NodeBuilder{
 
 	@Override
 	public void buildSize() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem("nodeSize", Constants.NODE_TYPE_INTERVENTION);
+		DictItemPo invenDict = proxyDictItem.getDictItem("nodeSize", Constants.NODE_TYPE_INTERVENTION);
 		if (invenDict==null) {
 			System.out.println("--------节点Size设置错误：InterventionNodeBuilder--------");
 			return ;

@@ -13,5 +13,5 @@ public interface ExperimentalResultDao  extends CrudRepository<ExperimentalResul
 
     ExperimentalResultPo findByUuid(String uuid);
 
-    List<ExperimentalResultPo> findByDiseaseId(String diseaseId);
+    List<ExperimentalResultPo> findByDiseaseId(Long diseaseId);
 }

@@ -46,7 +46,7 @@ public class DiseaseNodeBuilderTest extends BaseTest{
 		NodePo nodePo=new NodeDirector().constructNode(disNode);
 		System.out.println(nodePo.getLabel());*/
         NodePo dNodePo= nodeService.create(diseaseService.findOne(10l));
-        ExperimentalResultPo exp= experimentalResultService.findOne(10l);
+        ExperimentalResultPo exp= experimentalResultService.findOne(4l);
         Map<String, List> date= experimentalResultService.convertToNodes(exp, dNodePo);
         logger.debug(gson.toJson(date));
 

@@ -42,7 +42,7 @@ public interface ExperimentalResultService {
      * 根据疾病Id查询实验结果记录
      * @return
      */
-    List<ExperimentalResultPo> findByDiseaseId(String diseaseId);
+    List<ExperimentalResultPo> findByDiseaseId(Long diseaseId);
     
     /**
      * 将实验结果转换成图形节点、图形节点关系

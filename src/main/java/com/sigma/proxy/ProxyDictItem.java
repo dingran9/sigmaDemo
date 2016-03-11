@@ -3,13 +3,14 @@ package com.sigma.proxy;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import com.sigma.dao.DictDao;
 import com.sigma.dao.DictItemDao;
 import com.sigma.po.DictItemPo;
 import com.sigma.po.DictPo;
 import com.sigma.util.StringHelper;
-
+@Service
 public class ProxyDictItem {
 	private static Logger logger=Logger.getLogger(ProxyDictItem.class);
 	@Inject
@@ -26,12 +27,12 @@ public class ProxyDictItem {
 	 * @param value
 	 * @return
 	 */
-	public static DictItemPo getDictItem(String dictCode,String value){
+	public DictItemPo getDictItem(String dictCode,String value){
 		if (StringHelper.isEmpty(dictCode)||StringHelper.isEmpty(value)) {
 			return null;
 		}
-		DictPo currDict=ProxyFactory.getInstance(ProxyDictItem.class).getDictByCode(dictCode);
-		return currDict==null?null:ProxyFactory.getInstance(ProxyDictItem.class).getItemByCodeAndValue(currDict.getId(),value);
+		DictPo currDict=getDictByCode(dictCode);
+		return currDict==null?null:getItemByCodeAndValue(currDict.getId(),value);
 	}
 	/**
 	 * 根据code获取Dict

@@ -1,11 +1,8 @@
 package com.sigma.node.impl;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.sigma.comm.Constants;
@@ -27,6 +24,8 @@ public class DiseaseNodeBuilder implements NodeBuilder{
 	private NodePo nodePo=new NodePo();
 	private ExperimentalResultPo experimentalResultPo;
 	
+	@Inject
+	private ProxyDictItem proxyDictItem;
 	@Autowired
     private DiseaseService diseaseService;
 	
@@ -45,7 +44,7 @@ public class DiseaseNodeBuilder implements NodeBuilder{
 
 	@Override
 	public void buildColor() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem("nodeColor", Constants.NODE_TYPE_MICROORGANISM);
+		DictItemPo invenDict = proxyDictItem.getDictItem("nodeColor", Constants.NODE_TYPE_DISEASE);
 		if (invenDict==null) {
 			System.out.println("--------节点颜色设置错误：DiseaseNodeBuilder--------");
 			return ;
@@ -70,7 +69,7 @@ public class DiseaseNodeBuilder implements NodeBuilder{
 
 	@Override
 	public void buildSize() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem("nodeSize", Constants.NODE_TYPE_MICROORGANISM);
+		DictItemPo invenDict = proxyDictItem.getDictItem("nodeSize", Constants.NODE_TYPE_MICROORGANISM);
 		if (invenDict==null) {
 			System.out.println("-----------节点Size设置出错：DiseaseNodeBuilder--------------");
 			return ;

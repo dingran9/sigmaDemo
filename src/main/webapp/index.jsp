@@ -396,11 +396,20 @@
     
     //测试搜索
     function searchDisease(){
-    	var _keyWord="消化系统疾病";
+    	var _keyWord="肠易激综合征(IBS";
         doPost("/action/disease/search",{keyWord:_keyWord},function(objs){
             if(objs.httpCode === "200"){
                 showMsg("操作成功",objs.datas[0].name,3000);
-                
+                //检索节点等
+                doPost("/action/shape/search",{shapeId:objs.datas[0].id},function(objs){
+                    if(objs.httpCode === "200"){
+                        showMsg("操作成功",objs.datas[0].name,3000);
+                        
+                    }else{
+                        console.log(objs);
+                        showErrorMsg("操作失败",rpLRespond(objs.message));
+                    }
+                });
             }else{
                 console.log(objs);
                 showErrorMsg("操作失败",rpLRespond(objs.message));

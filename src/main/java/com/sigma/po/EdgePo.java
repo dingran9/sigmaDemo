@@ -56,6 +56,11 @@ public class EdgePo {
 
     /**
      * 线条类型：曲线、直线
+     * "solid"
+     * "dotted"
+     * "dashed"
+     * "tapered"
+     * "parallel"
      */
     public enum EdgeType {
     	/**

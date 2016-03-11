@@ -29,7 +29,9 @@ public class NodeServiceImpl implements NodeService {
     private final Logger logger = LoggerFactory.getLogger(NodeServiceImpl.class);
 
     @Inject
-    private EdgeDao edgeDao;
+    private EdgeDao edgeDao; 
+    @Inject
+    private ProxyDictItem proxyDictItem;
     @Inject
     private NodeDao nodeDao;
     @Inject
@@ -87,7 +89,7 @@ public class NodeServiceImpl implements NodeService {
         nodePo.setPositionX((int) (Math.random() * 10));
         nodePo.setPositionY((int) (Math.random() * 10));
         nodePo.setUuid(UIDGenerator.getUUID());
-        DictItemPo dictItemPo = ProxyDictItem.getDictItem(nodeType, experimentalResultPo.getPhysiologicalProcess());
+        DictItemPo dictItemPo = proxyDictItem.getDictItem(nodeType, experimentalResultPo.getPhysiologicalProcess());
         if(dictItemPo!=null){
             nodePo.setLabel(dictItemPo.getName());
         }

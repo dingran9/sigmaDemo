@@ -194,7 +194,9 @@ var data={
 			    target: data.edgePos[i].target.id+"",
 			    // note the EdgeShapeLibrary.enumerate() returns the names of all
 			    // supported renderers
-			    type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
+			    //type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
+			    type: "curve",
+			    arrow:"target",
 			    size: Math.random()
 			  });
 			}

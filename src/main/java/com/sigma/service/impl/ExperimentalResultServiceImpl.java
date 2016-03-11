@@ -70,7 +70,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
     }
 
 	@Override
-	public List<ExperimentalResultPo> findByDiseaseId(String diseaseId) {
+	public List<ExperimentalResultPo> findByDiseaseId(Long diseaseId) {
 		return experimentalResultDao.findByDiseaseId(diseaseId);
 	}
 
@@ -84,9 +84,8 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 	@Override
 	public Map<String, List> convertToNodes(ExperimentalResultPo experimentalResultPo,NodePo diseaseNode) {
 		Map<String, List> shapeEle=new HashedMap<String, List>();
-        List<NodePo> list=new ArrayList<>();
 		//节点List
-//		Map<String, NodePo> nodeList=new HashedMap<String,NodePo>();
+        List<NodePo> list=new ArrayList<>();
 		//节点关系List
 		List<EdgePo> edgeList=new ArrayList<EdgePo>();
 		switch (experimentalResultPo.getType()) {
@@ -95,15 +94,9 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 *实验结果类型1
 				 *	包含节点：疾病 干预物 ("干预物对疾病的作用" 暂时定位节点关系) 
 				 */
-				//疾病
-//				NodePo diseaseNode=new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo));
-//				NodePo diseaseNode=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
-//				nodeList.put("diseaseNode",diseaseNode);
 				//干预物
-//				NodePo intervenNode=new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo));
                 NodePo intervenNode=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(intervenNode);
-//				nodeList.put("interventionNode",intervenNode);
 				//节点关系
                 edgeList.add(buildEdge(intervenNode,diseaseNode,0,experimentalResultPo));
 				break;
@@ -112,16 +105,12 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 实验结果类型2
 				 * 	疾病 干预物	微生物  （菌种变化、 干预物对疾病的作用  定位节点关系）
 				 */
-				//疾病
-//				nodeList.put("diseaseNode",new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
 				//干预物
                 NodePo interventionNode=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(interventionNode);
-//				nodeList.put("interventionNode",new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo)));
 				//微生物
                 NodePo microorganism=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism);
-//				nodeList.put("microorganism",new NodeDirector().constructNode(new MicroorganismNodeBuilder(experimentalResultPo)));
                 //节点关系
                 edgeList.add(buildEdge(interventionNode,microorganism,1,experimentalResultPo));
                 edgeList.add(buildEdge(microorganism,diseaseNode,1,experimentalResultPo));
@@ -131,8 +120,6 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 实验结果类型3:
 				 * 	疾病 干预物 生理过程  （生理过程变化  干预物对疾病的作用	）	
 				 */
-				//疾病
-//				nodeList.put("diseaseNode",new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
 				//干预物
                 NodePo iNode2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(iNode2);

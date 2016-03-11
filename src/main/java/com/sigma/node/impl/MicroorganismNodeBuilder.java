@@ -1,5 +1,7 @@
 package com.sigma.node.impl;
 
+import javax.inject.Inject;
+
 import com.sigma.comm.Constants;
 import com.sigma.node.NodeBuilder;
 import com.sigma.po.DictItemPo;
@@ -16,7 +18,8 @@ public class MicroorganismNodeBuilder implements NodeBuilder {
 	//节点Po
 	private NodePo nodePo;
 	private ExperimentalResultPo experimentalResultPo;
-	
+	@Inject
+	private ProxyDictItem proxyDictItem;
 	public MicroorganismNodeBuilder(){}
 	
 	public MicroorganismNodeBuilder(ExperimentalResultPo experimentalResult){
@@ -25,13 +28,13 @@ public class MicroorganismNodeBuilder implements NodeBuilder {
 
 	@Override
 	public void buildLabel() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem(Constants.NODE_TYPE_MICROORGANISM, experimentalResultPo.getMicroorganism());
+		DictItemPo invenDict = proxyDictItem.getDictItem(Constants.NODE_TYPE_MICROORGANISM, experimentalResultPo.getMicroorganism());
 		nodePo.setLabel(invenDict.getName());
 	}
 
 	@Override
 	public void buildColor() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem("nodeColor", Constants.NODE_TYPE_MICROORGANISM);
+		DictItemPo invenDict = proxyDictItem.getDictItem("nodeColor", Constants.NODE_TYPE_MICROORGANISM);
 		nodePo.setColor(invenDict.getValue());
 	}
 
@@ -52,7 +55,7 @@ public class MicroorganismNodeBuilder implements NodeBuilder {
 
 	@Override
 	public void buildSize() {
-		DictItemPo invenDict = ProxyDictItem.getDictItem("nodeSize", Constants.NODE_TYPE_MICROORGANISM);
+		DictItemPo invenDict = proxyDictItem.getDictItem("nodeSize", Constants.NODE_TYPE_MICROORGANISM);
 		nodePo.setColor(invenDict.getValue());
 	}
 

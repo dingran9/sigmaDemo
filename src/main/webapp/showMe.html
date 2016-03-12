@@ -1,244 +1,256 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-us">
-<head>
-    <title>展示页面</title>
-    <!-- START SIGMA IMPORTS -->
-<script src="./sigma.js-1.0.3/src/sigma.core.js"></script>
-<script src="./sigma.js-1.0.3/src/conrad.js"></script>
-<script src="./sigma.js-1.0.3/src/utils/sigma.utils.js"></script>
-<script src="./sigma.js-1.0.3/src/utils/sigma.polyfills.js"></script>
-<script src="./sigma.js-1.0.3/src/sigma.settings.js"></script>
-<script src="./sigma.js-1.0.3/src/classes/sigma.classes.dispatcher.js"></script>
-<script src="./sigma.js-1.0.3/src/classes/sigma.classes.configurable.js"></script>
-<script src="./sigma.js-1.0.3/src/classes/sigma.classes.graph.js"></script>
-<script src="./sigma.js-1.0.3/src/classes/sigma.classes.camera.js"></script>
-<script src="./sigma.js-1.0.3/src/classes/sigma.classes.quad.js"></script>
-<script src="./sigma.js-1.0.3/src/captors/sigma.captors.mouse.js"></script>
-<script src="./sigma.js-1.0.3/src/captors/sigma.captors.touch.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/sigma.renderers.canvas.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/sigma.renderers.webgl.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/sigma.renderers.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
-<script src="./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-<script src="./sigma.js-1.0.3/src/middlewares/sigma.middlewares.rescale.js"></script>
-<script src="./sigma.js-1.0.3/src/middlewares/sigma.middlewares.copy.js"></script>
-<script src="./sigma.js-1.0.3/src/misc/sigma.misc.animation.js"></script>
-<script src="./sigma.js-1.0.3/src/misc/sigma.misc.bindEvents.js"></script>
-<script src="./sigma.js-1.0.3/src/misc/sigma.misc.drawHovers.js"></script>
-<script src="./static/js/libs/jquery-2.0.2.min.js"></script>
-<!-- END SIGMA IMPORTS -->
-<script src="./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/shape-library.js"></script>
-<script src="./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/sigma.renderers.customEdgeShapes.js"></script>
+<div class="row" id="regionList_shape_div">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-12">
+        <div id='regionList_shape'  class="row bs-callout bs-callout-info">
+        </div>
+        <input id = userType_shape type="hidden">
+    </div>
+</div>
+
+<ul class="nav nav-tabs bordered" id="shape_tab_ul"></ul>
 <script type="text/javascript">
-//生成图形方法
-var g = {
-	      nodes: [],
-	      edges: []
-	    },
-	    colors = [
-	                '#617db4',
-	                '#668f3c',
-	                '#c6583e',
-	                '#b956af'
-	              ],
-	    s;
-var data={
-		  "nodePos": [
-		            {
-		              "id": "n0",
-		              "label": "A node",
-		              "positionX": 0,
-		              "positionY": 0,
-		              "size": 3,
-		              "color":"#0022ff"
-		            },
-		            {
-		              "id": "n1",
-		              "label": "Another node",
-		              "positionX": 3,
-		              "positionY": 1,
-		              "size": 2,
-		              "color":"#ff22ff"
-		            },
-		            {
-		              "id": "n2",
-		              "label": "And a last one",
-		              "positionX": 1,
-		              "positionY": 3,
-		              "size": 1,
-		              "color":"#00ccff"
-		            }
-		            ,
-		            {
-		              "id": "n3",
-		              "label": "And a last one",
-		              "positionX": 2,
-		              "positionY": 3,
-		              "size": 5,
-		              "color":"#ff1122"
-		            }
-		          ],
-         "edgePos": [
-           {
-             "id": "e0",
-             "source": {
-	              "id": "n0",
-	              "label": "A node",
-	              "positionX": 0,
-	              "positionY": 0,
-	              "size": 3,
-	              "color":"#0022ff"
-	            },
-             "target": {
-	              "id": "n1",
-	              "label": "Another node",
-	              "positionX": 3,
-	              "positionY": 1,
-	              "size": 2,
-	              "color":"#ff22ff"
-	            },
-             "type":"curve",
-             "arrowType":"target"
-           },
-           {
-             "id": "e1",
-             "source": {
-	              "id": "n1",
-	              "label": "Another node",
-	              "positionX": 3,
-	              "positionY": 1,
-	              "size": 2,
-	              "color":"#ff22ff"
-	            },
-             "target": {
-	              "id": "n2",
-	              "label": "And a last one",
-	              "positionX": 1,
-	              "positionY": 3,
-	              "size": 1,
-	              "color":"#00ccff"
-	            },
-             "type": "curve",
-             "arrowType":"both"
-           },
-           {
-             "id": "e2",
-             "source": {
-	              "id": "n2",
-	              "label": "And a last one",
-	              "positionX": 1,
-	              "positionY": 3,
-	              "size": 1,
-	              "color":"#00ccff"
-	            },
-             "target": {
-	              "id": "n0",
-	              "label": "A node",
-	              "positionX": 0,
-	              "positionY": 0,
-	              "size": 3,
-	              "color":"#0022ff"
-	            },
-             "type" : "curve"
-           }
-           ,
-           {
-             "id": "e3",
-             "source": {
-	              "id": "n3",
-	              "label": "And a last one",
-	              "positionX": 2,
-	              "positionY": 3,
-	              "size": 5,
-	              "color":"#ff1122"
-	            },
-             "target": {
-	              "id": "n0",
-	              "label": "A node",
-	              "positionX": 0,
-	              "positionY": 0,
-	              "size": 3,
-	              "color":"#0022ff"
-	            },
-             "type": "curve"
-           }
-         ]
-       };
-	function initGraph(data){
+
+//DO NOT REMOVE : GLOBAL FUNCTIONS!
+pageSetUp();
+// PAGE RELATED SCRIPTS
+
+exploadDataTableScripts();
+
+function exploadDataTableScripts() {
+    loadScript("../../static/js/plugin/datatables/jquery.dataTables-cust.js?version=4.2.6.2", dt_2);
+
+    function dt_2() {
+        loadScript("../../static/js/plugin/datatables/ColReorder.min.js?version=4.2.6.2", dt_3);
+    }
+
+    function dt_3() {
+        loadScript("../../static/js/plugin/datatables/FixedColumns.min.js?version=4.2.6.2", dt_4);
+    }
+
+    function dt_4() {
+        loadScript("../../static/js/plugin/datatables/ColVis.min.js?version=4.2.6.2", dt_5);
+    }
+
+    function dt_5() {
+        loadScript("../../static/js/plugin/datatables/ZeroClipboard.js?version=4.2.6.2", dt_6);
+    }
+
+    function dt_6() {
+        loadScript("../../static/js/plugin/datatables/media/js/TableTools.min.js?version=4.2.6.2", dt_7);
+    }
+
+    function dt_7() {
+        loadScript("./sigma.js-1.0.3/src/sigma.core.js?version=4.2.6.2", dt_8);
+    }
+    function dt_8() {
+        loadScript("./sigma.js-1.0.3/src/conrad.js?version=4.2.6.2", dt_9);
+    }
+    function dt_9() {
+        loadScript("./sigma.js-1.0.3/src/utils/sigma.utils.js?version=4.2.6.2", dt_10);
+    }
+    function dt_10() {
+        loadScript("./sigma.js-1.0.3/src/utils/sigma.polyfills.js?version=4.2.6.2", dt_11);
+    }
+    function dt_11() {
+        loadScript("./sigma.js-1.0.3/src/sigma.settings.js?version=4.2.6.2", dt_12);
+    }
+    function dt_12() {
+        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.dispatcher.js?version=4.2.6.2", dt_13);
+    }
+    function dt_13() {
+        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.configurable.js?version=4.2.6.2", dt_14);
+    }
+    function dt_14() {
+        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.graph.js?version=4.2.6.2", dt_15);
+    }
+    function dt_15() {
+        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.camera.js?version=4.2.6.2", dt_16);
+    }
+    function dt_16() {
+        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.quad.js?version=4.2.6.2", dt_17);
+    }
+    function dt_17() {
+        loadScript("./sigma.js-1.0.3/src/captors/sigma.captors.mouse.js?version=4.2.6.2", dt_18);
+    }
+    function dt_18() {
+        loadScript("./sigma.js-1.0.3/src/captors/sigma.captors.touch.js?version=4.2.6.2", dt_19);
+    }
+    function dt_19() {
+        loadScript("./sigma.js-1.0.3/src/renderers/sigma.renderers.canvas.js?version=4.2.6.2", dt_20);
+    }
+    function dt_20() {
+        loadScript("./sigma.js-1.0.3/src/renderers/sigma.renderers.webgl.js?version=4.2.6.2", dt_21);
+    }
+    function dt_21() {
+        loadScript("./sigma.js-1.0.3/src/renderers/sigma.renderers.def.js?version=4.2.6.2", dt_22);
+    }
+    function dt_22() {
+        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.def.js?version=4.2.6.2", dt_23);
+    }
+    function dt_23() {
+        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.fast.js?version=4.2.6.2", dt_24);
+    }
+    function dt_24() {
+        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.def.js?version=4.2.6.2", dt_25);
+    }
+    function dt_25() {
+        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.fast.js?version=4.2.6.2", dt_26);
+    }
+    function dt_26() {
+        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.arrow.js?version=4.2.6.2", dt_27);
+    }
+    function dt_27() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.labels.def.js?version=4.2.6.2", dt_28);
+    }
+    function dt_28() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.hovers.def.js?version=4.2.6.2", dt_29);
+    }
+    function dt_29() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.nodes.def.js?version=4.2.6.2", dt_30);
+    }
+    function dt_30() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.def.js?version=4.2.6.2", dt_31);
+    }
+    function dt_31() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curve.js?version=4.2.6.2", dt_32);
+    }
+    function dt_32() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.arrow.js?version=4.2.6.2", dt_33);
+    }
+    function dt_33() {
+        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js?version=4.2.6.2", dt_34);
+    }
+    function dt_34() {
+        loadScript("./sigma.js-1.0.3/src/middlewares/sigma.middlewares.rescale.js?version=4.2.6.2", dt_35);
+    }
+    function dt_35() {
+        loadScript("./sigma.js-1.0.3/src/middlewares/sigma.middlewares.copy.js?version=4.2.6.2", dt_36);
+    }
+    function dt_36() {
+        loadScript("./sigma.js-1.0.3/src/misc/sigma.misc.animation.js?version=4.2.6.2", dt_37);
+    }
+    function dt_37() {
+        loadScript("./sigma.js-1.0.3/src/misc/sigma.misc.bindEvents.js?version=4.2.6.2", dt_38);
+    }
+    function dt_38() {
+        loadScript("./sigma.js-1.0.3/src/misc/sigma.misc.drawHovers.js?version=4.2.6.2", dt_39);
+    }
+    function dt_39() {
+        loadScript("./static/js/libs/jquery-2.0.2.min.js?version=4.2.6.2", dt_40);
+    }
+    function dt_40() {
+        loadScript("./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/shape-library.js?version=4.2.6.2", dt_41);
+    }
+    function dt_41() {
+        loadScript("./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/sigma.renderers.customEdgeShapes.js?version=4.2.6.2", dt_42);
+    }
+    function dt_42() {
+        loadScript("biology/experimental.js?version=4.2.6.2", showMeInit);
+    }
+}
+
+function showMeInit(){
+	//生成图形方法
+	var g = {
+		      nodes: [],
+		      edges: []
+		    },
+		    colors = [
+		                '#617db4',
+		                '#668f3c',
+		                '#c6583e',
+		                '#b956af'
+		              ],
+		    s;
+		function initGraph(data){
+			for (i = 0; i < data.nodePos.length; i++) {
+				  g.nodes.push({
+				    id: data.nodePos[i].uuid+"",
+				    label: data.nodePos[i].label,
+				    x:data.nodePos[i].positionX,
+				    y: data.nodePos[i].positionY,
+				    size: data.nodePos[i].size,
+				    color: data.nodePos[i].color
+// 				    color: colors[Math.floor(Math.random() * colors.length)]
+				  });
+				}
+
+				for (i = 0; i < data.edgePos.length; i++) {
+				  g.edges.push({
+				    id: data.edgePos[i].uuid+"",
+				    source: data.edgePos[i].source.uuid+"",
+				    target: data.edgePos[i].target.uuid+"",
+				    // note the EdgeShapeLibrary.enumerate() returns the names of all
+				    // supported renderers
+				    //type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
+				    type: data.edgePos[i].edgeType,
+				    arrowType:"target",
+				    size: Math.random()
+				  });
+				}
+
+				s = new sigma({
+				  graph: g,
+				  renderer: {
+				    // IMPORTANT:
+				    // This works only with the canvas renderer, so the
+				    // renderer type set as "canvas" is necessary here.
+				    container: document.getElementById('graph-container'),
+				    type: 'canvas'
+				  },
+				  settings: {
+				    minNodeSize: 1,
+				    maxNodeSize: 10,
+				    minEdgeSize: 0.1,
+				    maxEdgeSize: 2,
+				  }
+				});
+				CustomEdgeShapes.init(s);
+				s.refresh();
+		}
+		
+		//测试搜索
+	    function searchDisease(){
+	    	var _keyWord="肠易激综合征(IBS";
+	        doPost("/action/disease/search",{keyWord:_keyWord},function(objs){
+	            if(objs.httpCode === "200"){
+//	                 showMsg("操作成功",objs.datas[0].name,3000);
+	                //检索节点等
+	                doPost("/action/shape/search",{shapeId:objs.datas[0].id},function(objs){
+	                    if(objs.httpCode === "200"){
+	                    	initGraph(objs.data);
+	                    }else{
+	                        console.log(objs);
+//	                         showErrorMsg("操作失败",rpLRespond(objs.message));
+	                    }
+	                });
+	            }else{
+	                console.log(objs);
+	                showErrorMsg("操作失败",rpLRespond(objs.message));
+	            }
+	        });
+	    }
+		
+		$(function(){
+//	 		doPost("/action/node/list",{shapeId:"1"},function(objs){
+//	 			initGraph(objs.data)
+//	         });
+//	 		initGraph(data);
 		debugger;
-		for (i = 0; i < data.nodePos.length; i++) {
-			  g.nodes.push({
-			    id: data.nodePos[i].id+"",
-			    label: data.nodePos[i].label,
-			    x:data.nodePos[i].positionX,
-			    y: data.nodePos[i].positionY,
-			    size: data.nodePos[i].size,
-			    color: colors[Math.floor(Math.random() * colors.length)]
-			  });
-			}
+		searchDisease();
+		});
+		
+}
 
-			for (i = 0; i < data.edgePos.length; i++) {
-			  g.edges.push({
-			    id: data.edgePos[i].id+"",
-			    source: data.edgePos[i].source.id+"",
-			    target: data.edgePos[i].target.id+"",
-			    // note the EdgeShapeLibrary.enumerate() returns the names of all
-			    // supported renderers
-			    //type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
-			    type: "curve",
-			    arrow:"target",
-			    size: Math.random()
-			  });
-			}
-
-			s = new sigma({
-			  graph: g,
-			  renderer: {
-			    // IMPORTANT:
-			    // This works only with the canvas renderer, so the
-			    // renderer type set as "canvas" is necessary here.
-			    container: document.getElementById('graph-container'),
-			    type: 'canvas'
-			  },
-			  settings: {
-			    minNodeSize: 1,
-			    maxNodeSize: 10,
-			    minEdgeSize: 0.1,
-			    maxEdgeSize: 2,
-			  }
-			});
-			CustomEdgeShapes.init(s);
-			s.refresh();
-	}
-	$(function(){
-// 		doPost("/action/node/list",{shapeId:"1"},function(objs){
-// 			initGraph(objs.data)
-//         });
-		initGraph(data);
-	});
-	
 </script>
 <style>
 #graph-container {
+	margin-top:15px;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	height:400px;
 	position: absolute;
 }
 </style>
-</head>
-<body>
-  <div id="graph-container"></div>
-</body>
-</html>
+<div id="graph-container"></div>

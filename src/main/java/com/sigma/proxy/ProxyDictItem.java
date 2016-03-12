@@ -22,17 +22,16 @@ public class ProxyDictItem {
 		
 	}
 	/**
-	 * 根据字典Code以及字典值获取所属字典项
+	 * 根据字典Code以及字典name获取所属字典项
 	 * @param dictCode
 	 * @param value
 	 * @return
 	 */
-	public DictItemPo getDictItem(String dictCode,String value){
-		if (StringHelper.isEmpty(dictCode)||StringHelper.isEmpty(value)) {
+	public DictItemPo getDictItem(String dictCode,String name){
+		if (StringHelper.isEmpty(dictCode)||StringHelper.isEmpty(name)) {
 			return null;
 		}
-		DictPo currDict=getDictByCode(dictCode);
-		return currDict==null?null:getItemByCodeAndValue(currDict.getId(),value);
+		return getDictItem(dictCode, name);
 	}
 	/**
 	 * 根据code获取Dict
@@ -48,7 +47,7 @@ public class ProxyDictItem {
 	 * @param value
 	 * @return
 	 */
-	public DictItemPo getItemByCodeAndValue(Long dictId,String value){
-		return dictItemDao.findByDictIdAndItemValue(dictId, value);
+	public DictItemPo getItemByCodeAndName(String dictCode,String name){
+		return dictItemDao.findByDictCodeAndItemName(dictCode, name);
 	}
 }

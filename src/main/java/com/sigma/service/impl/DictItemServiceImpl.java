@@ -55,8 +55,8 @@ public class DictItemServiceImpl implements DictItemService {
     public DictItemPo findByDictCodeAndItemValue(String dictCode, String itemValue) {
         return dictItemDao.findByDictCodeAndItemValue(dictCode,itemValue);
     }
-
-    public DictItemPo findByDictIdAndItemValue(Long dictId,String value){
-    	return dictItemDao.findByDictIdAndItemValue(dictId, value);
+    @Override
+    public DictItemPo findByDictCodeAndItemName(String dictcode,String name){
+    	return dictItemDao.findByDictCodeAndItemName(dictcode, name);
     }
 }

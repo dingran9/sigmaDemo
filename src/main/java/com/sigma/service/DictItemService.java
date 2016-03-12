@@ -43,5 +43,18 @@ public interface DictItemService {
      */
     void delete(Long id);
 
+    /**
+     * 根据字典编码，字典项值查询
+     * @param dictCode
+     * @param itemValue
+     * @return
+     */
     DictItemPo findByDictCodeAndItemValue(String dictCode,String itemValue);
+    /**
+     * 根据字典编码以及字典项名称查询
+     * @param dictCode
+     * @param itemName
+     * @return
+     */
+    DictItemPo findByDictCodeAndItemName(String dictCode,String itemName);
 }

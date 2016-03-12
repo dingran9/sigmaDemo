@@ -77,11 +77,11 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public NodePo create(ExperimentalResultPo experimentalResultPo, String nodeType) {
         NodePo nodePo=new NodePo();
-        DictItemPo dictItemPoColor= dictItemService.findByDictCodeAndItemValue("nodeColor", nodeType);
+        DictItemPo dictItemPoColor= dictItemService.findByDictCodeAndItemName("nodeColor", nodeType);
         if(dictItemPoColor!=null){
             nodePo.setColor(dictItemPoColor.getValue());
         }
-        DictItemPo dictItemPoSize= dictItemService.findByDictCodeAndItemValue("nodeSize", nodeType);
+        DictItemPo dictItemPoSize= dictItemService.findByDictCodeAndItemName("nodeSize", nodeType);
         if(dictItemPoColor!=null){
             nodePo.setSize(Integer.parseInt(dictItemPoSize.getValue()));
         }
@@ -89,20 +89,49 @@ public class NodeServiceImpl implements NodeService {
         nodePo.setPositionX((int) (Math.random() * 10));
         nodePo.setPositionY((int) (Math.random() * 10));
         nodePo.setUuid(UIDGenerator.getUUID());
-        DictItemPo dictItemPo = proxyDictItem.getDictItem(nodeType, experimentalResultPo.getPhysiologicalProcess());
+        switch (nodeType){
+	        case "intervention":
+	            DictItemPo intervention = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getIntervention());
+	            if(intervention!=null){
+	                nodePo.setLabel(intervention.getName());
+	            }
+	            return nodePo;
+	        case "microorganism":
+	            DictItemPo microorganism = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getMicroorganism());
+	            if(microorganism!=null){
+	                nodePo.setLabel(microorganism.getName());
+	            }
+	            return nodePo;
+	        case "physiological_process":
+	            DictItemPo ppprocess = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getPhysiologicalProcess());
+	            if(ppprocess!=null){
+	                nodePo.setLabel(ppprocess.getName());
+	            }
+	            return nodePo;
+	        case "physiological_process_change":
+	            DictItemPo p = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getPhysiologicalProcessChange());
+	            if(p!=null){
+	                nodePo.setLabel(p.getName());
+	            }
+	            return nodePo;
+	        default:
+	            return nodePo;
+        }
+       /* DictItemPo dictItemPo = dictItemService.findByDictCodeAndItemName(nodeType, experimentalResultPo.getPhysiologicalProcess());
         if(dictItemPo!=null){
             nodePo.setLabel(dictItemPo.getName());
-        }
-        return nodePo;
+        }*/
+//        return nodePo;
     }
+    
     @Override
     public NodePo create(DiseasePo diseasePo) {
         NodePo nodePo=new NodePo();
-        DictItemPo dictItemPoColor= dictItemService.findByDictCodeAndItemValue("nodeColor", Constants.NODE_TYPE_DISEASE);
+        DictItemPo dictItemPoColor= dictItemService.findByDictCodeAndItemName("nodeColor", Constants.NODE_TYPE_DISEASE);
         if(dictItemPoColor!=null){
             nodePo.setColor(dictItemPoColor.getValue());
         }
-        DictItemPo dictItemPoSize= dictItemService.findByDictCodeAndItemValue("nodeSize", Constants.NODE_TYPE_DISEASE);
+        DictItemPo dictItemPoSize= dictItemService.findByDictCodeAndItemName("nodeSize", Constants.NODE_TYPE_DISEASE);
         if(dictItemPoColor!=null){
             nodePo.setSize(Integer.parseInt(dictItemPoSize.getValue()));
         }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import com.sigma.comm.Constants;
 import com.sigma.service.NodeService;
+
 import org.apache.commons.collections4.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ import com.sigma.po.EdgePo.EdgeType;
 import com.sigma.po.ExperimentalResultPo;
 import com.sigma.po.NodePo;
 import com.sigma.service.ExperimentalResultService;
+import com.sigma.util.UIDGenerator;
 
 /**
  * Created by Administrator on 2015/12/20.
@@ -98,7 +100,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
                 NodePo intervenNode=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(intervenNode);
 				//节点关系
-                edgeList.add(buildEdge(intervenNode,diseaseNode,0,experimentalResultPo));
+                edgeList.add(buildEdge(intervenNode,diseaseNode,1,experimentalResultPo));
 				break;
 			case 1:
 				/*
@@ -112,8 +114,8 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
                 NodePo microorganism=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism);
                 //节点关系
-                edgeList.add(buildEdge(interventionNode,microorganism,1,experimentalResultPo));
-                edgeList.add(buildEdge(microorganism,diseaseNode,1,experimentalResultPo));
+                edgeList.add(buildEdge(interventionNode,microorganism,2,experimentalResultPo));
+                edgeList.add(buildEdge(microorganism,diseaseNode,4,experimentalResultPo));
 					break;
 			case 2:
 				/*
@@ -123,42 +125,34 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				//干预物
                 NodePo iNode2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(iNode2);
-//				nodeList.put("interventionNode",new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo)));
 				//生理过程
                 NodePo physiological=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
                 list.add(physiological);
-//				nodeList.put("physiological_process",new NodeDirector().constructNode(new PhysiologicalProcessNodeBuilder(experimentalResultPo)));
                 //节点关系
-                edgeList.add(buildEdge(physiological,diseaseNode,0,experimentalResultPo));
-                edgeList.add(buildEdge(iNode2,physiological,0,experimentalResultPo));
+                edgeList.add(buildEdge(physiological,diseaseNode,5,experimentalResultPo));
+                edgeList.add(buildEdge(iNode2,physiological,3,experimentalResultPo));
                 break;
 			case 3:
 				/*
 				 * 实验结果类型4：
 				 * 	疾病 微生物  （菌种变化  节点关系）		
 				 */
-				//疾病
-//				nodeList.put("diseaseNode",new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
 				//微生物
                 NodePo microorganism2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism2);
-//				nodeList.put("microorganism",new NodeDirector().constructNode(new MicroorganismNodeBuilder(experimentalResultPo)));
                 //节点关系
-                edgeList.add(buildEdge(microorganism2,diseaseNode,0,experimentalResultPo));
+                edgeList.add(buildEdge(microorganism2,diseaseNode,4,experimentalResultPo));
                 break;
 			case 4:
 				/*
 				 * 实验结果类型5：
 				 * 	  疾病 生理过程  生理过程变化
 				 */
-				//疾病
-//				nodeList.put("diseaseNode",new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
 				//生理过程
                 NodePo physiological2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
                 list.add(physiological2);
-//				nodeList.put("physiological_process",new NodeDirector().constructNode(new PhysiologicalProcessNodeBuilder(experimentalResultPo)));
                 //节点关系
-                edgeList.add(buildEdge(physiological2,diseaseNode,0,experimentalResultPo));
+                edgeList.add(buildEdge(physiological2,diseaseNode,5,experimentalResultPo));
                 break;
 			case 5:
 				/*
@@ -176,8 +170,8 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
                 list.add(microorganism3);
 //				nodeList.put("microorganism",new NodeDirector().constructNode(new MicroorganismNodeBuilder(experimentalResultPo)));
                 //节点关系
-                edgeList.add(buildEdge(physiological3,diseaseNode,0,experimentalResultPo));
-                edgeList.add(buildEdge(microorganism3,physiological3,0,experimentalResultPo));
+                edgeList.add(buildEdge(physiological3,diseaseNode,5,experimentalResultPo));
+                edgeList.add(buildEdge(microorganism3,physiological3,6,experimentalResultPo));
                 break;
 			case 6:
 				/*
@@ -199,9 +193,9 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
                 list.add(iNode3);
 //				nodeList.put("interventionNode",new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo)));
                 //节点关系
-                edgeList.add(buildEdge(physiological4,diseaseNode,0,experimentalResultPo));
-                edgeList.add(buildEdge(microorganism4,physiological4,0,experimentalResultPo));
-                edgeList.add(buildEdge(iNode3,microorganism4,0,experimentalResultPo));
+                edgeList.add(buildEdge(physiological4,diseaseNode,1,experimentalResultPo));
+                edgeList.add(buildEdge(microorganism4,physiological4,6,experimentalResultPo));
+                edgeList.add(buildEdge(iNode3,microorganism4,2,experimentalResultPo));
                 break;
 			default:
 				break;
@@ -235,6 +229,8 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 		edgePo.setShapeId(experimentalResultPo.getDiseaseId());
 		//默认统一设置为曲线
 		edgePo.setEdgeType(EdgeType.Curve);
+		//设置唯一标识符
+		edgePo.setUuid(UIDGenerator.getUUID());
 		/*
 		 * 根据节点类型设置相关属性
 		 */
@@ -244,31 +240,37 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 1:干预物_疾病
 				 * 	疾病 干预物	微生物  （菌种变化、 干预物对疾病的作用  定位节点关系）
 				 */
+				edgePo.setEdgeType(EdgeType.Curve);
 				break;
 			case 2:
 				/*
 				 * 2:干预物_微生物
 				 */
+				edgePo.setEdgeType(EdgeType.Dashed);
 				break;
 			case 3:
 				/*
 				 * 3:干预物_生理过程
 				 */
+				edgePo.setEdgeType(EdgeType.Dotted);
 				break;
 			case 4:
 				/*
 				 * 4:微生物_疾病
 				 */
+				edgePo.setEdgeType(EdgeType.Line);
 				break;
 			case 5:
 				/*
 				 * 5：生理过程_疾病
 				 */
+				edgePo.setEdgeType(EdgeType.Solid);
 				break;
 			case 6:
 				/*
 				 * 6：微生物_生理过程
 				 */
+				edgePo.setEdgeType(EdgeType.Line);
 				break;
 			default:
 				break;

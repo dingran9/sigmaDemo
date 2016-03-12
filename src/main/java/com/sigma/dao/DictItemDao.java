@@ -18,8 +18,8 @@ public interface DictItemDao  extends CrudRepository<DictItemPo, Long> {
     @Query("select d from  DictItemPo  d where d.dictPo.id=?1")
     List<DictItemPo> findByDictId(Long id);
 
-    @Query("select d from DictItemPo d where d.dictPo.id=?1 and d.value=?2")
-    DictItemPo findByDictIdAndItemValue(Long dictId,String value);
+    @Query("select d from DictItemPo d,DictPo di where di.code=?1 and d.dictPo.id=di.id and d.name=?2")
+    DictItemPo findByDictCodeAndItemName(String dictCode,String name);
 
 
     @Query("select d from DictItemPo d,DictPo di where di.code=?1 and d.dictPo.id=di.id and d.value=?2")

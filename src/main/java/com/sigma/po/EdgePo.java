@@ -53,6 +53,11 @@ public class EdgePo {
      */
     @Column(name="edge_size")
     private ArrowType edgeSize;
+    /**
+     * 节点唯一标识符
+     */
+    @Column(name="uuid")
+    private String uuid;
 
     /**
      * 线条类型：曲线、直线
@@ -70,7 +75,27 @@ public class EdgePo {
         /**
          * 直线
          */
-        Line(1);
+        Line(1),
+        /**
+         * 
+         */
+        Dashed(2),
+        /**
+         * 
+         */
+        Dotted(3),
+        /**
+         * 
+         */
+        Tapered(4),
+        /**
+         * 
+         */
+        Parallel(5),
+        /**
+         * 
+         */
+        Solid(6);
 
         private final int value;
 
@@ -184,5 +209,13 @@ public class EdgePo {
 
 	public void setEdgeSize(ArrowType edgeSize) {
 		this.edgeSize = edgeSize;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 }

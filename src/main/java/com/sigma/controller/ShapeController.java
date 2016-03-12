@@ -7,6 +7,7 @@ import com.sigma.po.EdgePo;
 import com.sigma.po.ExperimentalResultPo;
 import com.sigma.po.NodePo;
 import com.sigma.po.ShapePo;
+import com.sigma.service.DiseaseService;
 import com.sigma.service.EdgeService;
 import com.sigma.service.ExperimentalResultService;
 import com.sigma.service.NodeService;
@@ -44,6 +45,8 @@ public class ShapeController {
     private NodeService nodeService;
     @Inject
     private EdgeService edgeService;
+    @Inject
+    private DiseaseService diseaseService;
     @Inject
     private ShapeService shapeService;
     /**
@@ -124,7 +127,8 @@ public class ShapeController {
             	ExperimentalResultPo experimentalResultPo=exps.get(i);
             	//生成疾病节点
             	if (i==0) {
-            		diseaseNode=new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo));
+            		diseaseNode=nodeService.create(diseaseService.findOne(shapeIdLong));
+            		//new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo));
             		nodeList.add(diseaseNode);
 				}
             	//根据单条实验记录生成节点以及节点关系

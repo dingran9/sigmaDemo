@@ -136,6 +136,14 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验检索</span></a>
+                <ul>
+                    <li>
+                        <a id="expSearch" href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项信息维护</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
     </nav>
@@ -165,8 +173,8 @@
 
     <!-- MAIN CONTENT -->
     <div id="content" style="margin-left: 11px;" class="realContent">
-    <span><img alt="搜索" src="static/images/search/search.jpg" onclick="searchDisease()"></span>
-<!--     <span> <img src='static/images/testee.png'></span> -->
+<!--     <span><img alt="搜索" src="static/images/search/search.jpg" onclick="searchDisease()"></span> -->
+    <span> <img src='static/images/testee.png'></span>
     </div> 
     <!-- END MAIN CONTENT -->
 
@@ -394,28 +402,6 @@
         $("#defalutPage").click();
     });
     
-    //测试搜索
-    function searchDisease(){
-    	var _keyWord="肠易激综合征(IBS";
-        doPost("/action/disease/search",{keyWord:_keyWord},function(objs){
-            if(objs.httpCode === "200"){
-                showMsg("操作成功",objs.datas[0].name,3000);
-                //检索节点等
-                doPost("/action/shape/search",{shapeId:objs.datas[0].id},function(objs){
-                    if(objs.httpCode === "200"){
-                        showMsg("操作成功",objs.datas[0].name,3000);
-                        
-                    }else{
-                        console.log(objs);
-                        showErrorMsg("操作失败",rpLRespond(objs.message));
-                    }
-                });
-            }else{
-                console.log(objs);
-                showErrorMsg("操作失败",rpLRespond(objs.message));
-            }
-        });
-    }
 </script>
 
 </body>

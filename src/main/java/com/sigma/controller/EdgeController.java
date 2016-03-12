@@ -113,9 +113,9 @@ public class EdgeController {
     private  EdgePo.EdgeType getEdgeType(String type){
         switch (type){
             case "Line":
-                return EdgePo.EdgeType.Line;
+                return EdgePo.EdgeType.line;
             default:
-                return EdgePo.EdgeType.Curve;
+                return EdgePo.EdgeType.curve;
         }
     }
     private  EdgePo.ArrowType getEdgeArrowType(String type){

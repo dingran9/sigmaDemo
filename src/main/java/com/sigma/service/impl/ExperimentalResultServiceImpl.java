@@ -228,7 +228,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 		//设置图形Id
 		edgePo.setShapeId(experimentalResultPo.getDiseaseId());
 		//默认统一设置为曲线
-		edgePo.setEdgeType(EdgeType.Curve);
+		edgePo.setEdgeType(EdgeType.curve);
 		//设置唯一标识符
 		edgePo.setUuid(UIDGenerator.getUUID());
 		/*
@@ -240,37 +240,37 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 1:干预物_疾病
 				 * 	疾病 干预物	微生物  （菌种变化、 干预物对疾病的作用  定位节点关系）
 				 */
-				edgePo.setEdgeType(EdgeType.Curve);
+				edgePo.setEdgeType(EdgeType.curve);
 				break;
 			case 2:
 				/*
 				 * 2:干预物_微生物
 				 */
-				edgePo.setEdgeType(EdgeType.Dashed);
+				edgePo.setEdgeType(EdgeType.dashed);
 				break;
 			case 3:
 				/*
 				 * 3:干预物_生理过程
 				 */
-				edgePo.setEdgeType(EdgeType.Dotted);
+				edgePo.setEdgeType(EdgeType.dotted);
 				break;
 			case 4:
 				/*
 				 * 4:微生物_疾病
 				 */
-				edgePo.setEdgeType(EdgeType.Line);
+				edgePo.setEdgeType(EdgeType.line);
 				break;
 			case 5:
 				/*
 				 * 5：生理过程_疾病
 				 */
-				edgePo.setEdgeType(EdgeType.Solid);
+				edgePo.setEdgeType(EdgeType.solid);
 				break;
 			case 6:
 				/*
 				 * 6：微生物_生理过程
 				 */
-				edgePo.setEdgeType(EdgeType.Line);
+				edgePo.setEdgeType(EdgeType.line);
 				break;
 			default:
 				break;

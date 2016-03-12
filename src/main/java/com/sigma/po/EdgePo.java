@@ -71,31 +71,31 @@ public class EdgePo {
     	/**
     	 * 曲线
     	 */
-        Curve(0),
+        curve(0),
         /**
          * 直线
          */
-        Line(1),
+        line(1),
         /**
          * 
          */
-        Dashed(2),
+        dashed(2),
         /**
          * 
          */
-        Dotted(3),
+        dotted(3),
         /**
          * 
          */
-        Tapered(4),
+        tapered(4),
         /**
          * 
          */
-        Parallel(5),
+        parallel(5),
         /**
          * 
          */
-        Solid(6);
+        solid(6);
 
         private final int value;
 

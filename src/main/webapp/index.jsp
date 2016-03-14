@@ -140,7 +140,7 @@
                 <a href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验检索</span></a>
                 <ul>
                     <li>
-                        <a id="expSearch" href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项信息维护</span></a>
+                        <a id="expSearch" href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验检索</span></a>
                     </li>
                 </ul>
             </li>

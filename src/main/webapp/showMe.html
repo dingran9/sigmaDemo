@@ -144,6 +144,9 @@ function exploadDataTableScripts() {
         loadScript("./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/sigma.renderers.customEdgeShapes.js?version=4.2.6.2", dt_42);
     }
     function dt_42() {
+        loadScript("./sigma.js-1.0.3/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js?version=4.2.6.2", dt_43);
+    }
+    function dt_43() {
         loadScript("biology/experimental.js?version=4.2.6.2", showMeInit);
     }
 }
@@ -183,11 +186,12 @@ function showMeInit(){
 				    // supported renderers
 				    //type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
 				    type: data.edgePos[i].edgeType,
-				    arrowType:"target",
+// 				    type: 'curvedArrow',
+				    curvedArrow:'target',
 				    size: Math.random()
 				  });
 				}
-
+// 				sigma.renderers.def = sigma.renderers.canvas
 				s = new sigma({
 				  graph: g,
 				  renderer: {
@@ -205,6 +209,8 @@ function showMeInit(){
 				  }
 				});
 				CustomEdgeShapes.init(s);
+				
+				sigma.plugins.dragNodes(s, s.renderers[0]);
 				s.refresh();
 		}
 		
@@ -225,7 +231,7 @@ function showMeInit(){
 	                });
 	            }else{
 	                console.log(objs);
-	                showErrorMsg("操作失败",rpLRespond(objs.message));
+// 	                showErrorMsg("操作失败",rpLRespond(objs.message));
 	            }
 	        });
 	    }
@@ -235,7 +241,7 @@ function showMeInit(){
 //	 			initGraph(objs.data)
 //	         });
 //	 		initGraph(data);
-		debugger;
+// 		debugger;
 		searchDisease();
 		});
 		
@@ -253,4 +259,4 @@ function showMeInit(){
 	position: absolute;
 }
 </style>
-<div id="graph-container"></div>
+<div class="tab-content" id="graph-container"></div>

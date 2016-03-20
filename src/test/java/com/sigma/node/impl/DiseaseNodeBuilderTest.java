@@ -1,29 +1,22 @@
 package com.sigma.node.impl;
 
-import javax.inject.Inject;
-
-import com.google.gson.Gson;
-import com.sigma.BaseTest;
-import com.sigma.service.DiseaseService;
-import com.sigma.service.ExperimentalResultService;
-import com.sigma.service.NodeService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.sigma.node.NodeBuilder;
-import com.sigma.node.NodeDirector;
-import com.sigma.po.ExperimentalResultPo;
-import com.sigma.po.NodePo;
-
 import java.util.List;
 import java.util.Map;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations={"classpath:/conf/spring-comm-conf.xml","classpath:/conf/spring-comm-dao.xml"})
+import javax.inject.Inject;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import com.sigma.BaseTest;
+import com.sigma.po.ExperimentalResultPo;
+import com.sigma.po.NodePo;
+import com.sigma.service.DiseaseService;
+import com.sigma.service.ExperimentalResultService;
+import com.sigma.service.NodeService;
+
 public class DiseaseNodeBuilderTest extends BaseTest{
     private final Logger logger = LoggerFactory.getLogger(DiseaseNodeBuilderTest.class);
 

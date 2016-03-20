@@ -572,3 +572,88 @@ function caculateDate(fromDate, toDate){
     return {year:years,month:months,day:days}
 
 }
+
+function initGraph(data){
+	//生成图形方法
+	var g = {
+		      nodes: [],
+		      edges: []
+		    },
+		    colors = [
+		                '#617db4',
+		                '#668f3c',
+		                '#c6583e',
+		                '#b956af'
+		              ],
+		    s;
+	for (i = 0; i < data.nodePos.length; i++) {
+		  g.nodes.push({
+		    id: data.nodePos[i].uuid+"",
+		    label: data.nodePos[i].label,
+		    x:data.nodePos[i].positionX,
+		    y: data.nodePos[i].positionY,
+		    size: data.nodePos[i].size,
+		    color: data.nodePos[i].color
+		  });
+		}
+
+		for (i = 0; i < data.edgePos.length; i++) {
+		  g.edges.push({
+		    id: data.edgePos[i].uuid+"",
+		    source: data.edgePos[i].source.uuid+"",
+		    target: data.edgePos[i].target.uuid+"",
+		    // note the EdgeShapeLibrary.enumerate() returns the names of all
+		    // supported renderers
+		    //type: EdgeShapeLibrary.enumerate().map(function(s){return s.name;})[Math.round(Math.random()*4)],
+		    type: data.edgePos[i].edgeType,
+//			    type: 'curvedArrow',
+		    curvedArrow:'target',
+		    size: Math.random()
+		  });
+		}
+//			sigma.renderers.def = sigma.renderers.canvas
+		s = new sigma({
+		  graph: g,
+		  renderer: {
+		    // IMPORTANT:
+		    // This works only with the canvas renderer, so the
+		    // renderer type set as "canvas" is necessary here.
+		    container: document.getElementById('graph-container'),
+		    type: 'canvas'
+		  },
+		  settings: {
+		    minNodeSize: 1,
+		    maxNodeSize: 10,
+		    minEdgeSize: 0.1,
+		    maxEdgeSize: 2
+		  }
+		});
+		CustomEdgeShapes.init(s);
+		
+		sigma.plugins.dragNodes(s, s.renderers[0]);
+		s.refresh();
+}
+
+//测试搜索
+function searchDisease(){
+	var _keyWord=$("#keyWord").val();
+    doPost("/action/disease/search",{keyWord:_keyWord},function(objs){
+        if(objs.httpCode === "200"){
+//             showMsg("操作成功",objs.datas[0].name,3000);
+            //检索节点等
+            doPost("/action/shape/search",{shapeId:objs.datas[0].id},function(objs){
+                if(objs.httpCode === "200"){
+                	//画板初始化
+                	$("#graph-container").html("");
+                	initGraph(objs.data);
+                }else{
+                    console.log(objs);
+//                     showErrorMsg("操作失败",rpLRespond(objs.message));
+                }
+            });
+        }else{
+            console.log(objs);
+//             showErrorMsg("操作失败",rpLRespond(objs.message));
+        }
+    });
+}

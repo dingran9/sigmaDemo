@@ -202,27 +202,35 @@ public class ExperimentalResultController {
                     experimentalResultPo.setDiseaseId(diseasePo.getId());
                 }
             }
+            //干预物
             if(StringUtils.isNotBlank(intervention)){
                 experimentalResultPo.setIntervention(intervention);
             }
+            //干预物影响
             if(StringUtils.isNotBlank(interventionEffect)){
                 experimentalResultPo.setInterventionEffect(interventionEffect);
             }
+            //微生物
             if(StringUtils.isNotBlank(microorganism)){
                 experimentalResultPo.setMicroorganism(microorganism);
             }
+            //菌种变化
             if(StringUtils.isNotBlank(strainVariation)){
                 experimentalResultPo.setStrainVariation(strainVariation);
             }
+            //生理过程
             if(StringUtils.isNotBlank(physiologicalProcess)){
                 experimentalResultPo.setPhysiologicalProcess(physiologicalProcess);
             }
+            //生理过程变化
             if(StringUtils.isNotBlank(physiologicalProcessChange)){
                 experimentalResultPo.setPhysiologicalProcessChange(physiologicalProcessChange);
             }
+            //实验类型
             if(null!=experimentType){
                 experimentalResultPo.setExperimentType(experimentType);
             }
+            //宿主
             if(StringUtils.isNotBlank(hostName)){
                 experimentalResultPo.setHostName(hostName);
             }
@@ -230,6 +238,7 @@ public class ExperimentalResultController {
             if(StringUtils.isNotBlank(experimentalNum)){
             	experimentalResultPo.setExperimentalNum(experimentalNum);
             }
+            //实验模型：人类/动物
             if(StringUtils.isNotBlank(animalModel)){
                 experimentalResultPo.setAnimalModel(animalModel);
             }

@@ -108,6 +108,8 @@ public class DocumentController {
     public ResponseItem add(
             @RequestParam(value = "attachIds") String attachIds,
             @RequestParam(value = "name") String name,
+            //文献来源：杂志名称
+            @RequestParam(value = "magazine") String magazine,
             @RequestParam(value = "firstAuthor") String firstAuthor ,
             @RequestParam(value = "correspondentAuthor") String correspondentAuthor ,
             @RequestParam(value = "publishDate") String publishDate ,
@@ -124,6 +126,8 @@ public class DocumentController {
             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
             documentPo.setPublishDate(sdf.parse(publishDate));
             documentPo.setEntryType(entryType);
+            //杂志
+            documentPo.setMagazine(magazine);
             documentPo.setImpactFactors(impactFactors);
             documentPo.setUuid(UIDGenerator.getUUID());
             //附件更新处理：需要添加事务处理
@@ -160,6 +164,8 @@ public class DocumentController {
     public ResponseItem update(
             @RequestParam(value = "documentId") String documentId,
             @RequestParam(value = "name",required = false) String name,
+            //杂志
+            @RequestParam(value = "magazine",required = false) String magazine,
             //附件id
             @RequestParam(value = "attachIds",required = false) String attachIds,
             @RequestParam(value = "firstAuthor",required = false) String firstAuthor ,
@@ -174,11 +180,17 @@ public class DocumentController {
             if(documentPo== null){
                 return ResponseItem.responseWithName(ri, ResponseCode.RESOURCE_NOTFOUND.toString(), "document");
             }
+            //文章名字
             if(StringUtils.isNotBlank(name)){
                 documentPo.setName(name);
             }
+            //第一作者
             if(StringUtils.isNotBlank(firstAuthor)){
                 documentPo.setFirstAuthor(firstAuthor);
+            }
+            //杂志
+            if(StringUtils.isNotBlank(magazine)){
+            	documentPo.setFirstAuthor(magazine);
             }
             if(StringUtils.isNotBlank(correspondentAuthor)){
                 documentPo.setCorrespondentAuthor(correspondentAuthor);

@@ -23,6 +23,9 @@ public class DocumentPo {
     private String firstAuthor;
     @Column(name = "correspondent_author")
     private String correspondentAuthor;
+    //文献来源：杂志名称
+    @Column(name = "magazine")
+    private String magazine;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "publish_date")
     private Date publishDate;
@@ -117,5 +120,13 @@ public class DocumentPo {
 
 	public void setAttachPos(List<AttachPo> attachPos) {
 		this.attachPos = attachPos;
+	}
+
+	public String getMagazine() {
+		return magazine;
+	}
+
+	public void setMagazine(String magazine) {
+		this.magazine = magazine;
 	}
 }

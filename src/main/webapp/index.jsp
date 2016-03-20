@@ -129,7 +129,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#jsp/dict/dictmanager.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项管理</span></a>
+                <a href="#"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项管理</span></a>
                 <ul>
                     <li>
                         <a id="dictInfoManager" href="#jsp/dict/dictmanager.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >字典项信息维护</span></a>
@@ -137,7 +137,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验检索</span></a>
+                <a href="#"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验检索</span></a>
                 <ul>
                     <li>
                         <a id="expSearch" href="#showMe.html"><i class="fa fa-lg fa-fw fa-clipboard"></i> <span class="menu-item-parent" >实验检索</span></a>

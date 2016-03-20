@@ -1,12 +1,58 @@
-<div class="row" id="regionList_shape_div">
-    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-12">
-        <div id='regionList_shape'  class="row bs-callout bs-callout-info">
-        </div>
-        <input id = userType_shape type="hidden">
+<div class="tab-content"  id="showme_widget-grid">
+    <div class="tab-pane fade active in" id="pro_showme_href" style="padding: 5px;">
+        <!-- 按钮 -->
+        <!-- 按钮 -->
+        <!-- widget grid -->
+        <section id="showme_widget-grid1" style="margin-bottom:-30px;">
+
+            <!-- row -->
+            <div class="row">
+
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2-showme" data-widget-editbutton="false">
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <div class="widget-body no-padding">
+                                <div class="widget-body-toolbar">
+                                    <div class="dataTables_filter" style="margin-top:40px;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                            </span>
+                                            <input class="form-control" type="text" placeholder="输入疾病" aria-controls="dictmanager-table">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div id="shape_edit_modal" class="row" style="">-->
+                                <div class="tab-content col-xs-12 col-sm-12 col-md-12 col-lg-12 row" id="graph-container"></div>
+                                <!--</div>-->
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- WIDGET END -->
+
+            </div>
+
+            <!-- end row -->
+
+            <!-- end row -->
+
+        </section>
     </div>
 </div>
+<!-- end widget grid -->
 
-<ul class="nav nav-tabs bordered" id="shape_tab_ul"></ul>
+
 <script type="text/javascript">
 
 //DO NOT REMOVE : GLOBAL FUNCTIONS!
@@ -16,138 +62,138 @@ pageSetUp();
 exploadDataTableScripts();
 
 function exploadDataTableScripts() {
-    loadScript("../../static/js/plugin/datatables/jquery.dataTables-cust.js?version=4.2.6.2", dt_2);
+    loadScript("/static/js/plugin/datatables/jquery.dataTables-cust.js?version=4.2.6.2", dt_2);
 
     function dt_2() {
-        loadScript("../../static/js/plugin/datatables/ColReorder.min.js?version=4.2.6.2", dt_3);
+        loadScript("/static/js/plugin/datatables/ColReorder.min.js?version=4.2.6.2", dt_3);
     }
 
     function dt_3() {
-        loadScript("../../static/js/plugin/datatables/FixedColumns.min.js?version=4.2.6.2", dt_4);
+        loadScript("/static/js/plugin/datatables/FixedColumns.min.js?version=4.2.6.2", dt_4);
     }
 
     function dt_4() {
-        loadScript("../../static/js/plugin/datatables/ColVis.min.js?version=4.2.6.2", dt_5);
+        loadScript("/static/js/plugin/datatables/ColVis.min.js?version=4.2.6.2", dt_5);
     }
 
     function dt_5() {
-        loadScript("../../static/js/plugin/datatables/ZeroClipboard.js?version=4.2.6.2", dt_6);
+        loadScript("/static/js/plugin/datatables/ZeroClipboard.js?version=4.2.6.2", dt_6);
     }
 
     function dt_6() {
-        loadScript("../../static/js/plugin/datatables/media/js/TableTools.min.js?version=4.2.6.2", dt_7);
+        loadScript("/static/js/plugin/datatables/media/js/TableTools.min.js?version=4.2.6.2", dt_7);
     }
 
     function dt_7() {
-        loadScript("./sigma.js-1.0.3/src/sigma.core.js?version=4.2.6.2", dt_8);
+        loadScript("/sigma.js-1.0.3/src/sigma.core.js?version=4.2.6.2", dt_8);
     }
-    function dt_8() {
-        loadScript("./sigma.js-1.0.3/src/conrad.js?version=4.2.6.2", dt_9);
+   function dt_8() {
+        loadScript("/sigma.js-1.0.3/src/conrad.js?version=4.2.6.2", dt_9);
     }
     function dt_9() {
-        loadScript("./sigma.js-1.0.3/src/utils/sigma.utils.js?version=4.2.6.2", dt_10);
+        loadScript("/sigma.js-1.0.3/src/utils/sigma.utils.js?version=4.2.6.2", dt_10);
     }
     function dt_10() {
-        loadScript("./sigma.js-1.0.3/src/utils/sigma.polyfills.js?version=4.2.6.2", dt_11);
+        loadScript("/sigma.js-1.0.3/src/utils/sigma.polyfills.js?version=4.2.6.2", dt_11);
     }
     function dt_11() {
-        loadScript("./sigma.js-1.0.3/src/sigma.settings.js?version=4.2.6.2", dt_12);
+        loadScript("/sigma.js-1.0.3/src/sigma.settings.js?version=4.2.6.2", dt_12);
     }
     function dt_12() {
-        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.dispatcher.js?version=4.2.6.2", dt_13);
+        loadScript("/sigma.js-1.0.3/src/classes/sigma.classes.dispatcher.js?version=4.2.6.2", dt_13);
     }
     function dt_13() {
-        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.configurable.js?version=4.2.6.2", dt_14);
+        loadScript("/sigma.js-1.0.3/src/classes/sigma.classes.configurable.js?version=4.2.6.2", dt_14);
     }
     function dt_14() {
-        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.graph.js?version=4.2.6.2", dt_15);
+        loadScript("/sigma.js-1.0.3/src/classes/sigma.classes.graph.js?version=4.2.6.2", dt_15);
     }
     function dt_15() {
-        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.camera.js?version=4.2.6.2", dt_16);
+        loadScript("/sigma.js-1.0.3/src/classes/sigma.classes.camera.js?version=4.2.6.2", dt_16);
     }
     function dt_16() {
-        loadScript("./sigma.js-1.0.3/src/classes/sigma.classes.quad.js?version=4.2.6.2", dt_17);
+        loadScript("/sigma.js-1.0.3/src/classes/sigma.classes.quad.js?version=4.2.6.2", dt_17);
     }
     function dt_17() {
-        loadScript("./sigma.js-1.0.3/src/captors/sigma.captors.mouse.js?version=4.2.6.2", dt_18);
+        loadScript("/sigma.js-1.0.3/src/captors/sigma.captors.mouse.js?version=4.2.6.2", dt_18);
     }
     function dt_18() {
-        loadScript("./sigma.js-1.0.3/src/captors/sigma.captors.touch.js?version=4.2.6.2", dt_19);
+        loadScript("/sigma.js-1.0.3/src/captors/sigma.captors.touch.js?version=4.2.6.2", dt_19);
     }
     function dt_19() {
-        loadScript("./sigma.js-1.0.3/src/renderers/sigma.renderers.canvas.js?version=4.2.6.2", dt_20);
+        loadScript("/sigma.js-1.0.3/src/renderers/sigma.renderers.canvas.js?version=4.2.6.2", dt_20);
     }
     function dt_20() {
-        loadScript("./sigma.js-1.0.3/src/renderers/sigma.renderers.webgl.js?version=4.2.6.2", dt_21);
+        loadScript("/sigma.js-1.0.3/src/renderers/sigma.renderers.webgl.js?version=4.2.6.2", dt_21);
     }
     function dt_21() {
-        loadScript("./sigma.js-1.0.3/src/renderers/sigma.renderers.def.js?version=4.2.6.2", dt_22);
+        loadScript("/sigma.js-1.0.3/src/renderers/sigma.renderers.def.js?version=4.2.6.2", dt_22);
     }
     function dt_22() {
-        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.def.js?version=4.2.6.2", dt_23);
+        loadScript("/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.def.js?version=4.2.6.2", dt_23);
     }
     function dt_23() {
-        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.fast.js?version=4.2.6.2", dt_24);
+        loadScript("/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.fast.js?version=4.2.6.2", dt_24);
     }
     function dt_24() {
-        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.def.js?version=4.2.6.2", dt_25);
+        loadScript("/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.def.js?version=4.2.6.2", dt_25);
     }
     function dt_25() {
-        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.fast.js?version=4.2.6.2", dt_26);
+        loadScript("/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.fast.js?version=4.2.6.2", dt_26);
     }
     function dt_26() {
-        loadScript("./sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.arrow.js?version=4.2.6.2", dt_27);
+        loadScript("/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.arrow.js?version=4.2.6.2", dt_27);
     }
     function dt_27() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.labels.def.js?version=4.2.6.2", dt_28);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.labels.def.js?version=4.2.6.2", dt_28);
     }
     function dt_28() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.hovers.def.js?version=4.2.6.2", dt_29);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.hovers.def.js?version=4.2.6.2", dt_29);
     }
     function dt_29() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.nodes.def.js?version=4.2.6.2", dt_30);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.nodes.def.js?version=4.2.6.2", dt_30);
     }
     function dt_30() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.def.js?version=4.2.6.2", dt_31);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.def.js?version=4.2.6.2", dt_31);
     }
     function dt_31() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curve.js?version=4.2.6.2", dt_32);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curve.js?version=4.2.6.2", dt_32);
     }
     function dt_32() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.arrow.js?version=4.2.6.2", dt_33);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.arrow.js?version=4.2.6.2", dt_33);
     }
     function dt_33() {
-        loadScript("./sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js?version=4.2.6.2", dt_34);
+        loadScript("/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js?version=4.2.6.2", dt_34);
     }
     function dt_34() {
-        loadScript("./sigma.js-1.0.3/src/middlewares/sigma.middlewares.rescale.js?version=4.2.6.2", dt_35);
+        loadScript("/sigma.js-1.0.3/src/middlewares/sigma.middlewares.rescale.js?version=4.2.6.2", dt_35);
     }
     function dt_35() {
-        loadScript("./sigma.js-1.0.3/src/middlewares/sigma.middlewares.copy.js?version=4.2.6.2", dt_36);
+        loadScript("/sigma.js-1.0.3/src/middlewares/sigma.middlewares.copy.js?version=4.2.6.2", dt_36);
     }
     function dt_36() {
-        loadScript("./sigma.js-1.0.3/src/misc/sigma.misc.animation.js?version=4.2.6.2", dt_37);
+        loadScript("/sigma.js-1.0.3/src/misc/sigma.misc.animation.js?version=4.2.6.2", dt_37);
     }
     function dt_37() {
-        loadScript("./sigma.js-1.0.3/src/misc/sigma.misc.bindEvents.js?version=4.2.6.2", dt_38);
+        loadScript("/sigma.js-1.0.3/src/misc/sigma.misc.bindEvents.js?version=4.2.6.2", dt_38);
     }
     function dt_38() {
-        loadScript("./sigma.js-1.0.3/src/misc/sigma.misc.drawHovers.js?version=4.2.6.2", dt_39);
+        loadScript("/sigma.js-1.0.3/src/misc/sigma.misc.drawHovers.js?version=4.2.6.2", dt_40);
     }
-    function dt_39() {
-        loadScript("./static/js/libs/jquery-2.0.2.min.js?version=4.2.6.2", dt_40);
-    }
+ /*   function dt_39() {
+        loadScript("/static/js/libs/jquery-2.0.2.min.js?version=4.2.6.2", dt_40);
+    }*/
     function dt_40() {
-        loadScript("./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/shape-library.js?version=4.2.6.2", dt_41);
+        loadScript("/sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/shape-library.js?version=4.2.6.2", dt_41);
     }
     function dt_41() {
-        loadScript("./sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/sigma.renderers.customEdgeShapes.js?version=4.2.6.2", dt_42);
+        loadScript("/sigma.js-1.0.3/plugins/sigma.renderers.customEdgeShapes/sigma.renderers.customEdgeShapes.js?version=4.2.6.2", dt_42);
     }
     function dt_42() {
-        loadScript("./sigma.js-1.0.3/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js?version=4.2.6.2", dt_43);
+        loadScript("/sigma.js-1.0.3/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js?version=4.2.6.2", dt_43);
     }
     function dt_43() {
-        loadScript("biology/experimental.js?version=4.2.6.2", showMeInit);
+        loadScript("/biology/experimental.js?version=4.2.6.2", showMeInit);
     }
 }
 
@@ -204,7 +250,7 @@ function showMeInit(){
 				    minNodeSize: 1,
 				    maxNodeSize: 10,
 				    minEdgeSize: 0.1,
-				    maxEdgeSize: 2,
+				    maxEdgeSize: 2
 				  }
 				});
 				CustomEdgeShapes.init(s);
@@ -247,17 +293,4 @@ function showMeInit(){
 }
 
 </script>
-<style>
-#graph-container {
-	margin-top:15px;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height:400px;
-	position: absolute;
-}
-</style>
-<div id="shape_edit_modal" class="" style="">
-	<div class="tab-content col-lg-10 row" id="graph-container"></div>
-</div>
+

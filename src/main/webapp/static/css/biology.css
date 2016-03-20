@@ -382,3 +382,14 @@ footer .copyright{
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+
+
+#graph-container {
+    /*margin-top:15px;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    height:400px;
+    /*position: absolute;*/
+}

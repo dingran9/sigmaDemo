@@ -31,7 +31,7 @@ function loaddocumentTable(id,catId){
             "bDestroy":true,
             "bRetrieve":true,
             "sPaginationType" : "bootstrap_full",
-            "aaSorting": [[ 7, "desc" ]],
+            "aaSorting": [[ 8, "desc" ]],
             "sRowSelect": "single",
             "oLanguage": {
                 "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
@@ -69,6 +69,8 @@ function rundocumentDataTables(callback,id,catId){
             var data=objs.data,
                 str = '';
             for( var i=0;i<data.length;i++){
+
+                var magazine=convertStr(data[i].magazine)=="--"?"":data[i].magazine;
                 str += "<tr id='tr_document_" + data[i].uuid + "'>"+
                     "<td class='check-tr'><label class='checkbox'>"+
                     "<input id='document_" + data[i].uuid + "' type='checkbox' name='cbx_document_list' onclick=\"set_document_Sel(this,'"+data[i].uuid+"')\">"+
@@ -78,7 +80,7 @@ function rundocumentDataTables(callback,id,catId){
                     "<td>"+data[i].correspondentAuthor+"</td>"+
                     "<td>"+ new Date(data[i].publishDate).Format("yyyy-MM-dd")  +"</td>"+
                     "<td>"+data[i].entryType +"</td>"+
-                    "<td>"+data[i].magazine+"</td>"+
+                    "<td>"+magazine+"</td>"+
                     "<td>"+data[i].impactFactors+"</td>"+
                     "<td>"+ new Date(data[i].createDate).Format("yyyy-MM-dd hh:mm:ss")  +"</td>"+
                     "</tr>";

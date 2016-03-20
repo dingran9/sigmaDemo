@@ -13,13 +13,14 @@ function loaddocumentTable(id,catId){
     $("#document-thead").empty().append(
             "<tr>" +
             "<th width='5%'></th>"+
-            "<th class='table-thead' width='20%'>名称</th>"+
+            "<th class='table-thead' width='15%'>名称</th>"+
             "<th class='table-thead' width='15%'>第一作者</th>"+
             "<th class='table-thead' width='15%'>通讯作者</th>"+
             "<th class='table-thead' width='10%'>发布时间</th>"+
             "<th class='table-thead' width='10%'>词条类型</th>"+
-            "<th class='table-thead' width='12%'>文档发布因子</th>"+
-            "<th class='table-thead' width='18%'>创建时间</th>"+
+            "<th class='table-thead' width='10%'>文档发布因子</th>"+
+            "<th class='table-thead' width='10%'>杂志</th>"+
+            "<th class='table-thead' width='10%'>创建时间</th>"+
             "</tr>");
 
     var  loadStr="<tr class='odd'><td valign='top' colspan='10' style='border-width:0;'><span><h3><i class='fa fa-cog fa-spin'></i>正在努力加载...</h3></span></td></tr>"
@@ -77,6 +78,7 @@ function rundocumentDataTables(callback,id,catId){
                     "<td>"+data[i].correspondentAuthor+"</td>"+
                     "<td>"+ new Date(data[i].publishDate).Format("yyyy-MM-dd")  +"</td>"+
                     "<td>"+data[i].entryType +"</td>"+
+                    "<td>"+data[i].magazine+"</td>"+
                     "<td>"+data[i].impactFactors+"</td>"+
                     "<td>"+ new Date(data[i].createDate).Format("yyyy-MM-dd hh:mm:ss")  +"</td>"+
                     "</tr>";
@@ -215,6 +217,7 @@ function addDocument(){
 
     var type= $("#document_type option:selected").val();
     var name = $.trim($("#document_name").val());
+    var magazine = $.trim($("#document_magazine").val());
     var first_author = $.trim($("#document_first_author").val());
     var correspondent_author = $.trim($("#document_correspondent_author").val());
     var impact_factors = $.trim($("#document_impact_factors").val());
@@ -230,7 +233,7 @@ function addDocument(){
         return;
     }
 */
-    var data = {attachIds:attachIds,name:name,firstAuthor: first_author,correspondentAuthor:correspondent_author,publishDate:offline_date ,entryType: type,impactFactors: impact_factors};
+    var data = {attachIds:attachIds,name:name,firstAuthor: first_author,correspondentAuthor:correspondent_author,publishDate:offline_date ,entryType: type,impactFactors: impact_factors,magazine:magazine};
     doPost("/action/document/add",data,function(objs){
         if(objs.httpCode=="200"){
             showMsg("温馨提示","添加成功。");

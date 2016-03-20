@@ -78,6 +78,10 @@
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
 
                 <tr>
+                    <td style="text-align:right;">实验编号：<span class="ezcloud-red" >*</span></td>
+                    <td> <input type="text" id="exp_add_no" name="description" class="form-control" placeholder=""></td>
+                </tr>
+                <tr>
                     <td style="text-align:right;">实验类型<span class="ezcloud-red" >*</span></td>
                     <td>
                         <div  class="">
@@ -240,6 +244,11 @@
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
+
+                <tr>
+                    <td style="text-align:right;">实验编号：<span class="ezcloud-red" >*</span></td>
+                    <td> <input type="text" id="exp_edit_no" name="description" class="form-control" placeholder=""></td>
+                </tr>
                 <tr>
                     <td style="text-align:right;">实验类型<span class="ezcloud-red" >*</span></td>
                     <td>  <div  class=""><select class="form-control" id="exp_edit_type" name="exp_edit_type" onchange="changeR()">
@@ -250,7 +259,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:right;">实验结果类型<span class="ezcloud-red" >*</span></td>
-                    <td> <div  class=""> <select class="form-control" id="exp_edit_result_type" name="exp_edit_type" onchange="changeResultType('exp_edit_modal','exp_edit_result_type');">
+                    <td> <div  class=""> <select class="form-control" id="exp_edit_result_type" name="exp_edit_result_type" onchange="changeResultType('exp_edit_modal','exp_edit_result_type');">
                         <option value="0">干预物直接对疾病产生影响 </option>
                         <option value="1">干预物通过对微生物的影响对疾病产生影响 </option>
                         <option value="2">干预物通过对生理过程的影响对疾病产生影响 </option>
@@ -530,6 +539,8 @@ function expermentDetail(callback){
         if(objs.httpCode=="200"){
 //                     $("#exp-billUtilName-e").html(objs.data.productCat.billUnitName);
             $("#exp_edit_modal").show().siblings().hide();
+            //实验编号
+            $("#exp_edit_no").val(objs.data.experimentalNum);
             //实验结果类型
             $("#exp_edit_type").val(objs.data.experimentType);
             //疾病id
@@ -669,6 +680,8 @@ function experimentalInit(){
     //编辑
     $('#exp_editBtn').unbind("click");
     $("#exp_editBtn").on("click",function(){
+        //实验编号
+        var txpNo=$.trim($("#exp_edit_no").val());
     	//实验结果类型
         var _expTypeEdit = $.trim($("#exp_edit_type").val());
         //疾病id
@@ -700,6 +713,7 @@ function experimentalInit(){
         var _documentId = $.trim($("#edit_document_insList").val());
         var data = {
         		experimentalId:sel_exp_id,
+                experimentalNum:txpNo,
         		type:_expResultTypeEdit,//实验结果类型
         		diseaseId: _diseaseNameEdit,//疾病id
         		intervention:_interventionEdit,//干预物

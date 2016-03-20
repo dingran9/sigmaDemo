@@ -78,9 +78,9 @@ function runexpDataTables(callback,id,catId){
                     "<input id='exp_" + data[i].uuid + "' type='checkbox' name='cbx_exp_list' onclick=\"set_exp_Sel(this,'"+data[i].uuid+"')\">"+
                     "<i></i></label></td>"+
                     "<td>实验名称"+i+"</td>"+
-                    "<td>"+data[i].experimentType+"</td>"+
+                    "<td>"+rpL("expType_"+data[i].experimentType)+"</td>"+
                     "<td>"+data[i].diseasePo.name +"</td>"+
-                    "<td>"+ data[i].type +"</td>"+
+                    "<td>"+ rpL("expRType_"+data[i].type) +"</td>"+
                     "<td>"+new Date(data[i].createDate).Format("yyyy-MM-dd hh:mm:ss")+"</td>"+
                     "</tr>";
             }
@@ -215,6 +215,7 @@ function btnConfirmState(){
 }
 
 function addExperimentalResult(){
+    var _expNo= $.trim($("#exp_add_no").val());
 	//实验结果类型
     var _expType = $.trim($("#exp_type").val());
     //疾病id
@@ -245,6 +246,7 @@ function addExperimentalResult(){
     var _documentId = $.trim($("#document_insList").val());
 
     var data = {
+            experimentalNum:_expNo,
     		type:_expResultType,//实验结果类型
     		diseaseId: _diseaseName,//疾病id
     		interventionNote: _interventionNote,//干预物注释

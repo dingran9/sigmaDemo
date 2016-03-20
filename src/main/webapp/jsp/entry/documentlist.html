@@ -65,21 +65,21 @@
     </div>
 </div>
 <!-- end widget grid -->
-<!--新增词条-->
+<!--新增文献-->
 <div id="document_add_modal" class="text-center" style="display:none;">
     <form id="document-form">
         <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
             <div class="tab-pane active" id="role_create">
                 <div class="order-title">
-                    <h1>新增词条</h1>
+                    <h1>新增文献</h1>
                     <div class="order-line"></div>
-                    <span><a id="document_add_cancelB" class="pull-right cancelBtn" href="#jsp/entry/documentlist.html" style="float: right;">返回词条列表</a></span>
+                    <span><a id="document_add_cancelB" class="pull-right cancelBtn" href="#jsp/entry/documentlist.html" style="float: right;">返回文献列表</a></span>
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
 
                 <tr>
-                    <td style="text-align:right;">词条类型<span class="biology-red" >*</span></td>
+                    <td style="text-align:right;">文献类型<span class="biology-red" >*</span></td>
                     <td>
                         <select class="form-control" id="document_type" name="document_type">
                             <option value="a">A</option>
@@ -113,6 +113,10 @@
                         </section>
                     </td>
                 </tr>
+                <tr>
+                    <td style="text-align:right;">杂志：</td>
+                    <td><input type="text" id="document_magazine" maxlength="255" name="document_first_author" class="form-control" placeholder=""></td>
+                </tr>
                 <tr class="basic">
                     <td style="text-align:right;">附件</td>
                     <td style="text-align: left;vertical-align: middle;">
@@ -130,20 +134,20 @@
     </form>
 
 </div>
-<!--编辑词条-->
+<!--编辑文献-->
 <div id="document_edit_modal" class="text-center" style="display:none;">
     <form id="document_edit-form">
         <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
             <div class="tab-pane active" id="document_edit_m_create">
                 <div class="order-title">
-                    <h1>编辑词条</h1>
+                    <h1>编辑文献</h1>
                     <div class="order-line"></div>
-                    <span><a id="document_edit_cancelB" class="pull-right cancelBtn" href="#../../action/biology/documents/document.html" style="float: right;">返回词条列表</a></span>
+                    <span><a id="document_edit_cancelB" class="pull-right cancelBtn" href="#../../action/biology/documents/document.html" style="float: right;">返回文献列表</a></span>
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
                 <tr>
-                    <td style="text-align:right;">词条类型<span class="biology-red" >*</span></td>
+                    <td style="text-align:right;">文献类型<span class="biology-red" >*</span></td>
                     <td>
                         <select class="form-control" id="document_edit_type" name="document_edit_type">
                             <option value="a">A</option>
@@ -176,6 +180,10 @@
                             </label>
                         </section>
                     </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">杂志：</td>
+                    <td><input type="text" id="document_edit_magazine" maxlength="255" name="document_first_author" class="form-control" placeholder=""></td>
                 </tr>
                 <tr class="basic">
                     <td style="text-align:right;">附件</td>
@@ -257,7 +265,7 @@ function documentInit(){
 
     $('#btn_document_delete').unbind("click");
     $('#btn_document_delete').on("click",function(){
-        showConfirm("fa-trash-o", "删除词条", "删除该词条前,请确保该词条未被使用。是否要删除该词条?删除后，不可恢复。", function () {
+        showConfirm("fa-trash-o", "删除文献", "删除该文献前,请确保该文献未被使用。是否要删除该文献?删除后，不可恢复。", function () {
             doPost("/action/document/delete", {documentId: sel_document_id}, function (objs) {
                 if (objs.httpCode == "200") {
                     showMsg("温馨提示", "删除成功。");
@@ -295,6 +303,7 @@ function documentInit(){
             if(objs.httpCode=="200"){
                 $("#document_edit_type").val(objs.data.entryType);
                 $("#document_edit_name").val(objs.data.name);
+                $("#document_edit_magazine").val(objs.data.magazine);
                 $("#document_edit_first_author").val(objs.data.firstAuthor);
                 $("#document_edit_correspondent_author").val(objs.data.correspondentAuthor);
                 $("#document_edit_impact_factors").val(objs.data.impactFactors);
@@ -319,17 +328,19 @@ function documentInit(){
     //编辑
     $('#document_editBtn').unbind("click");
     $("#document_editBtn").on("click",function(){
-        var name = $.trim($("#document_edit_name").val());
-        var type = $("#document_edit_type option:selected").val(),
-                first_author = $.trim($("#document_edit_first_author").val()),
-                correspondent_author = $.trim($("#document_edit_correspondent_author").val()),
-                impact_factors = $.trim($("#document_edit_impact_factors").val()),
-                offline_date = $.trim($("#package_edit_offline_date").val());
+        var name = $.trim($("#document_edit_name").val()),
+            magazine = $.trim($("#document_edit_magazine").val()),
+            type = $("#document_edit_type option:selected").val(),
+            first_author = $.trim($("#document_edit_first_author").val()),
+            correspondent_author = $.trim($("#document_edit_correspondent_author").val()),
+            impact_factors = $.trim($("#document_edit_impact_factors").val()),
+            offline_date = $.trim($("#package_edit_offline_date").val());
         var attachIds=$("#attachIds").val().replace(/\'/g,'');
 
         var data = {attachIds:attachIds,documentId: sel_document_id,name:name,
             firstAuthor: first_author,correspondentAuthor:correspondent_author,
-            publishDate:offline_date ,entryType: type,impactFactors: impact_factors};
+            publishDate:offline_date ,entryType: type,impactFactors: impact_factors,
+            magazine:magazine};
         doPost("/action/document/update",data,function(objs){
             if(objs.httpCode=="200"){
                 showMsg("温馨提示","编辑成功。");

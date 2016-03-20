@@ -26,6 +26,11 @@ public class ExperimentalResultPo {
     @Column(name = "disease_id")
     private Long diseaseId;
     /**
+     * 实验编码
+     */
+    @Column(name = "experimental_num")
+    private String experimentalNum;
+    /**
      * 干预物
      */
     @Column(name="intervention")
@@ -253,4 +258,13 @@ public class ExperimentalResultPo {
 	public void setInterventionNote(String interventionNote) {
 		this.interventionNote = interventionNote;
 	}
+
+	public String getExperimentalNum() {
+		return experimentalNum;
+	}
+
+	public void setExperimentalNum(String experimentalNum) {
+		this.experimentalNum = experimentalNum;
+	}
+	
 }

@@ -104,6 +104,8 @@ public class ExperimentalResultController {
     public ResponseItem add(
             @RequestParam(value = "type") Integer type,
             @RequestParam(value = "diseaseId") String diseaseId,
+            //实验编码
+            @RequestParam(value = "experimentalNum") String experimentalNum,
             @RequestParam(value = "interventionNote") String interventionNote,
             @RequestParam(value = "intervention") String intervention,
             @RequestParam(value = "interventionEffect") String interventionEffect,
@@ -147,6 +149,9 @@ public class ExperimentalResultController {
             experimentalResultPo.setHostName(hostName);
             //模型
             experimentalResultPo.setAnimalModel(animalModel);
+            //实验编码
+            experimentalResultPo.setExperimentalNum(experimentalNum);
+            //设置文献id
             experimentalResultPo.setDocumentId(documentId);
             experimentalResultPo.setSourceElement(sourceElement);
             ri.setData(experimentalResultService.save(experimentalResultPo));
@@ -169,6 +174,8 @@ public class ExperimentalResultController {
             @RequestParam(value = "experimentalId") String experimentalId,
             @RequestParam(value = "type") Integer type,
             @RequestParam(value = "diseaseId") String diseaseId,
+            //实验编码
+            @RequestParam(value = "experimentalNum") String experimentalNum,
             @RequestParam(value = "intervention") String intervention,
             @RequestParam(value = "interventionEffect") String interventionEffect,
             @RequestParam(value = "microorganism") String microorganism  ,
@@ -218,6 +225,10 @@ public class ExperimentalResultController {
             }
             if(StringUtils.isNotBlank(hostName)){
                 experimentalResultPo.setHostName(hostName);
+            }
+            //实验编码
+            if(StringUtils.isNotBlank(experimentalNum)){
+            	experimentalResultPo.setExperimentalNum(experimentalNum);
             }
             if(StringUtils.isNotBlank(animalModel)){
                 experimentalResultPo.setAnimalModel(animalModel);

@@ -86,9 +86,9 @@ function runexpDataTables(callback,id,catId){
                     "<input id='exp_" + data[i].uuid + "' type='checkbox' name='cbx_exp_list' onclick=\"set_exp_Sel(this,'"+data[i].uuid+"')\">"+
                     "<i></i></label></td>"+
                     "<td>"+empNum+"</td>"+
-                    "<td>"+rpL("expType_"+data[i].experimentType)+"</td>"+
+                    "<td>"+rpL("expRType_"+data[i].experimentType)+"</td>"+
                     "<td>"+diseaseName+"</td>"+
-                    "<td>"+ rpL("expRType_"+data[i].type) +"</td>"+
+                    "<td>"+ rpL("expType_"+data[i].type) +"</td>"+
                     "<td>"+new Date(data[i].createDate).Format("yyyy-MM-dd hh:mm:ss")+"</td>"+
                     "</tr>";
             }

@@ -153,7 +153,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="ex_type_b ex_type_d  ex_type_f" id="exp_strain_variation_tr" style="display:none">
+                <tr class="ex_type_b ex_type_d  ex_type_f ex_type_g" id="exp_strain_variation_tr" style="display:none">
                     <td style="text-align:right;">菌种变化<span class="ezcloud-red">*</span>：</td>
                     <td>
                         <div  class="">
@@ -177,7 +177,7 @@
                             </div>
                     </td>
                 </tr>
-                <tr class="ex_type_c ex_type_f ex_type_e" id="exp_physiological_process_change_tr" style="display:none">
+                <tr class="ex_type_c ex_type_f ex_type_e ex_type_g" id="exp_physiological_process_change_tr" style="display:none">
                     <td style="text-align:right;">生理过程的变化<span class="ezcloud-red">*</span>：</td>
                     <td>
                         <div  class="">
@@ -193,13 +193,7 @@
                             </div>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g">
-                    <td style="text-align:right;">干预物的注释<span class="ezcloud-red">*</span>：</td>
-                     <td><input type="text" id="exp_intervention_note" name="exp_edit_namet" maxlength="256"
-                              class="form-control" placeholder="干预物的注释"/>
-<!--                         <select class="form-control" id="exp_edit_intervention_note" name="exp_edit_intervention_note" ></select> -->
-                    </td>
-                </tr>
+
                 <tr id="exp_hostName_tr">
                     <td style="text-align:right;">宿主<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_hostName" name="exp_hostName" maxlength="5"
@@ -216,6 +210,17 @@
                             <select  name="exp_animal_model"  class="select2" data-select-search="true" id="exp_animal_model" onchange="vDocument()"></select>
                             <span class="help-block" id="exp_animal_model_block" for="exp_microorganism"></span>
                         </div>
+                    </td>
+                </tr>
+                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g">
+                    <td style="text-align:right;">干预物的注释<span class="ezcloud-red">*</span>：</td>
+                    <td><!--<input type="text" id="exp_intervention_note" name="exp_edit_namet" maxlength="512"
+                              class="form-control" placeholder="干预物的注释"/>-->
+                        <!--                         <select class="form-control" id="exp_edit_intervention_note" name="exp_edit_intervention_note" ></select> -->
+                        <textarea  id="exp_intervention_note" name="exp_edit_namet" maxlength="512"
+                                   class="form-control" placeholder="干预物的注释" style="width: 456px; height: 90px;">
+
+                        </textarea>
                     </td>
                 </tr>
             </table>
@@ -307,7 +312,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr class=" ex_type_b ex_type_d  ex_type_f" style="display:none" >
+                <tr class=" ex_type_b ex_type_d  ex_type_f ex_type_g" style="display:none" >
                     <td style="text-align:right;">菌种变化<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_edit_strain_variation" name="exp_edit_strain_variation" maxlength="5"
                                class="form-control" placeholder="菌种变化">-->
@@ -328,7 +333,7 @@
                         <div  class=""><select class="form-control" id="exp_edit_physiological_process" name="exp_animal_model" ></select>
                     </div></td>
                 </tr>
-                <tr class=" ex_type_c ex_type_e  ex_type_f"  style="display:none">
+                <tr class=" ex_type_c ex_type_e  ex_type_f ex_type_g"  style="display:none">
                     <td style="text-align:right;">生理过程的变化<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_edit_physiological_process_change" name="exp_edit_physiological_process_change" maxlength="5"
                                class="form-control" placeholder="生理过程的变化">-->
@@ -341,13 +346,7 @@
                        <select class="form-control" id="exp_edit_source_element" name="exp_animal_model" ></select>
                     </td>
                 </tr>
-                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g">
-                    <td style="text-align:right;">干预物的注释<span class="ezcloud-red">*</span>：</td>
-                     <td><input type="text" id="exp_edit_intervention_note" name="exp_edit_namet" maxlength="256"
-                              class="form-control" placeholder="干预物的注释"/>
-<!--                         <select class="form-control" id="exp_edit_intervention_note" name="exp_edit_intervention_note" ></select> -->
-                    </td>
-                </tr>
+
                 <tr>
                     <td style="text-align:right;">宿主<span class="ezcloud-red">*</span>：</td>
                     <td><!--<input type="text" id="exp_edit_hostName" name="exp_edit_hostName" maxlength="5"
@@ -363,6 +362,17 @@
                             <span class="help-block" id="exp_edit_animal_model_block" for="exp_edit_animal_model"></span>
                         </div>
                      </td>
+                </tr>
+                <tr class="ex_type_a ex_type_b ex_type_c  ex_type_g">
+                    <td style="text-align:right;">干预物的注释<span class="ezcloud-red">*</span>：</td>
+                    <td><!--<input type="text" id="exp_edit_intervention_note" name="exp_edit_namet" maxlength="512"
+                              class="form-control" placeholder="干预物的注释"/>-->
+                        <textarea  id="exp_edit_intervention_note" name="exp_edit_namet" maxlength="512"
+                                   class="form-control" placeholder="干预物的注释" style="width: 456px; height: 90px;">
+
+                        </textarea>
+                        <!--                         <select class="form-control" id="exp_edit_intervention_note" name="exp_edit_intervention_note" ></select> -->
+                    </td>
                 </tr>
             </table>
         </div>
@@ -459,10 +469,10 @@ function getexdictlist(id,code,pid){
             if (objs.data.length > 0) {
                 for (var i = 0; i < objs.data.length; i++) {
                     addOption(disease, objs.data[i].name, objs.data[i].value);
-//                     if(convertStr(pid)!="" && objs.data[i].value==pid){
-//                         $("#"+id).val(pid);
-//                         $(".select2-chosen").html(objs.data[i].name);
-//                     }
+                     if(convertStr(pid)!="" && objs.data[i].value==pid){
+                         $("#"+id).val(pid);
+                         $("#s2id_"+id).find(".select2-chosen").html(objs.data[i].name);
+                     }
                 }
             }
             if(convertStr(pid)!=""){
@@ -493,11 +503,10 @@ function getDocumentlist(id,code,pid){
                     addOption(disease, objs.data[i].name, objs.data[i].uuid);
                     if(convertStr(pid)!="" && objs.data[i].uuid==pid){
                         $("#"+id).val(pid);
-                        $(".select2-chosen").html(objs.data[i].name);
+                        $("#s2id_"+id).find(".select2-chosen").html(objs.data[i].name);
                     }
                 }
             }
-
 
         }else{
             console.log("code :" + objs.code + "  msg:" + objs.message);
@@ -522,6 +531,10 @@ function getDocumentlist(id,code,pid){
 	            if (objs.data.length > 0) {
 	                for (var i = 0; i < objs.data.length; i++) {
 	                    addOption(disease, objs.data[i].name, objs.data[i].value);
+                        if(convertStr(pid)!="" && objs.data[i].uuid==pid){
+                            $("#"+id).val(pid);
+                            $("#s2id_"+id).find(".select2-chosen").html(objs.data[i].name);
+                        }
 	                }
 	            }
 	            if(convertStr(pid)!=""){
@@ -553,7 +566,6 @@ function getdiseaselistChilds(id,pid,callback){
                     }
                 }
             }
-            console.log("pid--->"+pid);
             if(convertStr(pid)!=""){
                 $("#"+id).val(pid);
             }
@@ -602,6 +614,7 @@ function expermentDetail(callback){
             //宿主
             $("#exp_edit_hostName").val(objs.data.hostName);
             //动物模型/人群特征
+            console.log("--->"+objs.data.animalModel)
             $("#exp_edit_animal_model").val(objs.data.animalModel);
             changeResultType("exp_edit_modal",'exp_edit_result_type');
             callback(objs);
@@ -690,10 +703,12 @@ function experimentalInit(){
             getexdictlist("exp_edit_source_element","source_element",obj.data.sourceElement);
             getexdictlist("exp_edit_hostName","host_name",obj.data.hostName);
             //动物模型:编辑
-            debugger;
+//            debugger;
             getexdictlist("exp_edit_animal_model","animal_model",obj.data.animalModel);
             //修改干预物显示方式：编辑
             getexdictlist("exp_edit_intervention","intervention",obj.data.intervention);
+
+            console.log("obj.data.documentId="+obj.data.documentId);
             getDocumentlist("edit_document_insList","",obj.data.documentId);
         })
     });
@@ -828,7 +843,7 @@ function changeResultType(modal,id){
 function vDocument(){
     var ins = $("#document_insList").val();
     if(ins==null||ins==""){
-        $("#document_insList_block").html("请选择云主机");
+        $("#document_insList_block").html("");
         $("#document-up-ins").removeClass('has-success').addClass('has-error');
 //        $("#btn_diskUp_confirm").removeClass('btn-primary').addClass("disabled").addClass('txt-color-darken');
     }else{

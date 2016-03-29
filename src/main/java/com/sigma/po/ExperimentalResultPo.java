@@ -38,7 +38,7 @@ public class ExperimentalResultPo {
     /**
      * 干预物注释
      */
-    @Column(name="intervention_note")
+    @Column(name="intervention_note",length = 512)
     private String interventionNote;
     /**
      * 干预物对疾病影响

@@ -72,7 +72,7 @@
                 <div class="order-title">
                     <h1>新增实验记录</h1>
                     <div class="order-line"></div>
-                    <span><a id="exp_add_cancelB" class="pull-right cancelBtn" href="#jsp/exp/getexplist.html" style="float: right;">返回列表</a></span>
+                    <span><a id="exp_add_cancelB" class="pull-right cancelBtn" href="#jsp/exp/getexplist.html" style="float: right;">返回实验结果列表</a></span>
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
@@ -227,7 +227,7 @@
     </form>
 
 </div>
-<!--编辑产品-->
+<!--编辑实验结果-->
 <div id="exp_edit_modal" class="text-center" style="display:none;">
     <form id="exp_edit-form">
         <div class="tab-content col-lg-10 row"  style="margin-bottom: 20px;">
@@ -235,7 +235,7 @@
                 <div class="order-title">
                     <h1>编辑实验结果</h1>
                     <div class="order-line"></div>
-                    <span><a id="exp_edit_cancelB" class="pull-right cancelBtn" href="#../../action/cniaas/exps/exp.html" style="float: right;">返回产品列表</a></span>
+                    <span><a id="exp_edit_cancelB" class="pull-right cancelBtn" href="#../../action/cniaas/exps/exp.html" style="float: right;">返回实验结果列表</a></span>
                 </div>
             </div>
             <table border="0" style="margin-top: 10px;" class="col-lg-12 reg_right_table add_table">
@@ -271,7 +271,7 @@
                     <td>
                         <div  class="col-md-9 col-xs-9 col-sm-9 col-lg-6 no-padding">
                             <select  name="documentA_ins"  class="select2" data-select-search="true" id="edit_document_insList" onchange="vDocument()"></select>
-                            <span class="help-block" id="edix_document_insList_block" for="document_insList"></span>
+                            <span class="help-block" id="edix_document_insList_block" for="edit_document_insList"></span>
                         </div>
                     </td>
                 </tr>
@@ -357,10 +357,12 @@
                 </tr>
                 <tr>
                     <td style="text-align:right;">动物模型/人群特征<span class="ezcloud-red">*</span>：</td>
-                    <td><!--<input type="text" id="exp_edit_animal_model" name="exp_edit_animal_model" maxlength="5"
-                               class="form-control" placeholder="动物模型/人群特征">-->
-                        <div  class="">  <select class="form-control" id="exp_edit_animal_model" name="exp_animal_model" ></select>
-                    </div></td>
+                    <td>
+                    	<div class="col-md-9 col-xs-9 col-sm-9 col-lg-6 no-padding">
+                            <select  name="exp_edit_microorganism"  class="select2" data-select-search="true" id="exp_edit_animal_model" onchange="vDocument()"></select>
+                            <span class="help-block" id="exp_edit_animal_model_block" for="exp_edit_animal_model"></span>
+                        </div>
+                     </td>
                 </tr>
             </table>
         </div>
@@ -457,6 +459,10 @@ function getexdictlist(id,code,pid){
             if (objs.data.length > 0) {
                 for (var i = 0; i < objs.data.length; i++) {
                     addOption(disease, objs.data[i].name, objs.data[i].value);
+//                     if(convertStr(pid)!="" && objs.data[i].value==pid){
+//                         $("#"+id).val(pid);
+//                         $(".select2-chosen").html(objs.data[i].name);
+//                     }
                 }
             }
             if(convertStr(pid)!=""){
@@ -486,9 +492,7 @@ function getDocumentlist(id,code,pid){
                 for (var i = 0; i < objs.data.length; i++) {
                     addOption(disease, objs.data[i].name, objs.data[i].uuid);
                     if(convertStr(pid)!="" && objs.data[i].uuid==pid){
-//                        $("#s2id_"+id).find("a").find("span").text(objs.data[i].name);
                         $("#"+id).val(pid);
-//                        $("#s2id_edit_document_insList a span").text(objs.data[i].name);
                         $(".select2-chosen").html(objs.data[i].name);
                     }
                 }
@@ -675,9 +679,6 @@ function experimentalInit(){
             console.log("obj.data.intervention-->"+obj.data.intervention);
             var uuid=convertStr(obj.data.diseasePo)==""?"":obj.data.diseasePo.uuid;
             getdiseaselistChilds("exp_edit_diseaseId",uuid,function(){});
-            //修改干预物显示方式
-//             getexdictlist("exp_edit_intervention","intervention",obj.data.intervention);
-            getInterventionlist("edit_intervention_insList","intervention",obj.data.documentId);
             
             getexdictlist("exp_edit_intervention_effect","intervention_effect",obj.data.interventionEffect);
             getexdictlist("exp_edit_microorganism","microorganism",obj.data.microorganism);
@@ -688,7 +689,11 @@ function experimentalInit(){
             getexdictlist("exp_edit_intervention_note","intervention_note",obj.data.interventionNote);
             getexdictlist("exp_edit_source_element","source_element",obj.data.sourceElement);
             getexdictlist("exp_edit_hostName","host_name",obj.data.hostName);
+            //动物模型:编辑
+            debugger;
             getexdictlist("exp_edit_animal_model","animal_model",obj.data.animalModel);
+            //修改干预物显示方式：编辑
+            getexdictlist("exp_edit_intervention","intervention",obj.data.intervention);
             getDocumentlist("edit_document_insList","",obj.data.documentId);
         })
     });

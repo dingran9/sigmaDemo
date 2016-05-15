@@ -84,7 +84,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 	 * 	4、将节点list以及关系list存入步骤1中的map中，并返回
 	 */
 	@Override
-	public Map<String, List> convertToNodes(ExperimentalResultPo experimentalResultPo,NodePo diseaseNode) {
+	public Map<String, List> convertToNodes(ExperimentalResultPo experimentalResultPo,NodePo diseaseNode,Map<String, NodePo> nodesMap) {
 		Map<String, List> shapeEle=new HashedMap<String, List>();
 		//节点List
         List<NodePo> list=new ArrayList<>();
@@ -97,7 +97,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 *	包含节点：疾病 干预物 ("干预物对疾病的作用" 暂时定位节点关系) 
 				 */
 				//干预物
-                NodePo intervenNode=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
+                NodePo intervenNode=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(intervenNode);
 				//节点关系
                 edgeList.add(buildEdge(intervenNode,diseaseNode,1,experimentalResultPo));
@@ -108,10 +108,10 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 	疾病 干预物	微生物  （菌种变化、 干预物对疾病的作用  定位节点关系）
 				 */
 				//干预物
-                NodePo interventionNode=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
+                NodePo interventionNode=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(interventionNode);
 				//微生物
-                NodePo microorganism=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
+                NodePo microorganism=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism);
                 //节点关系
                 edgeList.add(buildEdge(interventionNode,microorganism,2,experimentalResultPo));
@@ -123,10 +123,10 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 	疾病 干预物 生理过程  （生理过程变化  干预物对疾病的作用	）	
 				 */
 				//干预物
-                NodePo iNode2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
+                NodePo iNode2=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(iNode2);
 				//生理过程
-                NodePo physiological=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
+                NodePo physiological=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
                 list.add(physiological);
                 //节点关系
                 edgeList.add(buildEdge(physiological,diseaseNode,5,experimentalResultPo));
@@ -138,7 +138,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 	疾病 微生物  （菌种变化  节点关系）		
 				 */
 				//微生物
-                NodePo microorganism2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
+                NodePo microorganism2=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism2);
                 //节点关系
                 edgeList.add(buildEdge(microorganism2,diseaseNode,4,experimentalResultPo));
@@ -149,7 +149,7 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				 * 	  疾病 生理过程  生理过程变化
 				 */
 				//生理过程
-                NodePo physiological2=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
+                NodePo physiological2=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
                 list.add(physiological2);
                 //节点关系
                 edgeList.add(buildEdge(physiological2,diseaseNode,5,experimentalResultPo));
@@ -162,11 +162,11 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				//疾病
 //				nodeList.put("diseaseNode",new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
 				//生理过程
-                NodePo physiological3=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
+                NodePo physiological3=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
                 list.add(physiological3);
 //				nodeList.put("physiological_process",new NodeDirector().constructNode(new PhysiologicalProcessNodeBuilder(experimentalResultPo)));
 				//微生物
-                NodePo microorganism3=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
+                NodePo microorganism3=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism3);
 //				nodeList.put("microorganism",new NodeDirector().constructNode(new MicroorganismNodeBuilder(experimentalResultPo)));
                 //节点关系
@@ -181,15 +181,15 @@ public class ExperimentalResultServiceImpl implements ExperimentalResultService 
 				//疾病
 //				nodeList.put("diseaseNode",new NodeDirector().constructNode(new DiseaseNodeBuilder(experimentalResultPo)));
 				//生理过程
-                NodePo physiological4=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
+                NodePo physiological4=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_PHYSIOLOGICALPROCESS);
                 list.add(physiological4);
 //				nodeList.put("physiological_process",new NodeDirector().constructNode(new PhysiologicalProcessNodeBuilder(experimentalResultPo)));
 				//微生物
-                NodePo microorganism4=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
+                NodePo microorganism4=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_MICROORGANISM);
                 list.add(microorganism4);
 //				nodeList.put("microorganism",new NodeDirector().constructNode(new MicroorganismNodeBuilder(experimentalResultPo)));
 				//干预物
-                NodePo iNode3=nodeService.create(experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
+                NodePo iNode3=nodeService.create(nodesMap,experimentalResultPo, Constants.NODE_TYPE_INTERVENTION);
                 list.add(iNode3);
 //				nodeList.put("interventionNode",new NodeDirector().constructNode(new InterventionNodeBuilder(experimentalResultPo)));
                 //节点关系

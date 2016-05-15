@@ -1,24 +1,29 @@
 package com.sigma.service.impl;
 
-import com.sigma.comm.Constants;
-import com.sigma.dao.EdgeDao;
-import com.sigma.dao.NodeDao;
-import com.sigma.dao.ShapeDao;
-import com.sigma.po.*;
-import com.sigma.proxy.ProxyDictItem;
-import com.sigma.service.DictItemService;
-import com.sigma.service.DiseaseService;
-import com.sigma.service.NodeService;
-import com.sigma.util.UIDGenerator;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.xml.soap.Node;
-import java.beans.Transient;
-import java.util.List;
+import com.sigma.comm.Constants;
+import com.sigma.dao.EdgeDao;
+import com.sigma.dao.NodeDao;
+import com.sigma.dao.ShapeDao;
+import com.sigma.po.DictItemPo;
+import com.sigma.po.DiseasePo;
+import com.sigma.po.ExperimentalResultPo;
+import com.sigma.po.NodePo;
+import com.sigma.po.ShapePo;
+import com.sigma.proxy.ProxyDictItem;
+import com.sigma.service.DictItemService;
+import com.sigma.service.DiseaseService;
+import com.sigma.service.NodeService;
+import com.sigma.util.UIDGenerator;
 
 /**
  * Created by Administrator on 2015/11/14.
@@ -75,12 +80,48 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public NodePo create(ExperimentalResultPo experimentalResultPo, String nodeType) {
-        NodePo nodePo=new NodePo();
+    public NodePo create(Map<String, NodePo> nodesMap,ExperimentalResultPo experimentalResultPo, String nodeType) {
+    	String nodeLabel="";
+    	 //设置label显示
+        switch (nodeType){
+	        case "intervention":
+	            DictItemPo intervention = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getIntervention());
+	            if(intervention!=null){
+	                nodeLabel=intervention.getName();
+	            }
+	            break;
+	        case "microorganism":
+	            DictItemPo microorganism = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getMicroorganism());
+	            if(microorganism!=null){
+	                nodeLabel=microorganism.getName();
+	            }
+	            break;
+	        case "physiological_process":
+	            DictItemPo ppprocess = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getPhysiologicalProcess());
+	            if(ppprocess!=null){
+	                nodeLabel=ppprocess.getName();
+	            }
+	            break;
+	        case "physiological_process_change":
+	            DictItemPo p = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getPhysiologicalProcessChange());
+	            if(p!=null){
+	                nodeLabel=p.getName();
+	            }
+	            break;
+	        default:
+	        	break;
+        }
+        NodePo nodePo=nodesMap.get(nodeLabel);
+        if (nodePo==null) {
+			nodePo=new NodePo();
+			nodePo.setLabel(nodeLabel);
+		}
+        //节点颜色
         DictItemPo dictItemPoColor= dictItemService.findByDictCodeAndItemName("nodeColor", nodeType);
         if(dictItemPoColor!=null){
             nodePo.setColor(dictItemPoColor.getValue());
         }
+        //节点大小
         DictItemPo dictItemPoSize= dictItemService.findByDictCodeAndItemName("nodeSize", nodeType);
         if(dictItemPoColor!=null){
             nodePo.setSize(Integer.parseInt(dictItemPoSize.getValue()));
@@ -89,39 +130,7 @@ public class NodeServiceImpl implements NodeService {
         nodePo.setPositionX((int) (Math.random() * 10));
         nodePo.setPositionY((int) (Math.random() * 10));
         nodePo.setUuid(UIDGenerator.getUUID());
-        switch (nodeType){
-	        case "intervention":
-	            DictItemPo intervention = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getIntervention());
-	            if(intervention!=null){
-	                nodePo.setLabel(intervention.getName());
-	            }
-	            return nodePo;
-	        case "microorganism":
-	            DictItemPo microorganism = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getMicroorganism());
-	            if(microorganism!=null){
-	                nodePo.setLabel(microorganism.getName());
-	            }
-	            return nodePo;
-	        case "physiological_process":
-	            DictItemPo ppprocess = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getPhysiologicalProcess());
-	            if(ppprocess!=null){
-	                nodePo.setLabel(ppprocess.getName());
-	            }
-	            return nodePo;
-	        case "physiological_process_change":
-	            DictItemPo p = dictItemService.findByDictCodeAndItemValue(nodeType,experimentalResultPo.getPhysiologicalProcessChange());
-	            if(p!=null){
-	                nodePo.setLabel(p.getName());
-	            }
-	            return nodePo;
-	        default:
-	            return nodePo;
-        }
-       /* DictItemPo dictItemPo = dictItemService.findByDictCodeAndItemName(nodeType, experimentalResultPo.getPhysiologicalProcess());
-        if(dictItemPo!=null){
-            nodePo.setLabel(dictItemPo.getName());
-        }*/
-//        return nodePo;
+        return nodePo;
     }
     
     @Override

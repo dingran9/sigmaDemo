@@ -120,6 +120,7 @@ public class ShapeController {
         	 */
         	//声明节点List
         	List<NodePo> nodeList=new ArrayList<NodePo>();
+        	Map<String, NodePo> nodesMap=new HashMap<String, NodePo>();
         	//声明Edgelist
         	List<EdgePo> edgeList=new ArrayList<EdgePo>();
         	NodePo diseaseNode=null;
@@ -132,12 +133,18 @@ public class ShapeController {
             		nodeList.add(diseaseNode);
 				}
             	//根据单条实验记录生成节点以及节点关系
-        		Map<String, List> shapeElem=experimentalResultService.convertToNodes(experimentalResultPo, diseaseNode);
-        		nodeList.addAll(shapeElem.get("nodeList"));
+        		Map<String, List> shapeElem=experimentalResultService.convertToNodes(experimentalResultPo, diseaseNode,nodesMap);
+        		List<NodePo> tempNodes=shapeElem.get("nodeList");
+        		for (NodePo nodePo : tempNodes) {
+					nodesMap.put(nodePo.getLabel(), nodePo);
+					if (!nodeList.contains(nodePo)) {
+						nodeList.add(nodePo);
+					}
+				}
         		edgeList.addAll(shapeElem.get("edgeList"));
 			}
         	
-            Map<String,Object> data=new HashMap<>();
+            Map<String,Object> data=new HashMap<String,Object>();
             data.put("edgePos",edgeList);
             data.put("nodePos",nodeList);
             ri.setData(data);
@@ -147,4 +154,16 @@ public class ShapeController {
             return ResponseItem.responseWithName(ri, ResponseCode.SERVICE_ERROR.toString(), "add exception");
         }
     }
+    public static void main(String[] args) {
+		List<String> listAll=new ArrayList<String>();
+		List<String> listSub=new ArrayList<String>();
+		for (int i=0;i<5;i++) {
+			listAll.add(i+"");
+		}
+		for (int i=0;i<3;i++) {
+			listSub.add(i+"");
+		}
+		listAll.addAll(listSub);
+		System.out.println(listAll);
+	}
 }

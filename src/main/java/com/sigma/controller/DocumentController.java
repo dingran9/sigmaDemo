@@ -1,15 +1,11 @@
 package com.sigma.controller;
 
-import com.sigma.comm.Constants;
-import com.sigma.po.AttachPo;
-import com.sigma.po.DiseasePo;
-import com.sigma.po.DocumentPo;
-import com.sigma.service.AttachService;
-import com.sigma.service.DocumentService;
-import com.sigma.util.ResponseCode;
-import com.sigma.util.ResponseItem;
-import com.sigma.util.StringHelper;
-import com.sigma.util.UIDGenerator;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -19,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.inject.Inject;
-import javax.print.Doc;
-import javax.servlet.http.HttpServletRequest;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import com.sigma.comm.Constants;
+import com.sigma.po.AttachPo;
+import com.sigma.po.DocumentPo;
+import com.sigma.service.AttachService;
+import com.sigma.service.DocumentService;
+import com.sigma.util.ResponseCode;
+import com.sigma.util.ResponseItem;
+import com.sigma.util.StringHelper;
+import com.sigma.util.UIDGenerator;
 
 /**
  * Created by Administrator on 2015/12/20.
@@ -124,12 +122,16 @@ public class DocumentController {
             documentPo.setFirstAuthor(firstAuthor);
             documentPo.setCorrespondentAuthor(correspondentAuthor);
             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
-            documentPo.setPublishDate(sdf.parse(publishDate));
+            //发布日期空值判断
+            if(!StringHelper.isEmpty(publishDate)){
+            	documentPo.setPublishDate(sdf.parse(publishDate));
+            }
             documentPo.setEntryType(entryType);
             //杂志
             documentPo.setMagazine(magazine);
             documentPo.setImpactFactors(impactFactors);
             documentPo.setUuid(UIDGenerator.getUUID());
+            documentPo=documentService.save(documentPo);
             //附件更新处理：需要添加事务处理
             String attachIdArr[]=attachIds.split(",");
             for (String attachId : attachIdArr) {
@@ -140,12 +142,14 @@ public class DocumentController {
 				if (currAttach!=null) {
 					//设置所属对象id
 					currAttach.setObjId(documentPo.getUuid());
+					//更新操作时间
+					currAttach.setIssueDate(new Date());
 					//设置附件类型
 					currAttach.setObjType(Constants.ATTACH_TYPE_DOCUMENT);
 					attachService.save(currAttach);
 				}
 			}
-            ri.setData(documentService.save(documentPo));
+            ri.setData(documentPo);
             return ri;
         } catch (Exception e) {
             logger.error("add exception:", e);
@@ -213,6 +217,8 @@ public class DocumentController {
 				AttachPo currAttach=attachService.findByUuid(attachId);
 				if (currAttach!=null) {
 					currAttach.setObjId(documentPo.getUuid());
+					//更新操作时间
+					currAttach.setIssueDate(new Date());
 					attachService.save(currAttach);
 				}
 			}

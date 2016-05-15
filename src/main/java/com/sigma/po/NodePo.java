@@ -1,6 +1,11 @@
 package com.sigma.po;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Administrator on 2015/11/14.
@@ -104,5 +109,15 @@ public class NodePo {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+	@Override
+	public boolean equals(Object obj){
+		if (obj instanceof NodePo) {
+			NodePo beComparedNode=(NodePo)obj;
+			if (this.label.equals(beComparedNode.getLabel())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

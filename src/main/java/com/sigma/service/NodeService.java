@@ -6,6 +6,7 @@ import com.sigma.po.NodePo;
 import com.sigma.po.ShapePo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2015/11/14.
@@ -58,7 +59,7 @@ public interface NodeService {
      * @param nodeType
      * @return
      */
-    NodePo create(ExperimentalResultPo experimentalResultPo,String nodeType);
+    NodePo create(Map<String, NodePo> nodesMap,ExperimentalResultPo experimentalResultPo,String nodeType);
 
     /**
      * 生成疾病节点

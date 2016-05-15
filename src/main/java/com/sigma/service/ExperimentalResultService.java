@@ -49,5 +49,5 @@ public interface ExperimentalResultService {
      * @param experimentalResultPo
      * @return
      */
-    Map<String,List> convertToNodes(ExperimentalResultPo experimentalResultPo,NodePo diseaseNode);
+    Map<String,List> convertToNodes(ExperimentalResultPo experimentalResultPo,NodePo diseaseNode,Map<String, NodePo> nodesMap);
 }

@@ -52,7 +52,7 @@ public class UploadUtil {
 		}
 		AttachPo currAttachPo=new AttachPo();
 		currAttachPo.setAttachName(attachName);
-		currAttachPo.setAttachPath(sdf.format(new Date())+mDateTime+"."+extension);
+		currAttachPo.setAttachPath(sdf.format(new Date())+"/"+mDateTime+"."+extension);
 		currAttachPo.setIssueDate(new Date());
 		currAttachPo.setExtension(extension);
 		currAttachPo.setUuid(UIDGenerator.getUUID());
